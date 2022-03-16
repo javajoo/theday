@@ -3,7 +3,7 @@
 
 <div class="d-flex justify-content-center">
 	<div class="sign-up-box">
-		<div class="profile"></div>
+		 <input type='file' class="profile" accept='.jpg, .png, .jpeg' name='profile_img'>
 		
 		<div class="mt-3 mb-2">
 			<label class="mr-2"><input type="radio" value="여자" name="gender" checked>여자</label>
@@ -38,10 +38,11 @@
 		<button type="button" class="sign-up-btn btn btn-outline-primary w-100 mt-3">가입하기</button>
 	
 		<hr>
-		<div class="text-center">계정이 있으신가요? <a href="/user/sign_in_view">로그인</a></div>
+		<div class="text-center">계정이 있으신가요? <a href="/user/sign_in_view" class="badge badge-primary">로그인</a></div>
 	</div>
 </div>
 
+  
 <script>
 	$(document).ready(function(e) {
 		//alert('click');
@@ -54,19 +55,22 @@
 			$('#inputId').addClass('d-none');
 			$('#isDuplicatedId').addClass('d-none');
 			$('#isAvailableId').addClass('d-none');
+			$('#loginId').removeClass('is-invalid');
 			
 			if (loginId == '') {
 				$('#inputId').removeClass('d-none');
+				$('#loginId').addClass('is-invalid');
 				return;
 			} 
 			
-	/* 		$.ajax({
-				type: 'GET'
+	 		$.ajax({
+				type: 'POST'
 				,url: '/user/is_duplicated_id'
 				,data: {"loginId": loginId}
 				,success: function(data) {
 					if (data.result == 'success') {
 						$('#isDuplicatedId').removeClass('d-none');
+						
 					} else {
 						$('#isAvailableId').removeClass('d-none');
 					}
@@ -74,7 +78,7 @@
 				,error: function(data) {
 					alert('관리자에게 문의바랍니다');
 				}
-			}); */
+			}); 
 			
 		});
 		
@@ -98,23 +102,37 @@
 			$('#inputBirth').addClass('d-none');
 			$('#inputDate').addClass('d-none');
 			
+			$('#loginId').removeClass('is-invalid');
+			$('#password').removeClass('is-invalid');
+			$('#confirmPassword').removeClass('is-invalid');
+			$('#name').removeClass('is-invalid');
+			$('#birth').removeClass('is-invalid');
+			$('#date').removeClass('is-invalid');
+			
+			
 			if (loginId == '') {
 				$('#inputId').removeClass('d-none');
+				$('#loginId').addClass('is-invalid');
+				
 				return;
 			} 
 			
 			if (password == '') {
 				$('#inputPassword').removeClass('d-none');
+				$('#password').addClass('is-invalid');
 				return;
 			} 
 			
 			if (confirmPassword == '') {
 				$('#inputConfirmPassword').removeClass('d-none');
+				$('#confirmPassword').addClass('is-invalid');
 				return;
 			} 
 			
 			if (confirmPassword != password) {
 				$('#inputSamePassword').removeClass('d-none');
+				$('#password').addClass('is-invalid');
+				$('#confirmPassword').addClass('is-invalid');
 				$('#password').val('');
 				$('#confirmPassword').val('');
 				return;
@@ -122,16 +140,19 @@
 			
 			if (name == '') {
 				$('#inputName').removeClass('d-none');
+				$('#name').addClass('is-invalid');
 				return;
 			} 
 			
 			if (birth == '') {
 				$('#inputBirth').removeClass('d-none');
+				$('#birth').addClass('is-invalid');
 				return;
 			} 
 			
 			if (date == '') {
 				$('#inputDate').removeClass('d-none');
+				$('#date').addClass('is-invalid');
 				return;
 			} 
 			
@@ -148,11 +169,14 @@
 				}
 				,success: function(data) {
 					if (data.result == 'success') {
-						alert(loginId + '님 환영합니다');
+						alert(loginId + '님 환영합니다.');
+						location.href = "/user/sign_in_view";
+					} else {
+						alert(data.errorMessage);
 					}
 				}
 				,error: function(data) {
-					alert(data.errorMessage);
+					alert('관리자에게 문의바랍니다.');
 				}
 					
 			});
