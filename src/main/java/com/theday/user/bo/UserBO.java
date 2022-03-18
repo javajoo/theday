@@ -30,7 +30,7 @@ public class UserBO {
 		return userDAO.selectUserListById();
 	}
 	
-	public int getUserByLoginId(String loginId) {
+	public List<User> getUserByLoginId(String loginId) {
 		return userDAO.selectUserByLoginId(loginId);
 	}
 

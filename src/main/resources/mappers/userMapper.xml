@@ -73,6 +73,11 @@
 	 		,`updatedAt`
  		FROM
  			`user`
+ 		<where>
+ 			<if test='loginId != null and loginId != ""'>
+ 				AND loginId = #{loginId}
+ 			</if>
+ 		</where>
  	</select>
  	
  	<select id="selectUserByLoginId" resultType="com.theday.user.model.User" parameterType="String">
@@ -90,6 +95,6 @@
  		FROM
  			`user`
  		WHERE
- 			`loginId` = #{loginId}
+ 			`loginId` like concat('%', #{loginId},'%')
  	</select>
  </mapper>

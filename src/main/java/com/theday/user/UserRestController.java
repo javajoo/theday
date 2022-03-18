@@ -1,13 +1,16 @@
 package com.theday.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -88,14 +91,14 @@ public class UserRestController {
 		
 	}
 	
-	@PostMapping("/search")
-	public Map<String, Object> search (@RequestParam("loginId") String loginId) {
+	@GetMapping("/search/{loginId}")
+	public Map<String, Object> search (@PathVariable("loginId") String loginId) {
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
-		int row = userBO.getUserByLoginId(loginId);
-		
-		if (row < 1) {
+		List<User> userList = userBO.getUserByLoginId(loginId);
+		result.put("userList", userList);
+		if (userList.size() < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "아이디가 없습니다.");
 		}
@@ -119,5 +122,9 @@ public class UserRestController {
 	}
 	
 
+	public static void main(String[] args) {
+		String pwd = EncryptUtils.md5("1111");
+		System.out.println(pwd);
+	}
 
 }

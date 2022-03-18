@@ -20,5 +20,5 @@ public interface UserDAO {
 	
 	public List<User> selectUserListById();
 	
-	public int selectUserByLoginId(String loginId);
+	public List<User> selectUserByLoginId(String loginId);
 }
