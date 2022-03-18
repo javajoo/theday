@@ -33,5 +33,10 @@ public class UserBO {
 	public int getUserByLoginId(String loginId) {
 		return userDAO.selectUserByLoginId(loginId);
 	}
+
+	public int updateUserByLoginId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
