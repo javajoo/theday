@@ -7,5 +7,4 @@ import com.theday.user.model.User;
 @Repository
 public interface CoupleDAO {
 
-	public int selectCoupleByLoginId (User user);
 }

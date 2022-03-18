@@ -10,7 +10,7 @@
 		<input type="password" id="password" name="password" class="form-control mt-3" placeholder="비밀번호">
 		<div id="inputPassword" class="small text-danger d-none">비밀번호를 입력해주세요</div>
 		
-		<button type="button" class="sign-up-btn btn btn-outline-primary w-100 mt-3">가입하기</button>
+		<button type="button" class="sign-up-btn btn btn-outline-primary w-100 mt-3">로그인</button>
 	
 		<hr>
 		<div class="text-center">계정이 없으신가요? <a href="/user/sign_up_view" class="badge badge-primary">회원가입</a></div>
@@ -50,7 +50,7 @@
 				,success: function(data) {
 					if (data.result == 'success') {
 						alert(loginId + '님 로그인 되었습니다.');
-						location.href = '/couple/search_view';
+						location.href = '/user/search_view';
 					} else {
 						alert(data.errorMessage);
 					}

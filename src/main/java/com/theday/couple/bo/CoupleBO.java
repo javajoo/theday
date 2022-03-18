@@ -9,10 +9,5 @@ import com.theday.user.model.User;
 @Service
 public class CoupleBO {
 	
-	@Autowired
-	private CoupleDAO coupleDAO;
-	
-	public int getCoupleByLoginId (User user) {
-		return coupleDAO.selectCoupleByLoginId(user);
-	}
+
 }

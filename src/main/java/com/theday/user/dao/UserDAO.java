@@ -1,5 +1,7 @@
 package com.theday.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,8 @@ public interface UserDAO {
 	public User selectUserByLoginIdPassword(
 			@Param("loginId") String loginId, 
 			@Param("password") 	String password);
+	
+	public List<User> selectUserListById();
+	
+	public int selectUserByLoginId(String loginId);
 }
