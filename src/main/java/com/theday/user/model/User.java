@@ -97,4 +97,12 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", loginId=" + loginId + ", password=" + password + ", name=" + name + ", birth="
+				+ birth + ", gender=" + gender + ", profileImage=" + profileImage + ", date=" + date + ", createdAt="
+				+ createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+
+	
 }
