@@ -12,97 +12,81 @@ public class User {
 	private String name;
 	private String birth;
 	private String gender;
-	private String profileImage;
+	private String profileImagePath;
+	private MultipartFile profileImage;
 	private String date;
 	private Date createdAt;
 	private Date updatedAt;
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getLoginId() {
 		return loginId;
 	}
-
 	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getBirth() {
 		return birth;
 	}
-
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-
 	public String getGender() {
 		return gender;
 	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
-	public String getProfileImage() {
+	public String getProfileImagePath() {
+		return profileImagePath;
+	}
+	public void setProfileImagePath(String profileImagePath) {
+		this.profileImagePath = profileImagePath;
+	}
+	public MultipartFile getProfileImage() {
 		return profileImage;
 	}
-
-	public void setProfileImage(String profileImage) {
+	public void setProfileImage(MultipartFile profileImage) {
 		this.profileImage = profileImage;
 	}
-
 	public String getDate() {
 		return date;
 	}
-
 	public void setDate(String date) {
 		this.date = date;
 	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
-
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
-
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", loginId=" + loginId + ", password=" + password + ", name=" + name + ", birth="
-				+ birth + ", gender=" + gender + ", profileImage=" + profileImage + ", date=" + date + ", createdAt="
-				+ createdAt + ", updatedAt=" + updatedAt + "]";
+				+ birth + ", gender=" + gender + ", profileImagePath=" + profileImagePath + ", profileImage="
+				+ profileImage + ", date=" + date + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-
-	
 }

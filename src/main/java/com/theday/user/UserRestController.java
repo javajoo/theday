@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.theday.common.EncryptUtils;
 import com.theday.common.FileManagerService;
@@ -33,18 +32,16 @@ public class UserRestController {
 	private UserBO userBO;
 	
 	@PostMapping("/sign_up")
-	public Map<String, Object> signUp(
-			@ModelAttribute User user,
-			@RequestParam(value="profileImage", required=false) MultipartFile file
-		) {
+	public Map<String, Object> signUp(@ModelAttribute User user) {
 
 		// 비밀번호 암호화
 		String encryptUtils = EncryptUtils.md5(user.getPassword());
 		user.setPassword(encryptUtils);
 		
 		// 이미지 사진 넣기
-		//String imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
-		
+		System.out.println(user.getProfileImage());
+		String imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
+		user.setProfileImagePath(imagePath);
 		//file = fileManagerService.saveFile(user.getLoginId(), user.getProfileImage());
 		
 		int row = userBO.insertUser(user);
@@ -90,7 +87,7 @@ public class UserRestController {
 		
 		if (user != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("loginId", user.getLoginId());
+			session.setAttribute("user", user);
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "아이디 또는 비밀번호를 잘못 입력했습니다. \n"
@@ -102,11 +99,11 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/search/{loginId}")
-	public Map<String, Object> search (@PathVariable("loginId") String loginId) {
-		
+	public Map<String, Object> search (@PathVariable("loginId") String loginId, HttpSession session) {
+		User user = (User)session.getAttribute("user");
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
-		List<User> userList = userBO.getUserByLoginId(loginId);
+		List<User> userList = userBO.getUserByLoginId(loginId,user.getLoginId());
 		result.put("userList", userList);
 		if (userList.size() < 1) {
 			result.put("result", "error");

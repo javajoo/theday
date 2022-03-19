@@ -18,6 +18,7 @@
 
 <script>
 	$(document).ready(function(e) {
+		$('#loginId').focus();
 		//alert('click');
 		$(document).keypress(function(event){
 		  var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -36,11 +37,13 @@
 				if (loginId == '') {
 					$('#loginId').addClass('is-invalid');
 					$('#inputId').removeClass('d-none');
+					$('#loginId').focus();
 					return;
 				}
 				
 				if (password == '') {
 					$('#password').addClass('is-invalid');
+					$('#password').focus();
 					$('#inputPassword').removeClass('d-none');
 					return;
 				}

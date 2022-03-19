@@ -175,7 +175,7 @@
 			formData.append('name', name);
 			formData.append('birth', birth);
 			formData.append('date', date);
-			formData.append('file', $('#file')[0].files[0]);
+			formData.append('profileImage', $('#file')[0].files[0]);
 			
 			
 			$.ajax({

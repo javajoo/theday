@@ -11,7 +11,7 @@
 	 		,`name`
 	 		,`birth`
 	 		,`gender`
-	 		,`profileImage`
+	 		,`profileImagePath`
 	 		,`date`
 	 		,`createdAt`
 	 		,`updatedAt`
@@ -23,7 +23,7 @@
  			,#{name}
  			,#{birth}
  			,#{gender}
- 			,#{profileImage}
+ 			,#{profileImagePath}
  			,#{date}
  			,NOW()
  			,NOW()
@@ -48,7 +48,7 @@
 	 		,`name`
 	 		,`birth`
 	 		,`gender`
-	 		,`profileImage`
+	 		,`profileImagePath`
 	 		,`date`
 	 		,`createdAt`
 	 		,`updatedAt`
@@ -67,7 +67,7 @@
 	 		,`name`
 	 		,`birth`
 	 		,`gender`
-	 		,`profileImage`
+	 		,`profileImagePath`
 	 		,`date`
 	 		,`createdAt`
 	 		,`updatedAt`
@@ -88,13 +88,16 @@
 	 		,`name`
 	 		,`birth`
 	 		,`gender`
-	 		,`profileImage`
+	 		,`profileImagePath`
 	 		,`date`
 	 		,`createdAt`
 	 		,`updatedAt`
  		FROM
- 			`user`
+ 			`user` U
  		WHERE
  			`loginId` like concat('%', #{loginId},'%')
+ 			and loginId != #{sessionLoginId}
+ 			AND  NOT EXISTS(SELECT 1 FROM couple c WHERE (u.id=c.userid1
+ 			OR u.id=c.userid2) AND state ='성공')
  	</select>
  </mapper>

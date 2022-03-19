@@ -30,8 +30,8 @@ public class UserBO {
 		return userDAO.selectUserListById();
 	}
 	
-	public List<User> getUserByLoginId(String loginId) {
-		return userDAO.selectUserByLoginId(loginId);
+	public List<User> getUserByLoginId(String loginId, String sessionLoginId) {
+		return userDAO.selectUserByLoginId(loginId,sessionLoginId);
 	}
 
 	public int updateUserByLoginId() {

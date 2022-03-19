@@ -63,7 +63,7 @@
 							html += '<td class="pt-3">' + user.gender+'</td>';
 							html += '<td class="pt-3">' + user.birth+'</td>';
 							html += '<td class="pt-3">' + user.date+'</td>';
-							html += '<td class=""><button type="button" class="sign-up-btn btn btn-outline-primary" data-user-id="${user.id}">연결</button></td>';
+							html += '<td class=""><button type="button" class="sign-up-btn btn btn-outline-primary" data-user-id="${user.id}">연결${user.id}</button></td>';
 							html += '</tr>'
 						}
 						$('#tBody').html(html);
