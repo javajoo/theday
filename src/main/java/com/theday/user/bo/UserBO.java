@@ -35,7 +35,6 @@ public class UserBO {
 	}
 
 	public int updateUserByLoginId() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	

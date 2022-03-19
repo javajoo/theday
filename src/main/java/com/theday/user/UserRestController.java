@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.theday.common.EncryptUtils;
+import com.theday.common.FileManagerService;
 import com.theday.user.bo.UserBO;
 import com.theday.user.model.User;
 
@@ -25,17 +27,25 @@ import com.theday.user.model.User;
 public class UserRestController {
 
 	@Autowired
+	private FileManagerService fileManagerService;
+	
+	@Autowired
 	private UserBO userBO;
 	
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(
-			@ModelAttribute User user) {
+			@ModelAttribute User user,
+			@RequestParam(value="profileImage", required=false) MultipartFile file
+		) {
 
 		// 비밀번호 암호화
 		String encryptUtils = EncryptUtils.md5(user.getPassword());
 		user.setPassword(encryptUtils);
 		
+		// 이미지 사진 넣기
+		//String imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
 		
+		//file = fileManagerService.saveFile(user.getLoginId(), user.getProfileImage());
 		
 		int row = userBO.insertUser(user);
 		Map<String, Object> result = new HashMap<>();
@@ -100,7 +110,6 @@ public class UserRestController {
 		result.put("userList", userList);
 		if (userList.size() < 1) {
 			result.put("result", "error");
-			result.put("errorMessage", "아이디가 없습니다.");
 		}
 		return result;
 	}

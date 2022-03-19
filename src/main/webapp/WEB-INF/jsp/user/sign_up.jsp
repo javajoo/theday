@@ -3,8 +3,8 @@
 
 <div class="d-flex justify-content-center">
 	<div class="sign-up-box">
-		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg" >
-		 <a href="#" id="fileUpLoadBtn" ><div class="profile"></div></a>
+		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg, .gif" >
+		 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/img1.webp" class="profile"></a>
 		
 		<div class="mt-3 mb-2">
 			<label class="mr-2"><input type="radio" value="여자" name="gender" checked>여자</label>
@@ -83,8 +83,15 @@
 			
 		});
 		
+		$('#fileUpLoadBtn').on('click',function(e) {
+			//alert('click');
+			e.preventDefault();
+			$('#file').click();
 		
-		$('.sign-up-btn').on('click',function(e) {
+		}); 
+		
+		
+		$('.sign-up-btn').on('keydown',function(e) {
 			//alert('click');
 			let gender = $('input[name="gender"]:checked').val();
 			//console.log(person);
@@ -94,7 +101,7 @@
 			let name = $('#name').val().trim();
 			let birth = $('#birth').val().trim();
 			let date = $('#date').val().trim();
-			let profileImage = $('#profileImage').val().trim();
+			let profileImage = $('#profileImage').val();
 	
 			$('#inputId').addClass('d-none');
 			$('#inputPassword').addClass('d-none');
@@ -158,22 +165,31 @@
 				return;
 			} 
 			
+			let file = $('#file').val();
+			//alert(file);
+			
+			var formData = new FormData();
+			formData.append('gender', gender);
+			formData.append('loginId', loginId);
+			formData.append('password', password);
+			formData.append('name', name);
+			formData.append('birth', birth);
+			formData.append('date', date);
+			formData.append('file', $('#file')[0].files[0]);
+			
+			
 			$.ajax({
 				type: 'POST'
 				,url: '/user/sign_up'
-				,data: {
-					"profileImage":profileImage,
-					"gender":gender,
-					"loginId":loginId, 
-					"password":password,
-					"name":name,
-					"birth":birth,
-					"date":date
-				}
+				,data: formData
+				// 파일 업로드를 위한 필수 설정
+				,enctype : 'multipart/form-data'
+				,contentType : false
+				,processData : false
 				,success: function(data) {
 					if (data.result == 'success') {
 						alert(loginId + '님 환영합니다.');
-						location.href = "/user/sign_in_view";
+						location.href = '/user/sign_in_view';
 					} else {
 						alert(data.errorMessage);
 					}
@@ -185,5 +201,8 @@
 			});
 		
 		});
+		
+	
+		
 	});
 </script>

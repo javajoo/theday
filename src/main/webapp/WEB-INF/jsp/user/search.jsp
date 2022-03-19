@@ -15,7 +15,6 @@
 	</div>
 
 </div>
-	<c:if test="${not empty loginId}">
 		<table class="table text-center table-hover mt-5">
 				<thead>
 					<tr>
@@ -33,7 +32,6 @@
 					</tr>
 				</tbody>
 		</table>
-	</c:if>
 	
 <script>
 	$(document).ready(function(e) {
@@ -65,6 +63,7 @@
 							html += '<td class="pt-3">' + user.gender+'</td>';
 							html += '<td class="pt-3">' + user.birth+'</td>';
 							html += '<td class="pt-3">' + user.date+'</td>';
+							html += '<td class=""><button type="button" class="sign-up-btn btn btn-outline-primary" data-user-id="${user.id}">연결</button></td>';
 							html += '</tr>'
 						}
 						$('#tBody').html(html);
@@ -75,7 +74,6 @@
 							html += '</tr>'
 							$('#tBody').html(html);
 						}
-						alert(data.errorMessage);
 					}
 				}
 				,error: function(e) {
