@@ -7,7 +7,6 @@ header {
 /* section {
 	height: 700px;
 } */
-
 footer {
 	height: 100px;
 }
@@ -27,16 +26,18 @@ footer {
 	padding: 20px;
 }
 
+a {
+	text-decoration: none !important
+}
 
 a:hover {
-	text-decoration: none;
+	text-decoration: none !important
 }
 
 .logo {
 	background: #dd58c3;
 	border-radius: 0px 0px 30px 30px;
 	width: 70%;
-	border-radius: 0px 0px 30px 30px;
 }
 
 .sign-in-box {
@@ -66,7 +67,7 @@ a:hover {
 
 .home-box {
 	width: 500px;
-	margin-top:50px;
+	margin-top: 50px;
 	padding: 30px;
 }
 

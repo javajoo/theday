@@ -1,49 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="d-flex justify-content-center">
 	<div class="sign-up-box">
-		 <input type="file" class="profile" accept='.jpg, .png, .jpeg' id="profileImage" name="profileImage">
+		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg, .gif"  onchange="PreviewImage()" >
+		 <a href="#" id="fileUpLoadBtn" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
 		
 		<div class="mt-3 mb-2">
-			<label class="mr-2"><input type="radio" value="여자" name="gender" checked>여자</label>
-			<label><input type="radio" value="남자" name="gender">남자</label>
+			<label class="mr-2"><input type="radio" value="여자" name="gender" <c:if test="${user.gender eq '여자'}">checked="checked"</c:if>/>여자</label>
+			<label><input type="radio" value="남자" name="gender"  <c:if test="${user.gender eq '남자'}">checked="checked"</c:if>/>남자</label>
 		</div>
 		
-		<div class="d-flex justify-content-between">
-			<input type="text" id="loginId" name="loginId" class="form-control mt-3" placeholder="아이디" value="">
-		</div>
+		<input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디"  value="${user.loginId}" disabled >
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
 		<div id="isDuplicatedId" class="small text-danger d-none">중복된 아이디 입니다.</div>
 		<div id="isAvailableId" class="small text-success d-none">사용가능한 아이디 입니다.</div>
 		
-		<input type="password" id="password" name="password" class="form-control mt-3" placeholder="비밀번호" value="">
+		<input type="password" id="password" name="password" class="form-control mt-3" placeholder="비밀번호"  value="${user.password}">
 		<div id="inputPassword" class="small text-danger d-none">비밀번호를 입력해주세요</div>
 		
-		<input type="password" id="confirmPassword" name="confirmPassword" class="form-control mt-3" placeholder="비밀번호 확인" value="">
+		<input type="password" id="confirmPassword" name="confirmPassword" class="form-control mt-3" placeholder="비밀번호 확인" value="${user.password}">
 		<div id="inputConfirmPassword" class="small text-danger d-none">비밀번호를 다시 입력해주세요</div>
 		<div id="inputSamePassword" class="small text-danger d-none">비밀번호가 틀립니다.<br> 비밀번호를 확인 해주세요.</div>
 		
-		<input type="text" id="name" name="name" class="form-control mt-3" placeholder="이름" value="">
+		<input type="text" id="name" name="name" class="form-control mt-3" placeholder="이름"  value="${user.name}">
 		<div id="inputName" class="small text-danger d-none">이름을 입력해주세요</div>
 		
-		<input type="text" id="birth" name="birth" class="form-control mt-3" placeholder="생년월일" value="">
+		<input type="text" id="birth" name="birth" class="form-control mt-3" placeholder="생년월일"  value="${user.birth}">
 		<div id="inputBirth" class="small text-danger d-none">생년월일을 입력해주세요</div>
 		
-		<input type="text" id="date" name="date" class="form-control mt-3" placeholder="처음 만난 날" value="">
+		<input type="text" id="date" name="date" class="form-control mt-3" placeholder="처음 만난 날"  value="${user.date}">
 		<div id="inputDate" class="small text-danger d-none">처음 만난 날을 입력해주세요</div>
 		
-		<button type="button" class="update-btn btn btn-outline-primary w-100 mt-3">수정하기</button>
+	<button type="button" class="update-btn btn btn-outline-primary w-100 mt-3">수정하기</button>
+	
 	
 	</div>
 </div>
 
   
 <script>
-	$(document).ready(function(e) {
+	function PreviewImage() {
+	    // 파일리더 생성 
+	    var preview = new FileReader();
+	    preview.onload = function (e) {
+	    // img id 값 
+	    document.getElementById("userImage").src = e.target.result;
+	};
+	// input id 값 
+	preview.readAsDataURL(document.getElementById("file").files[0]);
+	};
+
+		$(document).ready(function(e) {
 		//alert('click');
-				
+		
+		$('#fileUpLoadBtn').on('click',function(e) {
+			//alert('click');
+			e.preventDefault();
+			$('#file').click();
+		
+		}); 
+		
+		
 		$('.update-btn').on('click',function(e) {
 			//alert('click');
 			let gender = $('input[name="gender"]:checked').val();
@@ -54,7 +74,7 @@
 			let name = $('#name').val().trim();
 			let birth = $('#birth').val().trim();
 			let date = $('#date').val().trim();
-			let profileImage = $('#profileImage').val().trim();
+			let profileImage = $('#profileImage').val();
 	
 			$('#inputId').addClass('d-none');
 			$('#inputPassword').addClass('d-none');
@@ -118,10 +138,24 @@
 				return;
 			} 
 			
+			let file = $('#file').val();
+			//alert(file);
+			
+			let formData = new FormData();
+			formData.append('gender', gender);
+			formData.append('loginId', loginId);
+			formData.append('password', password);
+			formData.append('name', name);
+			formData.append('birth', birth);
+			formData.append('date', date);
+			formData.append('profileImage', $('#file')[0].files[0]);
+			
+			
 			$.ajax({
-				type: 'POST'
-				,url: '/user/profile'
+				type: 'PUT'
+				,url: '/user/profile_update'
 				,data: {
+					"loginId": loginId,
 					"profileImage":profileImage,
 					"gender":gender,
 					"loginId":loginId, 
@@ -143,7 +177,9 @@
 				}
 					
 			});
+
 		
 		});
+		
 	});
 </script>

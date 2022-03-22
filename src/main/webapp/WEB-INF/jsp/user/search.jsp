@@ -7,7 +7,7 @@
 		
 		<div class="d-flex">
 		    <input class="form-control col-9" type="search" id="loginId" name="loginId" placeholder="상대방의 아이디">
-		    <div><button class="search-btn btn btn-outline-primary ml-2" type="button">검색</button></div>
+		    <div><button class="search-btn btn btn-outline-primary ml-2" type="button" onclick="search()">검색</button></div>
 		</div>
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
@@ -34,52 +34,68 @@
 		</table>
 	
 <script>
-	$(document).ready(function(e) {
-		//alert('click');
-		$('.search-btn').on('click',function(e) {
-			//alert('click');
-			
-			let loginId = $('#loginId').val().trim();
-			
-			$('#inputId').addClass('d-none');
-			$('#loginId').removeClass('is-invalid');
-			
-			if (loginId == '') {
-				$('#inputId').removeClass('d-none');
-				$('#loginId').addClass('is-invalid');
-				return;
+
+	function connect(obj) {
+		//alert(obj.getAttribute('data-user-id'));
+		var data = {
+				userId2 : obj.getAttribute('data-user-id')
+				}
+		$.post({
+			url: "/couple"
+			,data: JSON.stringify(data)
+			,contentType: 'application/json;charset=UTF-8'
+			,success : function(res) {
+				console.log(res);
+				location.href= "/couple/home_view";
 			}
-			
-			$.ajax({
-				type: 'get'
-				,url: '/user/search/' + loginId
-				,success: function(data) {
-					if (data.result == 'success') {
-						var html = '';
-						for(var user of data.userList){
-							html += '<tr>';
-							html += '<td class="pt-3">' + user.loginId+'</td>';
-							html += '<td class="pt-3">' + user.name+'</td>';
-							html += '<td class="pt-3">' + user.gender+'</td>';
-							html += '<td class="pt-3">' + user.birth+'</td>';
-							html += '<td class="pt-3">' + user.date+'</td>';
-							html += '<td class=""><button type="button" class="sign-up-btn btn btn-outline-primary" data-user-id="${user.id}">연결${user.id}</button></td>';
-							html += '</tr>'
-						}
+			,error: function(err) {
+				alert(err);
+			}
+		})
+	};
+	
+	function search() {
+		let loginId = $('#loginId').val().trim();
+		
+		$('#inputId').addClass('d-none');
+		$('#loginId').removeClass('is-invalid');
+		
+		if (loginId == '') {
+			$('#inputId').removeClass('d-none');
+			$('#loginId').addClass('is-invalid');
+			return;
+		}
+		
+		$.ajax({
+			type: 'get'
+			,url: '/user/search/' + loginId
+			,success: function(data) {
+				if (data.result == 'success') {
+					var html = '';
+					for(var user of data.userList){
+						html += '<tr>';
+						html += '<td class="pt-3">' + user.loginId+'</td>';
+						html += '<td class="pt-3">' + user.name+'</td>';
+						html += '<td class="pt-3">' + user.gender+'</td>';
+						html += '<td class="pt-3">' + user.birth+'</td>';
+						html += '<td class="pt-3">' + user.date+'</td>';
+						html += '<td class=""><button type="button" class="sign-up-btn btn btn-outline-primary" data-user-id="${user.id}">연결</button></td>';
+						html += '</tr>'
+					}
+					$('#tBody').html(html);
+				} else {
+					if(!data.userList.length){
+						var html = '<tr>';
+						html +=	'<td colspan="6">검색한 조건을 찾을 수 없습니다.</td>';
+						html += '</tr>'
 						$('#tBody').html(html);
-					} else {
-						if(!data.userList.length){
-							var html = '<tr>';
-							html +=	'<td colspan="6">검색한 조건을 찾을 수 없습니다.</td>';
-							html += '</tr>'
-							$('#tBody').html(html);
-						}
 					}
 				}
-				,error: function(e) {
-					alert('관리자에게 문의바랍니다.');
-				}
-			}); 
-		});
-	});
+			}
+			,error: function(e) {
+				alert('관리자에게 문의바랍니다.');
+			}
+		}); 
+	};
+
 </script>

@@ -6,7 +6,7 @@
 		<div class=" d-flex justify-content-between">
 			<div>
 				<div class="profile " data-toggle="modal" data-target="#moreModal"></div>
-				<div class="text-center mt-2">김김김</div>
+				<div class="text-center mt-2">${couple.userId1}</div>
 			</div>
 			
 			<div class="d-flex align-items-center">
@@ -18,7 +18,7 @@
 			
 			<div>
 				<div class="profile" data-toggle="modal" data-target="#moreModal"></div>
-				<div class="text-center mt-2">박박박</div>
+				<div class="text-center mt-2">${user.name}</div>
 			</div>
 		</div>
 	
@@ -95,13 +95,12 @@
       <div class="modal-body">
       	<div class="profile"></div>
      	 <div class="mt-3">
-	        <div>박박박</div>
-	        <div>2005년 05월 01일</div>
-	        <div>zxc@google.com</div>
+	        <div class="ml-1">${user.name}</div>
+	        <div class="ml-1">${user.birth}</div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary">프로필 편집</button>
+       <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
       </div>
     </div>
   </div>

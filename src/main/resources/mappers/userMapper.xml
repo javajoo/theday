@@ -100,4 +100,19 @@
  			AND  NOT EXISTS(SELECT 1 FROM couple c WHERE (u.id=c.userid1
  			OR u.id=c.userid2) AND state ='성공')
  	</select>
+ 	
+ 	<update id="updateUser">
+ 		UPDATE `user`
+ 		SET
+ 				`loginId` = #{loginId}
+ 				,`password` = #{password}
+ 				,`name` = #{name}
+ 				,`birth` = #{birth}
+ 				,`gender` = #{gender}
+ 				,`profileImagePath` = #{profileImagePath}
+ 				,`date` = #{date}
+ 				,`updatedAt` = NOW()
+ 		WHERE
+ 			`loginId` = #{loginId}
+ 	</update>
  </mapper>

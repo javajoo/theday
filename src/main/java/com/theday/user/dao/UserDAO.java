@@ -21,4 +21,6 @@ public interface UserDAO {
 	public List<User> selectUserListById();
 	
 	public List<User> selectUserByLoginId(@Param("loginId")String loginId, @Param("sessionLoginId") String sessionLoginId);
+	
+	public int updateUser(User user);
 }

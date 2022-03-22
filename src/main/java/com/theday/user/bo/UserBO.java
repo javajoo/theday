@@ -5,16 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.theday.common.FileManagerService;
 import com.theday.user.dao.UserDAO;
 import com.theday.user.model.User;
 
 @Service
 public class UserBO {
+	
+	@Autowired
+	private FileManagerService fileManagerService;
 
 	@Autowired
 	private UserDAO userDAO;
 
 	public int insertUser(User user) {
+		// 이미지 사진 넣기
+		String imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
+		user.setProfileImagePath(imagePath);
+		
 		return userDAO.insertUser(user);
 	}
 	
@@ -34,8 +42,8 @@ public class UserBO {
 		return userDAO.selectUserByLoginId(loginId,sessionLoginId);
 	}
 
-	public int updateUserByLoginId() {
-		return 0;
+	public int updateUser(User user) {
+		return userDAO.updateUser(user);
 	}
 	
 }

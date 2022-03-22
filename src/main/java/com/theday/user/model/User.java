@@ -12,8 +12,8 @@ public class User {
 	private String name;
 	private String birth;
 	private String gender;
-	private String profileImagePath;
-	private MultipartFile profileImage;
+	private String profileImagePath; //db에 저장되는 이미지경로
+	private MultipartFile profileImage; //파일에 저장되는 이미지
 	private String date;
 	private Date createdAt;
 	private Date updatedAt;

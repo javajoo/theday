@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+  <mapper namespace="com.theday.couple.dao.CoupleDAO">
+ 	<select id="CountUser" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`couple`
+ 		WHERE
+ 			(userid1 = #{userId2} OR userid2 = #{userId2})
+ 			AND state = '성공'
+ 	</select>
+ </mapper>

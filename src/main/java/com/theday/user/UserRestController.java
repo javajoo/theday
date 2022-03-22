@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.theday.common.EncryptUtils;
-import com.theday.common.FileManagerService;
 import com.theday.user.bo.UserBO;
 import com.theday.user.model.User;
 
@@ -25,9 +25,7 @@ import com.theday.user.model.User;
 @RequestMapping("/user")
 public class UserRestController {
 
-	@Autowired
-	private FileManagerService fileManagerService;
-	
+
 	@Autowired
 	private UserBO userBO;
 	
@@ -37,12 +35,6 @@ public class UserRestController {
 		// 비밀번호 암호화
 		String encryptUtils = EncryptUtils.md5(user.getPassword());
 		user.setPassword(encryptUtils);
-		
-		// 이미지 사진 넣기
-		System.out.println(user.getProfileImage());
-		String imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
-		user.setProfileImagePath(imagePath);
-		//file = fileManagerService.saveFile(user.getLoginId(), user.getProfileImage());
 		
 		int row = userBO.insertUser(user);
 		Map<String, Object> result = new HashMap<>();
@@ -111,26 +103,22 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PostMapping("/profile")
-	public Map<String, Object> profile () {
+	@PutMapping("/profile_update")
+	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
+		user = (User) session.getAttribute("user");
+		int row = userBO.updateUser(user);
+		
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
-		int row = userBO.updateUserByLoginId();
 		
 		if(row < 1) {
 			result.put("success", "error");
-			result.put("errorMessage", "");
+			result.put("errorMessage", "수정에 실패했습니다.");
 		}
 		
-	
-	
 		return result;
 	}
 	
 
-	public static void main(String[] args) {
-		String pwd = EncryptUtils.md5("1111");
-		System.out.println(pwd);
-	}
 
 }

@@ -3,8 +3,8 @@
 
 <div class="d-flex justify-content-center">
 	<div class="sign-up-box">
-		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg, .gif" >
-		 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/img1.webp" class="profile"></a>
+		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg, .gif"  onchange="PreviewImage()">
+		 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/img1.webp" class="profile" id="userImage"></a>
 		
 		<div class="mt-3 mb-2">
 			<label class="mr-2"><input type="radio" value="여자" name="gender" checked>여자</label>
@@ -45,6 +45,17 @@
 
   
 <script>
+	function PreviewImage() {
+	    // 파일리더 생성 
+	    var preview = new FileReader();
+	    preview.onload = function (e) {
+	    // img id 값 
+	    document.getElementById("userImage").src = e.target.result;
+	};
+	// input id 값 
+	preview.readAsDataURL(document.getElementById("file").files[0]);
+	};
+
 	$(document).ready(function(e) {
 		//alert('click');
 		
@@ -91,7 +102,7 @@
 		}); 
 		
 		
-		$('.sign-up-btn').on('keydown',function(e) {
+		$('.sign-up-btn').on('click',function(e) {
 			//alert('click');
 			let gender = $('input[name="gender"]:checked').val();
 			//console.log(person);
@@ -168,7 +179,7 @@
 			let file = $('#file').val();
 			//alert(file);
 			
-			var formData = new FormData();
+			let formData = new FormData();
 			formData.append('gender', gender);
 			formData.append('loginId', loginId);
 			formData.append('password', password);
@@ -201,8 +212,6 @@
 			});
 		
 		});
-		
-	
 		
 	});
 </script>

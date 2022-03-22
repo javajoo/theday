@@ -3,12 +3,6 @@ package com.theday.couple.model;
 import java.util.Date;
 
 public class Couple {
-//	id	int	NO
-//	userId1	int	NO
-//	userId2	int	NO
-//	state	char(2)	YES
-//	createdAt	timestamp	YES
-//	updatedAt	timestamp	YES
 
 	private int id;
 	private int userId1;
@@ -64,5 +58,13 @@ public class Couple {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	@Override
+	public String toString() {
+		return "Couple [id=" + id + ", userId1=" + userId1 + ", userId2=" + userId2 + ", state=" + state
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+	
+	
 
 }

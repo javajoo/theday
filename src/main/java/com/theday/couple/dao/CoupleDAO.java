@@ -2,9 +2,11 @@ package com.theday.couple.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.theday.user.model.User;
+import com.theday.couple.model.Couple;
 
 @Repository
 public interface CoupleDAO {
+	
+	public int CountUser(Couple couple);
 
 }
