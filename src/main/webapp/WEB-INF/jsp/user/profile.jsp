@@ -137,7 +137,7 @@
 				return;
 			} 
 			
-			let file = $('#file').val();
+			var file = $($('#file')[0].files[0]).val();
 			//alert(file);
 			
 			let formData = new FormData();

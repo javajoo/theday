@@ -106,7 +106,8 @@ public class UserRestController {
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
 		user = (User) session.getAttribute("user");
 		int row = userBO.updateUser(user);
-		
+		user.getId();
+	
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
 		

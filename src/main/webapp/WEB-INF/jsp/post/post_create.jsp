@@ -48,19 +48,19 @@
 		$('.upload-btn').on('click',function(e) {
 			//alert('click');
 			
-			let textareaId = $('#textareaId').val();
+			var textareaId = $('#textareaId').val();
 			$('#content').removeClass('is-invalid');
 			
-			let content = $('#content').val();
+			var content = $('#content').val();
 			if (content == '') {
 				$('#content').addClass('is-invalid');
 				$('#textareaId').removeClass('d-none');
 				return;
 			}
 			
-			let file = $('#file').val();
+			var file = $('#file').val();
 			
-			let formData = new FormData();
+			var formData = new FormData();
 			formData.append('content',content);
 			formData.append('image',$('#file')[0].files[0]);
 			
