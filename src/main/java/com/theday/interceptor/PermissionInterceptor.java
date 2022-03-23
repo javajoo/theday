@@ -28,15 +28,22 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		
 		String uri = request.getRequestURI();
 	
-//		if (user != null && uri.startsWith("/user")) {
-//			response.sendRedirect("/couple/home_view");
-//			return false;
-//		} else if (user == null && uri.startsWith("/couple")) {
-//			response.sendRedirect("/user/sign_in_view");
-//			return false;
-//		}
-//		
-//
+		if (user == null && !uri.startsWith("/user/sign_in") && !uri.startsWith("/user/sign_up") ) {
+			response.sendRedirect("/user/sign_in_view");
+			return false;
+		} else if (user != null && uri.startsWith("/user")) {
+			if (!uri.endsWith("search_view")) {
+				response.sendRedirect("/couple/home_view");
+			}
+		
+		} else if (user == null && uri.startsWith("/post")) {
+			response.sendRedirect("/user/sign_in_view");
+		} else if (user == null && uri.startsWith("/couple")) {
+			response.sendRedirect("/user/sign_in_view");
+		}
+
+
+		
 		log.warn("########## preHandle 호출,uri:{}", uri);
 		return true;
 	}
