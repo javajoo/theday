@@ -33,7 +33,7 @@ public class PostRestController {
 		// 이미지 사진 넣기
 		String imagePath = fileManagerService.saveFile(user.getLoginId() , post.getImage());
 		post.setImagePath(imagePath);
-		
+		post.setUserId(user.getId());
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		

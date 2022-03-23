@@ -137,8 +137,6 @@
 				return;
 			} 
 			
-			let file = $('#file').val();
-			//alert(file);
 			
 			let formData = new FormData();
 			formData.append('gender', gender);
@@ -147,7 +145,9 @@
 			formData.append('name', name);
 			formData.append('birth', birth);
 			formData.append('date', date);
-			formData.append('profileImage', $('#file')[0].files[0]);
+			if( $('#file')[0].files[0]){
+				formData.append('profileImage',  $('#file')[0].files[0]);
+			}
 			
 			
 			$.ajax({
