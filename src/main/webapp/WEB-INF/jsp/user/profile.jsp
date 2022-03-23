@@ -137,8 +137,11 @@
 				return;
 			} 
 			
+<<<<<<< HEAD
+=======
 			var file = $($('#file')[0].files[0]).val();
 			//alert(file);
+>>>>>>> branch 'develop' of https://github.com/javajoo/theday.git
 			
 			let formData = new FormData();
 			formData.append('gender', gender);
@@ -147,7 +150,9 @@
 			formData.append('name', name);
 			formData.append('birth', birth);
 			formData.append('date', date);
-			formData.append('profileImage', $('#file')[0].files[0]);
+			if( $('#file')[0].files[0]){
+				formData.append('profileImage',  $('#file')[0].files[0]);
+			}
 			
 			
 			$.ajax({

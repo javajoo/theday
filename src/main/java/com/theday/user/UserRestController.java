@@ -104,11 +104,12 @@ public class UserRestController {
 	
 	@PostMapping("/profile_update")
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
-		user = (User) session.getAttribute("user");
+		//user = (User) session.getAttribute("user");
 		int row = userBO.updateUser(user);
 	
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
+		session.setAttribute("user", user);
 		
 		if(row < 1) {
 			result.put("success", "error");

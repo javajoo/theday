@@ -11,7 +11,7 @@
 			
 			<a href="#" id="fileUpLoadBtn"><img src="/static/image/camera.jpg" id="userImage" width="100" height="100"></a>
 		</div>
-		
+		<input type="hidden" id="userId" value="${sessionScope.user.id}">
 		<button type="button" class="upload-btn btn btn-outline-primary mt-3 w-100">업로드</button>
 	</div>
 </div>
