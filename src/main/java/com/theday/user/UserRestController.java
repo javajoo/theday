@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -103,7 +102,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PutMapping("/profile_update")
+	@PostMapping("/profile_update")
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
 		user = (User) session.getAttribute("user");
 		int row = userBO.updateUser(user);

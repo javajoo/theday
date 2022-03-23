@@ -76,3 +76,27 @@ a:hover {
 	padding: 30px;
 	border: 1px solid #e2e2e2;
 }
+
+.content {
+  border: none;
+}
+
+.post-box {
+	width: 400px;
+	margin-top: 50px;
+	padding: 30px;
+	border: 1px solid #e2e2e2;
+}
+
+.story {
+	color: #7b8081;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.list-box {
+	width: 400px;
+	margin-top: 50px;
+	padding: 30px;
+	border: 1px solid #e2e2e2;
+}

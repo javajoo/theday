@@ -5,8 +5,8 @@
 	<div class="home-box">
 		<div class=" d-flex justify-content-between">
 			<div>
-				<div class="profile " data-toggle="modal" data-target="#moreModal"></div>
-				<div class="text-center mt-2">${couple.userId1}</div>
+				<div class="profile " data-toggle="modal" data-target="#moreModalLeft"></div>
+				<div class="text-center mt-2"><b>남주혁</b></div>
 			</div>
 			
 			<div class="d-flex align-items-center">
@@ -17,8 +17,8 @@
 			</div>
 			
 			<div>
-				<div class="profile" data-toggle="modal" data-target="#moreModal"></div>
-				<div class="text-center mt-2">${user.name}</div>
+				<a href="#" id="fileUpLoadBtn" data-toggle="modal" data-target="#moreModalRight"><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+				<div class="text-center mt-2"><b>${user.name}</b></div>
 			</div>
 		</div>
 	
@@ -78,13 +78,13 @@
 		</div>
 		
 		<div class="d-flex justify-content-center mt-3">
-			<a href="#"><img src="/static/image/album.jpg" class="mr-4"></a>
+			<a href="/post/post_list_view"><img src="/static/image/album.jpg" class="mr-4"></a>
 			<a href="#"><img src="/static/image/chat.jpg" class="mr-4"></a>
 			<a href="#"><img src="/static/image/calender.jpg"></a>
 		</div>
 		
-<!-- Modal -->
-<div class="modal" id="moreModal">
+<!-- 왼쪽 Modal -->
+<div class="modal" id="moreModalLeft">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -93,7 +93,29 @@
         </button>
       </div>
       <div class="modal-body">
-      	<div class="profile"></div>
+      	<img src="${user.profileImagePath}" class="profile" id="userImage">
+     	 <div class="mt-3">
+	        <div class="ml-1">남주혁</div>
+	        <div class="ml-1">19900101</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+		
+<!-- 오른쪽 Modal -->
+<div class="modal" id="moreModalRight">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<img src="${user.profileImagePath}" class="profile" id="userImage">
      	 <div class="mt-3">
 	        <div class="ml-1">${user.name}</div>
 	        <div class="ml-1">${user.birth}</div>
@@ -105,5 +127,6 @@
     </div>
   </div>
 </div>
+
 	</div>
 </div>
