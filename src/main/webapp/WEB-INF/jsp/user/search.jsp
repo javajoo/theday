@@ -35,6 +35,55 @@
 	
 <script>
 
+	$('#loginId').focus();
+	
+	$(document).keypress(function(event){
+		
+		  var keycode = (event.keyCode ? event.keyCode : event.which);
+		  if(keycode == '13'){
+			  let loginId = $('#loginId').val().trim();
+				
+				$('#inputId').addClass('d-none');
+				$('#loginId').removeClass('is-invalid');
+				
+				if (loginId == '') {
+					$('#inputId').removeClass('d-none');
+					$('#loginId').addClass('is-invalid');
+					return;
+				}
+				
+				$.ajax({
+					type: 'get'
+					,url: '/user/search/' + loginId
+					,success: function(data) {
+						if (data.result == 'success') {
+							var html = '';
+							for(var user of data.userList){
+								html += '<tr>';
+								html += '<td class="pt-3">' + user.loginId+'</td>';
+								html += '<td class="pt-3">' + user.name+'</td>';
+								html += '<td class="pt-3">' + user.gender+'</td>';
+								html += '<td class="pt-3">' + user.birth+'</td>';
+								html += '<td class="pt-3">' + user.date+'</td>';                                                                  
+								html += '<td class=""><button type="button" onclick="connect()" class="sign-up-btn btn btn-outline-primary" data-user-id="'+user.id+'" >연결</button></td>';
+								html += '</tr>'
+							}
+							$('#tBody').html(html);
+						} else {
+							if(!data.userList.length){
+								var html = '<tr>';
+								html +=	'<td colspan="6">검색한 조건을 찾을 수 없습니다.</td>';
+								html += '</tr>'
+								$('#tBody').html(html);
+							}
+						}
+					}
+					,error: function(e) {
+						alert('관리자에게 문의바랍니다.');
+					}
+				}); 
+		  }
+		  });
 	function connect(obj) {
 		//alert(obj.getAttribute('data-user-id'));
 		var data = {

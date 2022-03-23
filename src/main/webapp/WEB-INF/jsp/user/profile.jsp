@@ -137,6 +137,11 @@
 				return;
 			} 
 			
+<<<<<<< HEAD
+=======
+			var file = $($('#file')[0].files[0]).val();
+			//alert(file);
+>>>>>>> branch 'develop' of https://github.com/javajoo/theday.git
 			
 			let formData = new FormData();
 			formData.append('gender', gender);
