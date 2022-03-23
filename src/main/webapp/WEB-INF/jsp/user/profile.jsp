@@ -6,7 +6,6 @@
 	<div class="sign-up-box">
 		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg, .gif"  onchange="PreviewImage()" >
 		 <a href="#" id="fileUpLoadBtn" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
-		
 		<div class="mt-3 mb-2">
 			<label class="mr-2"><input type="radio" value="여자" name="gender" <c:if test="${user.gender eq '여자'}">checked="checked"</c:if>/>여자</label>
 			<label><input type="radio" value="남자" name="gender"  <c:if test="${user.gender eq '남자'}">checked="checked"</c:if>/>남자</label>
@@ -152,18 +151,13 @@
 			
 			
 			$.ajax({
-				type: 'PUT'
+				type: 'POST'
 				,url: '/user/profile_update'
-				,data: {
-					"loginId": loginId,
-					"profileImage":profileImage,
-					"gender":gender,
-					"loginId":loginId, 
-					"password":password,
-					"name":name,
-					"birth":birth,
-					"date":date
-				}
+				,data: formData
+				// 파일 업로드를 위한 필수 설정
+				,enctype : 'multipart/form-data'
+				,contentType : false
+				,processData : false
 				,success: function(data) {
 					if (data.result == 'success') {
 						alert(loginId + '님 정보가 수정되었습니다.');
@@ -177,9 +171,6 @@
 				}
 					
 			});
-
-		
 		});
-		
 	});
 </script>

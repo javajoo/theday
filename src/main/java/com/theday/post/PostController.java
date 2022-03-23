@@ -7,8 +7,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/post")
 public class PostController {
 
-	@RequestMapping("/create_view")
-	public String createView() {
-		return "post/post_create";
-	}
 }

@@ -22,11 +22,12 @@ public class UserController {
 	}
 	
 	@RequestMapping("/profile_view")
-	public String profileView(Model model, HttpSession session) {
+	public String profileView(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		model.addAttribute("user",user);
-		
-		return "user/profile";
+		model.addAttribute("viewName","user/profile");
+		return "template/layout";
 		
 	}
 }
