@@ -19,6 +19,14 @@ footer {
 	background-size: cover;
 }
 
+.post-profile {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	background: gray;
+	background-size: cover;
+}
+
 .sign-up-box {
 	/* border: 1px solid gray; */
 	width: 300px;
@@ -84,8 +92,15 @@ a:hover {
 .post-box {
 	width: 400px;
 	margin-top: 50px;
-	padding: 30px;
+	padding: 20px;
 	border: 1px solid #e2e2e2;
+}
+
+
+.top-part {
+	width: 450px;
+	margin-top: 50px;
+	
 }
 
 .story {
@@ -94,9 +109,4 @@ a:hover {
 	font-weight: bold;
 }
 
-.list-box {
-	width: 400px;
-	margin-top: 50px;
-	padding: 30px;
-	border: 1px solid #e2e2e2;
-}
+

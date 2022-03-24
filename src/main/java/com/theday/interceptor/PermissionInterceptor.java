@@ -27,26 +27,28 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		User user = (User) session.getAttribute("user");
 		
 		String uri = request.getRequestURI();
-	
-		if (user == null && !uri.startsWith("/user/sign_in") && !uri.startsWith("/user/sign_up") ) {
+		
+		if (user == null && !uri.startsWith("/user/sign_in") && !uri.startsWith("/user/sign_up") && !uri.startsWith("/user/is_duplicated_id")) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
-		} else if (user != null && uri.startsWith("/user")) {
-			if (!uri.endsWith("search_view")) {
-				response.sendRedirect("/couple/home_view");
-			}
-		
-		} else if (user == null && uri.startsWith("/post")) {
-			response.sendRedirect("/user/sign_in_view");
-		} else if (user == null && uri.startsWith("/couple")) {
-			response.sendRedirect("/user/sign_in_view");
 		}
-
-
+//		else if (user != null && uri.endsWith("search_view")) {
+////			if (!uri.endsWith("search_view")) { 
+////				response.sendRedirect("/couple/home_view");
+////			} 
+//			response.sendRedirect("/couple/home_view");
+//		} 
 		
-		log.warn("########## preHandle 호출,uri:{}", uri);
-		return true;
-	}
+		else if (user == null && uri.startsWith("/post")) {
+			response.sendRedirect("/user/sign_in_view"); //ok
+		} else if (user == null && uri.startsWith("/couple")) {
+			response.sendRedirect("/user/sign_in_view"); //ok
+		}
+			
+			log.warn("######### preHandle 호출, uri:{}", uri);
+			
+			return true;
+		}
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response,

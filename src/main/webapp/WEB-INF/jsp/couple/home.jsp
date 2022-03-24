@@ -6,7 +6,7 @@
 		<div class=" d-flex justify-content-between">
 			<div>
 				<div class="profile " data-toggle="modal" data-target="#moreModalLeft"></div>
-				<div class="text-center mt-2"><b>남주혁</b></div>
+				<div class="text-center mt-2"><b>남주혁 ${couple.state}</b></div>
 			</div>
 			
 			<div class="d-flex align-items-center">

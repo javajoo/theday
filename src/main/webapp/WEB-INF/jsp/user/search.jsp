@@ -90,12 +90,18 @@
 				userId2 : obj.getAttribute('data-user-id')
 				}
 		$.post({
-			url: "/couple"
+			url: "/couple/connect"
 			,data: JSON.stringify(data)
 			,contentType: 'application/json;charset=UTF-8'
-			,success : function(res) {
-				console.log(res);
-				location.href= "/couple/home_view";
+			,success : function(data) {
+				if (data.result == 'success') {
+					alert('매칭이 되었습니다.');
+					location.href= "/couple/home_view";
+					
+				} else {
+					alert('매칭에 실패했습니다.');
+				}
+				
 			}
 			,error: function(err) {
 				alert(err);

@@ -2,6 +2,7 @@ package com.theday.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -21,12 +22,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		.addResourceLocations("file:///" + FileManagerService.FILE_UPLOAD_PATH);
 	}
 
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(interceptor)
-//		.addPathPatterns("/**")// **아래 디렉토리까지 확인
-//		.excludePathPatterns("/static/**","/error","/user/sign_out"); //권한 검사 하지 않는 Path 예외
-//		
-//	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(interceptor)
+		.addPathPatterns("/**")// **아래 디렉토리까지 확인
+		.excludePathPatterns("/static/**","/error","/user/sign_out"); //권한 검사 하지 않는 Path 예외
+		
+	}
 	
 }

@@ -62,7 +62,12 @@
 			
 			var formData = new FormData();
 			formData.append('content',content);
-			formData.append('image',$('#file')[0].files[0]);
+			
+			// 사진 있을 때만 저장
+			if ($('#file')[0].files[0]) {
+				formData.append('image',$('#file')[0].files[0]);
+			}
+		
 			
 			$.ajax({
 				type : 'POST'

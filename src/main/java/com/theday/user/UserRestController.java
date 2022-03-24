@@ -23,7 +23,7 @@ import com.theday.user.model.User;
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
-
+	
 
 	@Autowired
 	private UserBO userBO;
@@ -105,11 +105,12 @@ public class UserRestController {
 	@PostMapping("/profile_update")
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
 		//user = (User) session.getAttribute("user");
+		
 		int row = userBO.updateUser(user);
-	
+		
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
-		session.setAttribute("user", user);
+		session.setAttribute("user", user); // 수정된 정보 세션에 다시 저장
 		
 		if(row < 1) {
 			result.put("success", "error");

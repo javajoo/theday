@@ -13,14 +13,19 @@ public class CoupleBO {
 	private CoupleDAO coupleDAO;
 	
 	public int CountUser (Couple couple) {
+		
 		return coupleDAO.CountUser(couple);
 	}
 	
 	public boolean addCouple (Couple couple) {
 		if (CountUser(couple) == 1) {
-			return false;
+			return false; //막다
 		}
-		return true;
+		return true; //실행
+	}
+	
+	public int insertCouple(Couple couple) {
+		return coupleDAO.insertCouple(couple);
 	}
 
 }

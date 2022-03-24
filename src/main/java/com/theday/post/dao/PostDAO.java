@@ -1,5 +1,7 @@
 package com.theday.post.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.theday.post.model.Post;
@@ -8,4 +10,6 @@ import com.theday.post.model.Post;
 public interface PostDAO {
 
 	public int insertPost (Post post);
+	
+	public List<Post> selectPostList();
 }

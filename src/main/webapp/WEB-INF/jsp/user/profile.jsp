@@ -137,18 +137,16 @@
 				return;
 			} 
 			
-
-			//var file = $($('#file')[0].files[0]).val();
-			//alert(file);
-
 			
-			let formData = new FormData();
+			var formData = new FormData();
 			formData.append('gender', gender);
 			formData.append('loginId', loginId);
 			formData.append('password', password);
 			formData.append('name', name);
 			formData.append('birth', birth);
 			formData.append('date', date);
+			
+			// 사진 있을 때만 저장
 			if( $('#file')[0].files[0]){
 				formData.append('profileImage',  $('#file')[0].files[0]);
 			}

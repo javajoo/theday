@@ -9,7 +9,26 @@
  		FROM
  			`couple`
  		WHERE
- 			(userid1 = #{userId2} OR userid2 = #{userId2})
+ 			(userid1 = #{userId1} OR userid2 = #{userId2})
  			AND state = '성공'
  	</select>
+ 	
+ 	<insert id="insertCouple">
+ 		INSERT INTO `couple`
+ 		(
+	 		`userId1`
+			,`userId2`
+			,`state`
+			,`createdAt`
+			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId1}
+ 			,#{userId2}
+ 			,#{state}
+ 			,NOW()
+ 			,NOW()
+ 		)
+ 	</insert>
  </mapper>

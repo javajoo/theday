@@ -8,5 +8,7 @@ import com.theday.couple.model.Couple;
 public interface CoupleDAO {
 	
 	public int CountUser(Couple couple);
+	
+	public int insertCouple(Couple couple);
 
 }
