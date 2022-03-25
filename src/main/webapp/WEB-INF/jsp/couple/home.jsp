@@ -6,7 +6,7 @@
 		<div class=" d-flex justify-content-between">
 			<div>
 				<div class="profile " data-toggle="modal" data-target="#moreModalLeft"></div>
-				<div class="text-center mt-2"><b>남주혁 ${couple.state}</b></div>
+				<div class="text-center mt-2"><b>${couple.userId2}</b></div>
 			</div>
 			
 			<div class="d-flex align-items-center">
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div>
-				<a href="#" id="fileUpLoadBtn" data-toggle="modal" data-target="#moreModalRight"><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+				<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
 				<div class="text-center mt-2"><b>${user.name}</b></div>
 			</div>
 		</div>
@@ -78,9 +78,9 @@
 		</div>
 		
 		<div class="d-flex justify-content-center mt-3">
-			<a href="/post/post_list_view"><img src="/static/image/album.jpg" class="mr-4"></a>
-			<a href="#"><img src="/static/image/chat.jpg" class="mr-4"></a>
-			<a href="#"><img src="/static/image/calender.jpg"></a>
+			<a href="/post/post_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
+			<a href="#"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
+			<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 		</div>
 		
 <!-- 왼쪽 Modal -->
@@ -95,7 +95,7 @@
       <div class="modal-body">
       	<img src="${user.profileImagePath}" class="profile" id="userImage">
      	 <div class="mt-3">
-	        <div class="ml-1">남주혁</div>
+	        <div class="ml-1">${couple.userId2}</div>
 	        <div class="ml-1">19900101</div>
         </div>
       </div>

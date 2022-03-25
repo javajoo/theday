@@ -14,6 +14,7 @@ public class FileManagerService {
 
 	public final static String FILE_UPLOAD_PATH =  "C:\\spring_project\\theday\\workspace\\images/";
 	
+	// 파일 업로드
 	public String saveFile(String userLoginId, MultipartFile file) {
 		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";
 		String filePath = FILE_UPLOAD_PATH + directoryName;
@@ -23,8 +24,9 @@ public class FileManagerService {
 			return null;
 		}
 		
-		byte[] bytes;
+		
 		try {
+			byte[] bytes;
 			bytes = file.getBytes();
 			Path path = Paths.get(filePath + file.getOriginalFilename());
 			Files.write(path, bytes);
@@ -34,5 +36,21 @@ public class FileManagerService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	// 파일 삭제
+	public void deleteFile(String profileImagePath) throws IOException {
+		Path path = Paths.get(FILE_UPLOAD_PATH + profileImagePath.replace("/images", ""));
+		
+		if (Files.exists(path)) {
+			Files.delete(path);
+		}
+		
+		path = path.getParent();
+		
+		if (Files.exists(path)) {
+			Files.delete(path);
+		}
+		
 	}
 }

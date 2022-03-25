@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -102,20 +103,24 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PostMapping("/profile_update")
+	@PutMapping("/profile_update")
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
-		//user = (User) session.getAttribute("user");
 		
-		int row = userBO.updateUser(user);
+		//user = (User) session.getAttribute("user"); 넣으면 수정된 정보 저장안댐!!!
+		
+		
 		
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
 		session.setAttribute("user", user); // 수정된 정보 세션에 다시 저장
 		
+		int row = userBO.updateUser(user);
 		if(row < 1) {
 			result.put("success", "error");
 			result.put("errorMessage", "수정에 실패했습니다.");
 		}
+		
+	
 		
 		return result;
 	}

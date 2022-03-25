@@ -11,4 +11,5 @@ public interface CoupleDAO {
 	
 	public int insertCouple(Couple couple);
 
+	public Couple selectCouple();
 }

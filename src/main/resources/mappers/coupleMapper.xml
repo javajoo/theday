@@ -31,4 +31,16 @@
  			,NOW()
  		)
  	</insert>
+ 	
+ 	<select id="selectCouple" resultType="com.theday.couple.model.Couple">
+ 		SELECT
+ 			`id`
+			,`userId1`
+			,`userId2`
+			,`state`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`couple`
+ 	</select>
  </mapper>

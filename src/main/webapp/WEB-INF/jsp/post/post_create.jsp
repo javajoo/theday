@@ -3,13 +3,13 @@
 
 <div class="d-flex justify-content-center">
 	<div class="post-box">
-		<div class="mb-2"><b>(오늘날짜 자동)2022년 3월 8일 화요일</b></div>
+		<div class="mb-2 story-create"><b>스토리 작성하기!</b></div>
 		<textarea id="content" name="content" rows="6" cols="50" class="content form-control" placeholder="스토리에 올릴 내용을 작성해주세요."></textarea>
 		<div id="textareaId" class="small text-danger d-none mt-2" >내용을 입력해주세요</div>
 		<div class="mt-3">
 			<input type="file" id="file" name="file" accept=".jpg, .png, .jpeg, .gif" class="d-none" onchange="PreviewImage()">
 			
-			<a href="#" id="fileUpLoadBtn"><img src="/static/image/camera.jpg" id="userImage" width="100" height="100"></a>
+			<a href="#" id="fileUpLoadBtn"><img src="/static/image/upload.png" id="userImage" width="100" height="100"></a>
 		</div>
 		<input type="hidden" id="userId" value="${sessionScope.user.id}">
 		<button type="button" class="upload-btn btn btn-outline-primary mt-3 w-100">업로드</button>
@@ -17,13 +17,16 @@
 </div>
 
 <div class="d-flex justify-content-center mt-3">
-	<a href="/couple/home_view"><img src="/static/image/home.jpg" class="mr-4 mt-1" height="50"></a>
-	<a href="/post/post_list_view"><img src="/static/image/album.jpg" class="mr-4"></a>
-	<a href="#"><img src="/static/image/chat.jpg" class="mr-4"></a>
-	<a href="#"><img src="/static/image/calender.jpg"></a>
+	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4 mt-1" height="50"></a>
+	<a href="/post/post_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
+	<a href="#"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
+	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 </div>
 
 <script>
+
+	$('#content').focus();
+
 	function PreviewImage() {
 	    // 파일리더 생성 
 	    var preview = new FileReader();

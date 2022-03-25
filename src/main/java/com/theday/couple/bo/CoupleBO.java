@@ -27,5 +27,9 @@ public class CoupleBO {
 	public int insertCouple(Couple couple) {
 		return coupleDAO.insertCouple(couple);
 	}
+	
+	public Couple getCouple() {
+		return coupleDAO.selectCouple();
+	}
 
 }

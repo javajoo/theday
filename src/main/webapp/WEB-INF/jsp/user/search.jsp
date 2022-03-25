@@ -4,14 +4,16 @@
 <div class="d-flex justify-content-center">
 	<div class="search-box">
 		<div class="sign-text mb-3">THE DAY<br>아이디로 계정을 연결하세요</div>
-		
+	
 		<div class="d-flex">
 		    <input class="form-control col-9" type="search" id="loginId" name="loginId" placeholder="상대방의 아이디">
 		    <div><button class="search-btn btn btn-outline-primary ml-2" type="button" onclick="search()">검색</button></div>
-		</div>
+		</div>		
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
 
+		<a href="/couple/home_view">SKIP</a>
+		
 	</div>
 
 </div>
@@ -99,12 +101,12 @@
 					location.href= "/couple/home_view";
 					
 				} else {
-					alert('매칭에 실패했습니다.');
+					alert('매칭불가');
 				}
 				
 			}
-			,error: function(err) {
-				alert(err);
+			,error: function(data) {
+				alert('매칭에 실패했습니다. 관리자에게 문의해주세요.');
 			}
 		})
 	};

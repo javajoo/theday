@@ -1,5 +1,6 @@
 package com.theday.user.bo;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,14 @@ public class UserBO {
 	private UserDAO userDAO;
 
 	public int insertUser(User user) {
-		// 이미지 사진 넣기
-		String imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
-		user.setProfileImagePath(imagePath);
 		
+		
+		// 이미지 사진 넣기
+		String imagePath = null;
+		if (user.getProfileImage() != null) {
+			imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
+			user.setProfileImagePath(imagePath);
+		}
 		return userDAO.insertUser(user);
 	}
 	
@@ -43,6 +48,24 @@ public class UserBO {
 	}
 
 	public int updateUser(User user) {
+		
+		// 이미지 사진 수정하기
+		String imagePath = null;
+		if (user.getProfileImage() != null) {
+			imagePath = fileManagerService.saveFile(user.getLoginId() , user.getProfileImage());
+			user.setProfileImagePath(imagePath);
+			
+			// 기존 이미지 삭제
+			if (user.getProfileImage() != null && imagePath != null ) {
+				try {
+					fileManagerService.deleteFile(user.getProfileImagePath());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
 		return userDAO.updateUser(user);
 	}
 	

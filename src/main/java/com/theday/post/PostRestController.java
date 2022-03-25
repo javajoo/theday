@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.theday.common.FileManagerService;
 import com.theday.post.bo.PostBO;
 import com.theday.post.model.Post;
 import com.theday.user.model.User;
@@ -25,22 +24,15 @@ public class PostRestController {
 	@Autowired
 	private PostBO postBO;
 	
-	@Autowired
-	private FileManagerService fileManagerService;
-	
 	@PostMapping("/create")
 	public Map<String, Object> create(@ModelAttribute Post post, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		
-		// 이미지 사진 넣기
-		String imagePath = fileManagerService.saveFile(user.getLoginId() , post.getImage());
-		post.setImagePath(imagePath);
 		
 		post.setUserId(user.getId()); // post에 userId 넣어준다.
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		
-		int row = postBO.insertPost(post);
+		int row = postBO.insertPost(post, session);
 		
 		
 		if (row < 1) {

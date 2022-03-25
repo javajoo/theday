@@ -1,39 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 
 <div class="d-flex justify-content-center">
 	<div class="sign-up-box">
 		 <input type="file" id="file" name="file" class="d-none" accept=".jpg, .png, .jpeg, .gif"  onchange="PreviewImage()">
-		 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/img1.webp" class="profile" id="userImage"></a>
+		 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/user.png" class="profile" id="userImage"></a>
 		
 		<div class="mt-3 mb-2">
 			<label class="mr-2"><input type="radio" value="여자" name="gender" checked>여자</label>
 			<label><input type="radio" value="남자" name="gender">남자</label>
 		</div>
 		
+		<div><small>아이디</small></div>
 		<div class="d-flex justify-content-between">
 			<input type="text" id="loginId" name="loginId" class="form-control col-7" placeholder="아이디">
-			<div><button type="button" id="isDuplicatedBtn" class="btn btn-outline-primary">중복확인</button></div>
+			<div><button type="button" id="isDuplicatedBtn" class="btn btn-outline-success">중복확인</button></div>
 		</div>
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
 		<div id="isDuplicatedId" class="small text-danger d-none">중복된 아이디 입니다.</div>
 		<div id="isAvailableId" class="small text-success d-none">사용가능한 아이디 입니다.</div>
 		
-		<input type="password" id="password" name="password" class="form-control mt-3" placeholder="비밀번호" >
+		<div class="mt-3"><small>비밀번호</small></div>
+		<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" >
 		<div id="inputPassword" class="small text-danger d-none">비밀번호를 입력해주세요</div>
 		
-		<input type="password" id="confirmPassword" name="confirmPassword" class="form-control mt-3" placeholder="비밀번호 확인">
+		<div class="mt-3"><small>비밀번호 확인</small></div>
+		<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="비밀번호 확인">
 		<div id="inputConfirmPassword" class="small text-danger d-none">비밀번호를 다시 입력해주세요</div>
 		<div id="inputSamePassword" class="small text-danger d-none">비밀번호가 틀립니다.<br> 비밀번호를 확인 해주세요.</div>
 		
-		<input type="text" id="name" name="name" class="form-control mt-3" placeholder="이름">
+		<div class="mt-3"><small>이름</small></div>
+		<input type="text" id="name" name="name" class="form-control" placeholder="이름">
 		<div id="inputName" class="small text-danger d-none">이름을 입력해주세요</div>
 		
-		<input type="text" id="birth" name="birth" class="form-control mt-3" placeholder="생년월일">
+		<div class="mt-3"><small>생년월일</small></div>
+		<input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일">
 		<div id="inputBirth" class="small text-danger d-none">생년월일을 입력해주세요</div>
 		
-		<input type="text" id="date" name="date" class="form-control mt-3" placeholder="처음 만난 날">
+		<div class="mt-3"><small>처음 만난 날</small></div>
+		<input type="text" id="date" name="date" class="form-control" placeholder="처음 만난 날">
 		<div id="inputDate" class="small text-danger d-none">처음 만난 날을 입력해주세요</div>
 		
 		<button type="button" class="sign-up-btn btn btn-outline-primary w-100 mt-3">가입하기</button>
@@ -176,18 +183,21 @@
 				return;
 			} 
 			
-			let file = $('#file').val();
+			var file = $('#file').val();
 			//alert(file);
 			
-			let formData = new FormData();
+			var formData = new FormData();
 			formData.append('gender', gender);
 			formData.append('loginId', loginId);
 			formData.append('password', password);
 			formData.append('name', name);
 			formData.append('birth', birth);
 			formData.append('date', date);
-			formData.append('profileImage', $('#file')[0].files[0]);
 			
+			// 사진 있을 때만 저장(path가 아니라 파일이 저장된 이미지)
+			if ($('#file')[0].files[0]) {
+				formData.append('profileImage', $('#file')[0].files[0]);
+			}
 			
 			$.ajax({
 				type: 'POST'
@@ -213,5 +223,31 @@
 		
 		});
 		
+		$('#birth').datepicker({
+			changeMonth: true
+			, changeYear: true
+			, dateFormat: "yy-mm-dd"
+			, showAnim: "clip"
+			,monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+			, monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+			, dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
+			, showButtonPanel: true 
+			,showMonthAfterYear: true
+			,yearSuffix: '년'
+		});
+		
+		$('#date').datepicker({
+			changeMonth: true
+			, changeYear: true
+			, dateFormat: "yy-mm-dd"
+			, showAnim: "clip"
+			,monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+			, monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+			, dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
+			, showButtonPanel: true 
+			,showMonthAfterYear: true
+			,yearSuffix: '년'
+		});
+		 $('#datepicker').datepicker('setDate', 'today');
 	});
 </script>
