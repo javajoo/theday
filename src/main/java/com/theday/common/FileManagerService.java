@@ -6,18 +6,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileManagerService {
 
-	public final static String FILE_UPLOAD_PATH =  "C:\\spring_project\\theday\\workspace\\images/";
+	public static String fileUploadPath;
+	
+	@Value("${file.upload-path}")
+	public void setFileUploadPath(String fileUploadPath) {
+		FileManagerService.fileUploadPath = fileUploadPath;
+	}
 	
 	// 파일 업로드
 	public String saveFile(String userLoginId, MultipartFile file) {
 		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";
-		String filePath = FILE_UPLOAD_PATH + directoryName;
+		String filePath = fileUploadPath + directoryName;
 		
 		File directory = new File(filePath);
 		if (directory.mkdir() == false) {
@@ -40,7 +46,7 @@ public class FileManagerService {
 	
 	// 파일 삭제
 	public void deleteFile(String profileImagePath) throws IOException {
-		Path path = Paths.get(FILE_UPLOAD_PATH + profileImagePath.replace("/images", ""));
+		Path path = Paths.get(fileUploadPath + profileImagePath.replace("/images", ""));
 		
 		if (Files.exists(path)) {
 			Files.delete(path);

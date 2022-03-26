@@ -8,7 +8,9 @@
 		 <c:if test="${empty user.profileImagePath}">
 			  <a href="#" id="fileUpLoadBtn" ><img src="/static/image/user.png" class="profile" id="userImage"></a>
 		 </c:if>
-		 <a href="#" id="fileUpLoadBtn" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+		 <c:if test="${!empty user.profileImagePath}">
+		 	<a href="#" id="fileUpLoadBtn" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+		 </c:if>
 		<div class="mt-3 mb-2">
 			<label class="mr-2"><input type="radio" value="여자" name="gender" <c:if test="${user.gender eq '여자'}">checked="checked"</c:if>/>여자</label>
 			<label><input type="radio" value="남자" name="gender"  <c:if test="${user.gender eq '남자'}">checked="checked"</c:if>/>남자</label>

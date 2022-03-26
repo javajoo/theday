@@ -14,16 +14,21 @@ import com.theday.user.model.User;
 public class UserController {
 
 	@RequestMapping("/sign_out")
-	public String signOut(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		
+	public String signOut(HttpSession session) {
 		session.removeAttribute("user");
 		return "redirect:/user/sign_in_view";
 	}
 	
+//	@RequestMapping("/search_view")
+//	public String searchView(HttpSession session) {
+//		boolean hasCouple = (boolean)session.getAttribute("hasCouple");
+//		if(hasCouple) {
+//			return "";
+//		}
+//		return "";
+//	}
 	@RequestMapping("/profile_view")
-	public String profileView(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String profileView(Model model, HttpSession session) {
 		User user = (User)session.getAttribute("user");
 		model.addAttribute("user",user);
 		model.addAttribute("viewName","user/profile");

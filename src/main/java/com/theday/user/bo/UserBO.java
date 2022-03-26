@@ -47,7 +47,7 @@ public class UserBO {
 		return userDAO.selectUserByLoginId(loginId,sessionLoginId);
 	}
 
-	public int updateUser(User user) {
+	public int updateUser(User user, String preImgePath) {
 		
 		// 이미지 사진 수정하기
 		String imagePath = null;
@@ -56,9 +56,9 @@ public class UserBO {
 			user.setProfileImagePath(imagePath);
 			
 			// 기존 이미지 삭제
-			if (user.getProfileImage() != null && imagePath != null ) {
+			if (preImgePath != null && imagePath != null ) {
 				try {
-					fileManagerService.deleteFile(user.getProfileImagePath());
+					fileManagerService.deleteFile(preImgePath);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

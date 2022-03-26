@@ -80,6 +80,7 @@ public class UserRestController {
 		if (user != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
+			session.setAttribute("hasCouple", true);
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "아이디 또는 비밀번호를 잘못 입력했습니다. \n"
@@ -112,12 +113,14 @@ public class UserRestController {
 		
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
-		session.setAttribute("user", user); // 수정된 정보 세션에 다시 저장
 		
-		int row = userBO.updateUser(user);
+		User tmpUser = (User)session.getAttribute("user");
+		int row = userBO.updateUser(user, tmpUser.getProfileImagePath());
 		if(row < 1) {
 			result.put("success", "error");
 			result.put("errorMessage", "수정에 실패했습니다.");
+		}else {
+			session.setAttribute("user", user); // 수정된 정보 세션에 다시 저장
 		}
 		
 	
