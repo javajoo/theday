@@ -17,7 +17,7 @@
 </div>
 
 <div class="d-flex justify-content-center mt-3">
-	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4 mt-1" height="50"></a>
+	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
 	<a href="/post/post_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
 	<a href="#"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
 	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>

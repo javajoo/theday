@@ -109,7 +109,9 @@ public class UserRestController {
 		
 		//user = (User) session.getAttribute("user"); 넣으면 수정된 정보 저장안댐!!!
 		
-		
+		// 비밀번호 암호화
+		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		user.setPassword(encryptUtils);
 		
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");

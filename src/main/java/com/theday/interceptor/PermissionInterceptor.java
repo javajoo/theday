@@ -22,6 +22,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 		
+		
 		HttpSession session = request.getSession();
 		
 		User user = (User) session.getAttribute("user");

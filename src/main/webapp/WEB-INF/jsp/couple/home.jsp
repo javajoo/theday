@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="d-flex justify-content-center">
 	<div class="home-box">
 		<div class=" d-flex justify-content-between">
 			<div>
 				<div class="profile " data-toggle="modal" data-target="#moreModalLeft"></div>
-				<div class="text-center mt-2"><b>${couple.userId2}</b></div>
+				<div class="text-center mt-2"><b>${user.loginId}</b></div>
 			</div>
 			
 			<div class="d-flex align-items-center">
@@ -17,9 +18,18 @@
 			</div>
 			
 			<div>
+			<c:if test="${empty user.profileImagePath}">
+				<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="/static/image/user.png" class="profile" id="userImage"></a>
+			</c:if>
+			<c:if test="${!empty user.profileImagePath}">
+		 		<a href="#" data-toggle="modal" data-target="#moreModalRight" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+			</c:if>
+			<div class="text-center mt-2"><b>${user.name}</b></div>
+			</div>
+			<%-- <div>
 				<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
 				<div class="text-center mt-2"><b>${user.name}</b></div>
-			</div>
+			</div> --%>
 		</div>
 	
 		<div class="day-box">
@@ -93,7 +103,13 @@
         </button>
       </div>
       <div class="modal-body">
-      	<img src="${user.profileImagePath}" class="profile" id="userImage">
+      		<c:if test="${empty user.profileImagePath}">
+				<img src="/static/image/user.png" class="profile" id="userImage">
+			</c:if>
+			<c:if test="${!empty user.profileImagePath}">
+		 		<img src="${user.profileImagePath}" class="profile" id="userImage">
+			</c:if>
+      	<%-- <img src="${user.profileImagePath}" class="profile" id="userImage"> --%>
      	 <div class="mt-3">
 	        <div class="ml-1">${couple.userId2}</div>
 	        <div class="ml-1">19900101</div>
@@ -115,7 +131,13 @@
         </button>
       </div>
       <div class="modal-body">
-      	<img src="${user.profileImagePath}" class="profile" id="userImage">
+            <c:if test="${empty user.profileImagePath}">
+				<img src="/static/image/user.png" class="profile" id="userImage">
+			</c:if>
+			<c:if test="${!empty user.profileImagePath}">
+		 		<img src="${user.profileImagePath}" class="profile" id="userImage">
+			</c:if>
+      	<%-- <img src="${user.profileImagePath}" class="profile" id="userImage"> --%>
      	 <div class="mt-3">
 	        <div class="ml-1">${user.name}</div>
 	        <div class="ml-1">${user.birth}</div>

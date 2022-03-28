@@ -20,8 +20,10 @@ public class CoupleController {
 		Couple couple = coupleBO.getCouple();
 		model.addAttribute("couple",couple);
 		model.addAttribute("viewName", "couple/home");
+		
 		return "template/layout";
 	}
 	
+
 	
 }
