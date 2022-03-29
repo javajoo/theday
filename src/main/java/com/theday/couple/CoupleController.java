@@ -16,6 +16,7 @@ public class CoupleController {
 	private CoupleBO coupleBO;
 	
 	@RequestMapping("/home_view")
+	
 	public String connectView(Model model) {
 		Couple couple = coupleBO.getCouple();
 		model.addAttribute("couple",couple);

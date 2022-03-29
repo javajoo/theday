@@ -6,7 +6,12 @@
 	<div class="home-box">
 		<div class=" d-flex justify-content-between">
 			<div>
-				<div class="profile " data-toggle="modal" data-target="#moreModalLeft"></div>
+				<c:if test="${empty user.profileImagePath}">
+					<a href="#" data-toggle="modal" data-target="#moreModalLeft"><img src="/static/image/user.png" class="profile" id="userImage"></a>
+				</c:if>
+				<c:if test="${!empty user.profileImagePath}">
+		 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+				</c:if>
 				<div class="text-center mt-2"><b>${user.loginId}</b></div>
 			</div>
 			

@@ -19,9 +19,12 @@
 					</div>
 					<div class="d-flex mb-2">
 						 <c:if test="${empty user.profileImagePath}">
-			 				 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/img1.webp" class="profile" id="userImage"></a>
+			 				 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/user.png" class="post-profile"></a>
 						 </c:if>
-						<img src="${user.profileImagePath}" class="post-profile">
+						 
+						 <c:if test="${!empty user.profileImagePath}">
+							<img src="${user.profileImagePath}" class="post-profile">
+						 </c:if>
 						<div class="ml-2 mt-1"><b>${post.userId}</b></div>
 					</div>
 					
@@ -37,7 +40,12 @@
 				 	</div>
 				 	
 					<div class="d-flex mb-2">
-						<img src="${user.profileImagePath}" class="post-profile">
+						 <c:if test="${empty user.profileImagePath}">
+			 				 <a href="#" id="fileUpLoadBtn" ><img src="/static/image/user.png" class="post-profile"></a>
+						 </c:if>
+						 <c:if test="${!empty user.profileImagePath}">
+							<img src="${user.profileImagePath}" class="post-profile">
+						 </c:if>
 						<div class="ml-2 mt-1"><b>${post.userId}</b></div>
 						<div class="ml-2 mt-1">안녕하세요~</div>
 					</div>

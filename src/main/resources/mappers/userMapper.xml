@@ -115,4 +115,12 @@
  		WHERE
  			`loginId` = #{loginId}
  	</update>
+ 	
+ 	<select id="selectUserCouple" resultType="com.theday.user.model.User"> 
+	 	SELECT * FROM `user`
+ 		join `couple`
+ 		on  user.id = couple.userId2 
+ 		where
+ 			userId1 = #{userId1}
+ 	</select>
  </mapper>

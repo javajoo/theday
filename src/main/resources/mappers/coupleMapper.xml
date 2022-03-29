@@ -32,7 +32,7 @@
  		)
  	</insert>
  	
- 	<select id="selectCouple" resultType="com.theday.couple.model.Couple">
+  	<select id="selectCouple" resultType="com.theday.couple.model.Couple">
  		SELECT
  			`id`
 			,`userId1`
@@ -43,4 +43,13 @@
  		FROM
  			`couple`
  	</select>
+ 	
+ 	<update id="updateCouple" >
+ 		UPDATE `couple`
+ 		SET
+	 		`userId1` = #{userId1}
+			,`userId2` = #{userId2}
+ 			,`state`= #{state}
+ 			,`updatedAt`= NOW()
+ 	</update>
  </mapper>

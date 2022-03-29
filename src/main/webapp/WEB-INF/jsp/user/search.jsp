@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="d-flex justify-content-center">
 	<div class="search-box">
-		<div class="sign-text mb-3">THE DAY<br>아이디로 계정을 연결하세요</div>
+		<div class="sign-text mb-3">THE DAY<br>아이디로 계정을 검색하세요</div>
 	
 		<div class="d-flex">
 		    <input class="form-control col-9" type="search" id="loginId" name="loginId" placeholder="상대방의 아이디">
-		    <div><button class="search-btn btn btn-outline-primary ml-2" type="button" onclick="search()">검색</button></div>
+		    <div><button id="state" class="search-btn btn btn-outline-primary ml-2" type="button" onclick="search()" value='대기'>검색</button></div>
 		</div>		
 		
-		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
+		<div id="inputId" class="small text-danger d-none">아이디를 검색해주세요</div>
 
-		<a href="/couple/home_view">SKIP</a>
+		<a href="/user/agree_view">SKIP</a>
 		
 	</div>
 
@@ -20,8 +20,8 @@
 		<table class="table text-center table-hover mt-5">
 				<thead>
 					<tr>
+						<th>번호</th>
 						<th>아이디</th>
-						<th>이름</th>
 						<th>성별</th>
 						<th>생일</th>
 						<th>처음만난날</th>
@@ -67,7 +67,7 @@
 								html += '<td class="pt-3">' + user.gender+'</td>';
 								html += '<td class="pt-3">' + user.birth+'</td>';
 								html += '<td class="pt-3">' + user.date+'</td>';                                                                  
-								html += '<td class=""><button type="button" onclick="connect()" class="sign-up-btn btn btn-outline-primary" data-user-id="'+user.id+'" >연결</button></td>';
+								html += '<td class=""><button type="button" onclick="connect()" class="sign-up-btn btn btn-outline-primary" data-user-id="'+user.id+'" >선택</button></td>';
 								html += '</tr>'
 							}
 							$('#tBody').html(html);
@@ -88,17 +88,19 @@
 		  });
 	function connect(obj) {
 		//alert(obj.getAttribute('data-user-id'));
+		var state = $('#state').val();
+		
 		var data = {
-				userId2 : obj.getAttribute('data-user-id')
+				userId2 : obj.getAttribute('data-user-id'),
+				"state" : state
 				}
 		$.post({
 			url: "/couple/connect"
 			,data: JSON.stringify(data)
 			,contentType: 'application/json;charset=UTF-8'
 			,success : function(data) {
-				if (data.result == 'success') {
-					alert('매칭이 되었습니다.');
-					location.href= "/couple/home_view";
+				if (data.result == 'success' ) {
+					location.href= "/user/agree_view";
 					
 				} else {
 					alert('매칭불가');
@@ -136,7 +138,7 @@
 						html += '<td class="pt-3">' + user.gender+'</td>';
 						html += '<td class="pt-3">' + user.birth+'</td>';
 						html += '<td class="pt-3">' + user.date+'</td>';
-						html += '<td class=""><button type="button" onclick="connect(this)" class="sign-up-btn btn btn-outline-primary" data-user-id="' + user.id + '">연결</button></td>';
+						html += '<td class=""><button type="button" onclick="connect(this)" class="sign-up-btn btn btn-outline-primary" data-user-id="' + user.id + '">선택</button></td>';
 						html += '</tr>'
 					}
 					$('#tBody').html(html);

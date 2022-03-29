@@ -31,5 +31,11 @@ public class CoupleBO {
 	public Couple getCouple() {
 		return coupleDAO.selectCouple();
 	}
+	
+	public int updateCouple(Couple couple) {
+		return coupleDAO.updateCouple(couple);
+	}
+
+
 
 }

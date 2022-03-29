@@ -26,5 +26,7 @@ public class PostController {
 		return "template/layout";
 		
 	}
+	
+	
 
 }

@@ -200,7 +200,7 @@
 			,yearSuffix: '년'
 		});
 		
-/* 		$('#date').datepicker({
+		$('#date').datepicker({
 			changeMonth: true
 			, changeYear: true
 			, dateFormat: "yy-mm-dd"
@@ -212,6 +212,6 @@
 			,showMonthAfterYear: true
 			,yearSuffix: '년'
 		});
-		 $('#datepicker').datepicker('setDate', 'today'); */
+		 $('#datepicker').datepicker('setDate', 'today'); 
 	});
 </script>

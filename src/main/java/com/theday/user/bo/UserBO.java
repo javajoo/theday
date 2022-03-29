@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.theday.common.FileManagerService;
+import com.theday.couple.model.Couple;
 import com.theday.user.dao.UserDAO;
 import com.theday.user.model.User;
 
@@ -18,6 +19,7 @@ public class UserBO {
 
 	@Autowired
 	private UserDAO userDAO;
+	
 
 	public int insertUser(User user) {
 		
@@ -47,7 +49,7 @@ public class UserBO {
 		return userDAO.selectUserByLoginId(loginId,sessionLoginId);
 	}
 
-	public int updateUser(User user, String preImgePath) {
+	public int updateUser(User user, String preImagePath) {
 		
 		// 이미지 사진 수정하기
 		String imagePath = null;
@@ -56,9 +58,9 @@ public class UserBO {
 			user.setProfileImagePath(imagePath);
 			
 			// 기존 이미지 삭제
-			if (preImgePath != null && imagePath != null ) {
+			if (preImagePath != null && imagePath != null ) {
 				try {
-					fileManagerService.deleteFile(preImgePath);
+					fileManagerService.deleteFile(preImagePath);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -69,4 +71,7 @@ public class UserBO {
 		return userDAO.updateUser(user);
 	}
 	
+	public User getUserCouple(int userId1) {
+		return userDAO.selectUserCouple(userId1);
+	}
 }
