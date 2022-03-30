@@ -27,10 +27,11 @@ public class PostController {
 	@RequestMapping("/post_list_view")
 	public String postListView(Model model,HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
-		User coupleList = userBO.getUserCouple(userId);
+		// 매칭이 성공한 유저의 정보만 가져오는 로직이 필요함
+		//User coupleList = userBO.getUserCouple(userId);
 		List<Post> postList = postBO.getPostList();
 		model.addAttribute("postList",postList);
-		model.addAttribute("coupleList", coupleList);
+		//model.addAttribute("coupleList", coupleList);
 		model.addAttribute("viewName","post/post_list");
 		return "template/layout";
 		

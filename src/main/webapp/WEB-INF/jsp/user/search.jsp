@@ -7,7 +7,7 @@
 	
 		<div class="d-flex">
 		    <input class="form-control col-9" type="search" id="loginId" name="loginId" placeholder="상대방의 아이디">
-		    <div><button id="state" class="search-btn btn btn-outline-primary ml-2" type="button" onclick="search()" value='대기'>검색</button></div>
+		    <div><button class="search-btn btn btn-outline-primary ml-2" type="button" onclick="search()">검색</button></div>
 		</div>		
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 검색해주세요</div>

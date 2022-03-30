@@ -18,17 +18,11 @@
  		(
 	 		`userId1`
 			,`userId2`
-			,`state`
-			,`createdAt`
-			,`updatedAt`
  		)
  		VALUES
  		(
  			#{userId1}
  			,#{userId2}
- 			,#{state}
- 			,NOW()
- 			,NOW()
  		)
  	</insert>
  	
@@ -42,6 +36,8 @@
 			,`updatedAt`
  		FROM
  			`couple`
+		WHERE USERID1=#{userId}
+		OR USERID2=#{userId}
  	</select>
  	
  	<update id="updateCouple" >

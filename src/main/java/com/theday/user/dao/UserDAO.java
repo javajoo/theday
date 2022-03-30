@@ -23,6 +23,7 @@ public interface UserDAO {
 	public List<User> selectUserByLoginId(@Param("loginId")String loginId, @Param("sessionLoginId") String sessionLoginId);
 	
 	public int updateUser(User user);
-	
-	public User selectUserCouple(int userId);
+
+	public List<User> selectUserCouple1(int userId);
+	public List<User> selectUserCouple2(int userId);
 }

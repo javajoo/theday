@@ -116,11 +116,23 @@
  			`loginId` = #{loginId}
  	</update>
  	
- 	<select id="selectUserCouple" resultType="com.theday.user.model.User"> 
-	 	SELECT * FROM `user`
+ 	<select id="selectUserCouple1" resultType="com.theday.user.model.User"> 
+	 	SELECT user.* FROM `user`
  		join `couple`
  		on  user.id = couple.userId2 
  		where
- 			userId1 = #{userId1}
+ 			userId1 = #{userId}
  	</select>
+ 	
+ 	
+ 	
+ 	<select id="selectUserCouple2" resultType="com.theday.user.model.User"> 
+	 	SELECT user.* FROM `user`
+ 		join `couple`
+ 		on  user.id = couple.userId1 
+ 		where
+ 			userId2 = #{userId}
+ 	</select>
+ 	
+ 	
  </mapper>

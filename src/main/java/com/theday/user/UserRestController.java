@@ -133,6 +133,12 @@ public class UserRestController {
 	}
 	
 
+	public static void main(String[] args) {
+		System.out.println(EncryptUtils.md5("1"));
+		System.out.println(EncryptUtils.md5("11"));
+		System.out.println(EncryptUtils.md5("111"));
+		System.out.println(EncryptUtils.md5("1234"));
+	}
 	
 
 

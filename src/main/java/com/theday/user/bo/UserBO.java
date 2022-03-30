@@ -70,7 +70,11 @@ public class UserBO {
 		return userDAO.updateUser(user);
 	}
 	
-	public User getUserCouple(int userId) {
-		return userDAO.selectUserCouple(userId);
+	public List<User> getUserCouple1(int userId) {
+		return userDAO.selectUserCouple1(userId);
+	}
+	
+	public List<User> getUserCouple2(int userId) {
+		return userDAO.selectUserCouple2(userId);
 	}
 }

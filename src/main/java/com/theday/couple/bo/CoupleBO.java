@@ -1,5 +1,7 @@
 package com.theday.couple.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,8 @@ public class CoupleBO {
 		return coupleDAO.insertCouple(couple);
 	}
 	
-	public Couple getCouple() {
-		return coupleDAO.selectCouple();
+	public List<Couple> getCouple(int userId) {
+		return coupleDAO.selectCouple(userId);
 	}
 	
 	public int updateCouple(Couple couple) {
