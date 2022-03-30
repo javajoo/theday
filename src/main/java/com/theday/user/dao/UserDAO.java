@@ -24,5 +24,5 @@ public interface UserDAO {
 	
 	public int updateUser(User user);
 	
-	public User selectUserCouple(int userId1);
+	public User selectUserCouple(int userId);
 }

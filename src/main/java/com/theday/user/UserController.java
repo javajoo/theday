@@ -20,12 +20,15 @@ public class UserController {
 	}
 	
 //	@RequestMapping("/search_view")
-//	public String searchView(HttpSession session) {
+//	public String searchView(HttpSession session, Model model) {
 //		boolean hasCouple = (boolean)session.getAttribute("hasCouple");
-//		if(hasCouple) {
-//			return "redirect:/couple/home_view";
+//		if(hasCouple) { // 커플이 아닌경우인데도 커플화면으로 이동????
+//			 model.addAttribute("viewName","couple/home");
 //		} else {
-//		return "redirect:/user/search_view";}
+//			 model.addAttribute("viewName","user/search");
+//		}
+//		
+//			return "template/layout";
 //	}
 	
 	@RequestMapping("/profile_view")

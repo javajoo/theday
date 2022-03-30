@@ -17,6 +17,7 @@ server:
   port: 80
   
 file:
-  upload-path : C:\spring_project\theday\workspace\images/
+  upload-path : C:\works\imgs\theday/
+  
 
   

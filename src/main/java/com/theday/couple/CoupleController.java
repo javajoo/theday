@@ -24,10 +24,14 @@ public class CoupleController {
 	
 	@RequestMapping("/home_view")
 	
-	public String connectView(Model model) {
+	public String connectView(Model model	,HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		
 		Couple couple = coupleBO.getCouple();
+		User coupleList = userBO.getUserCouple(userId);
 		model.addAttribute("couple",couple);
 		model.addAttribute("viewName", "couple/home");
+		model.addAttribute("coupleList", coupleList);
 		
 		return "template/layout";
 	}
@@ -36,9 +40,9 @@ public class CoupleController {
 	public String agreeView(Model model
 			,HttpSession session
 			) {
-		int userId1 = (int)session.getAttribute("userId");
+		int userId = (int)session.getAttribute("userId");
 		//List<Post> postList = postBO.getPostList();
-		User coupleList = userBO.getUserCouple(userId1);
+		User coupleList = userBO.getUserCouple(userId);
 		Couple couple = coupleBO.getCouple();
 		model.addAttribute("couple", couple);
 		model.addAttribute("coupleList", coupleList);

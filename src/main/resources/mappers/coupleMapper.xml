@@ -51,8 +51,6 @@
 			,`userId2` = #{userId2}
  			,`state`= #{state}
  			,`updatedAt`= NOW()
- 	<!-- 	WHERE
- 			(userId1 = #{userId1} OR userId2 = #{userId2})
- 			AND state = '성공' -->
+
  	</update>
  </mapper>
