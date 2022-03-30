@@ -37,6 +37,7 @@ public class UserController {
 //		}
 //		return "";
 //	}
+	
 	@RequestMapping("/profile_view")
 	public String profileView(Model model) {
 //		User user = (User)session.getAttribute("user");

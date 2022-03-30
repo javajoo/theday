@@ -21,8 +21,8 @@
 					<td data-couple-userId1="${couple.userId1}">${couple.userId1}</td>
 			 		<td>${coupleList.loginId}</td>
 					<td>
-						<button id="state" class="search-btn btn btn-outline-primary ml-2" type="button" onclick="agree()" value='성공'
-						data-couple-userId2="${couple.userId2}">커플연결${couple.userId2}</button>
+						<button id="state" class="search-btn btn btn-outline-primary ml-2" type="button" onclick="agree(this)" value='성공'
+						data-couple-userId2="${coupleList.id}">커플연결${coupleList.id}</button>
 					</td>
 				</tr>
 			
@@ -33,22 +33,22 @@
 	<script>
 		function agree() {
 			//alert('click');
-			var userId1 = $('#userId1').data('couple-userId1');
-			var userId2 = $('#state').data('couple-userId2');
+			var userId2 = $(this).data('couple-userId2');
 			var state = $('#state').val();
 			
-			/* var data = {
-					'userId2' : userId2,
-					'state' : state
-					
-			}; */
+			console.log(userId2);
+			var data = {
+					"userId2" : userId2,
+					"state" : state
+					}
 			
+	
 			$.ajax({
 				type: 'PUT'
 				,url: '/user/agree'
-				,data: { 'userId2': userId2, 'state': state}
-			/* 	,data: JSON.stringify(data) */
-			/* 	,contentType: 'application/json;charset=UTF-8' */
+				 ,data: { 'userId2': userId2, 'state': state} 
+				/* ,data: JSON.stringify(data)  */
+				/* ,contentType: 'application/json;charset=UTF-8' */
 				,success: function(data) {
 					if (data.result == 'success') {
 						alert('커플연결이 되었습니다.');
