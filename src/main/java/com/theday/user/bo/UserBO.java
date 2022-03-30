@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.theday.common.FileManagerService;
-import com.theday.couple.model.Couple;
 import com.theday.user.dao.UserDAO;
 import com.theday.user.model.User;
 

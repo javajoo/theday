@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +50,26 @@ public class CoupleRestController {
 		
 		coupleBO.insertCouple(couple);
 		
+		return result;
+	}
+	
+	@PutMapping("/agree")
+	public Map<String, Object> agree (HttpSession session, 
+			@RequestBody Couple couple) { 
+		
+		
+		User user = (User) session.getAttribute("user");
+		couple.setUserId1(user.getId());
+		
+		Map<String, Object> result = new HashMap<>();	
+			
+		int row = coupleBO.updateCouple(couple);
+		result.put("result", "success");
+		
+		if (row < 1) {
+			result.put("result", "error");
+			result.put("errorMessage", "커플매칭에 실패했습니다.");
+		} 
 		return result;
 	}
 	

@@ -31,24 +31,24 @@
 	
 	
 	<script>
-		function agree() {
+		function agree(obj) {
 			//alert('click');
-			var userId2 = $(this).data('couple-userId2');
+			//var userId2 = $(this).data('couple-userId2');
 			var state = $('#state').val();
 			
-			console.log(userId2);
+			//console.log(userId2);
 			var data = {
-					"userId2" : userId2,
-					"state" : state
-					}
+				userId2 : obj.getAttribute('data-couple-userId2'),
+				"state" : state
+				}
 			
 	
 			$.ajax({
 				type: 'PUT'
-				,url: '/user/agree'
-				 ,data: { 'userId2': userId2, 'state': state} 
-				/* ,data: JSON.stringify(data)  */
-				/* ,contentType: 'application/json;charset=UTF-8' */
+				,url: '/couple/agree'
+				// ,data: { 'userId2': userId2, 'state': state} 
+				,data: JSON.stringify(data)  
+				,contentType: 'application/json;charset=UTF-8' 
 				,success: function(data) {
 					if (data.result == 'success') {
 						alert('커플연결이 되었습니다.');

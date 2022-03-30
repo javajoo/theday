@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.theday.common.EncryptUtils;
-import com.theday.couple.bo.CoupleBO;
-import com.theday.couple.model.Couple;
 import com.theday.user.bo.UserBO;
 import com.theday.user.model.User;
 
@@ -31,9 +28,7 @@ public class UserRestController {
 
 	@Autowired
 	private UserBO userBO;
-	
-	@Autowired
-	private CoupleBO coupleBO;
+
 	
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(@ModelAttribute User user) {
@@ -137,25 +132,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	@PutMapping("/agree")
-	public Map<String, Object> agree (HttpSession session, 
-			@ModelAttribute Couple couple) { 
-		
-		
-		User user = (User) session.getAttribute("user");
-		couple.setUserId1(user.getId());
-		
-		Map<String, Object> result = new HashMap<>();	
-			
-		int row = coupleBO.updateCouple(couple);
-		result.put("result", "success");
-		
-		if (row < 1) {
-			result.put("result", "error");
-			result.put("errorMessage", "커플매칭에 실패했습니다.");
-		} 
-		return result;
-	}
+
 	
 
 

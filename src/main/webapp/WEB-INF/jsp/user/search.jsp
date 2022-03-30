@@ -100,7 +100,7 @@
 			,contentType: 'application/json;charset=UTF-8'
 			,success : function(data) {
 				if (data.result == 'success' ) {
-					location.href= "/user/agree_view";
+					location.href= "/couple/agree_view";
 					
 				} else {
 					alert('매칭불가');
