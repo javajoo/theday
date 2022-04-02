@@ -19,11 +19,11 @@ public class CoupleBO {
 		return coupleDAO.CountUser(couple);
 	}
 	
+	public boolean existSelectedUser(int userId) {
+		return coupleDAO.existSelectedUser(userId)==1?true:false;
+	}
 	public boolean addCouple (Couple couple) {
-		if (CountUser(couple) == 1) {
-			return false; //막다
-		}
-		return true; //실행
+		return CountUser(couple) == 1 ? false:true;
 	}
 	
 	public int insertCouple(Couple couple) {

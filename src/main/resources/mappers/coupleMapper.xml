@@ -13,6 +13,15 @@
  			AND state = '성공'
  	</select>
  	
+ 	<select id="existSelectedUser" resultType="int">
+ 		SELECT
+ 			COUNT(1)
+ 		FROM
+ 			COUPLE
+ 		WHERE
+ 			USERID1=#{userId}
+ 	</select>
+ 	
  	<insert id="insertCouple">
  		INSERT INTO `couple`
  		(

@@ -31,9 +31,10 @@
 
 	<link rel="stylesheet" href="/static/css/timepicker.css" />	
 	<script src="/static/js/timepicker.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/isSameOrBefore.min.js"></script>
-
-<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/isSameOrBefore.min.js"></script>
+	
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<link rel="icon" type="image/png" href="/static/image/favi.png"/>
 </head>
 <body>
 	<div class="container">

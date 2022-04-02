@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.theday.common.EncryptUtils;
+import com.theday.couple.bo.CoupleBO;
 import com.theday.user.bo.UserBO;
 import com.theday.user.model.User;
 
@@ -28,6 +29,8 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 
+	@Autowired
+	private CoupleBO cBO;
 	
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(@ModelAttribute User user) {
@@ -76,11 +79,13 @@ public class UserRestController {
 		result.put("result", "success");
 		
 		User user = userBO.getUserByLoginIdPassword(loginId, encryptUtils);
-		
+		boolean selectedCouple = cBO.existSelectedUser(user.getId());
+		result.put("selectedCouple", selectedCouple);
 		if (user != null) {
 			session.setAttribute("user", user);
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("hasCouple", true);
+			session.setAttribute("selectedCouple", selectedCouple);
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "아이디 또는 비밀번호를 잘못 입력했습니다. \n"

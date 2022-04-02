@@ -25,11 +25,9 @@ public class CoupleController {
 	private UserBO userBO;
 	
 	@RequestMapping("/home_view")
-	public String connectView(Model model	,HttpSession session) {
+	public String connectView(Model model, HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
 		// 매칭이 성공한 유저의 정보만 가져오는 로직이 필요함
-		
-		
 		
 		List<Couple> couple = coupleBO.getCouple(userId);
 		model.addAttribute("couple",couple);

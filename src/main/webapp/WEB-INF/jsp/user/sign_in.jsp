@@ -15,7 +15,10 @@
 		<div class="text-center">계정이 없으신가요? <a href="/user/sign_up_view" class="badge badge-primary">회원가입</a></div>
 	</div>
 </div>
-
+<%
+String str = "아놔 어짜피 보이지 않는데.. 씨...X";
+System.out.println(str);
+%>
 <script>
 
 	$('#loginId').focus();
@@ -54,7 +57,11 @@
 				,success: function(data) {
 					if (data.result == 'success') {
 						alert(loginId + '님 로그인 되었습니다.');
-						location.href = '/user/search_view';
+						if(data.selectedCouple=='true'){
+							location.href ='/user/agree_view';
+						}else{
+							location.href = '/user/search_view';
+						}
 					} else {
 						alert(data.errorMessage);
 					}
