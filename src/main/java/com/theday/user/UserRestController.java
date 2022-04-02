@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,7 @@ public class UserRestController {
 	public Map<String, Object> signInView(
 			@RequestParam("loginId") String loginId, 
 			@RequestParam("password") String password,
-			HttpServletRequest request
+			HttpSession session
 			) {
 		
 		// 비밀번호 암호화
@@ -79,7 +78,6 @@ public class UserRestController {
 		User user = userBO.getUserByLoginIdPassword(loginId, encryptUtils);
 		
 		if (user != null) {
-			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("hasCouple", true);
@@ -133,12 +131,6 @@ public class UserRestController {
 	}
 	
 
-	public static void main(String[] args) {
-		System.out.println(EncryptUtils.md5("1"));
-		System.out.println(EncryptUtils.md5("11"));
-		System.out.println(EncryptUtils.md5("111"));
-		System.out.println(EncryptUtils.md5("1234"));
-	}
 	
 
 

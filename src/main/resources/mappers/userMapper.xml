@@ -113,7 +113,7 @@
 			,`date` = #{date}
 			,`updatedAt` = NOW()
  		WHERE
- 			`loginId` = #{loginId}
+ 				`userId2` = #{userId} 
  	</update>
  	
  	<select id="selectUserCouple1" resultType="com.theday.user.model.User"> 
@@ -121,7 +121,7 @@
  		join `couple`
  		on  user.id = couple.userId2 
  		where
- 			userId1 = #{userId}
+ 			userId1 = #{userId} 
  	</select>
  	
  	

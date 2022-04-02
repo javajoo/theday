@@ -16,4 +16,7 @@ public interface CoupleDAO {
 	public List<Couple> selectCouple(int userId);
 	
 	public int updateCouple(Couple couple);
+	
+	public void deleteCouple(Couple couple);
+	
 }

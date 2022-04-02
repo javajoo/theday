@@ -47,6 +47,13 @@
 			,`userId2` = #{userId2}
  			,`state`= #{state}
  			,`updatedAt`= NOW()
-
+		WHERE 
+		`userId2` = #{userId2}
  	</update>
+ 	
+ 	<delete id="deleteCouple">
+ 		DELETE 
+ 		FROM `couple`
+ 		WHERE `userId2` = #{userId2}
+ 	</delete>
  </mapper>

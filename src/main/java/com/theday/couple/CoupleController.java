@@ -25,10 +25,12 @@ public class CoupleController {
 	private UserBO userBO;
 	
 	@RequestMapping("/home_view")
-	
 	public String connectView(Model model	,HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
 		// 매칭이 성공한 유저의 정보만 가져오는 로직이 필요함
+		
+		
+		
 		List<Couple> couple = coupleBO.getCouple(userId);
 		model.addAttribute("couple",couple);
 		model.addAttribute("viewName", "couple/home");
@@ -37,15 +39,13 @@ public class CoupleController {
 	}
 	
 	@RequestMapping("/agree_view")
-	public String agreeView(Model model
-			,HttpSession session
-			) {
+	public String agreeView(Model model	,HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
 		//List<Post> postList = postBO.getPostList();
 		List<User> coupleList1 = userBO.getUserCouple1(userId);
 		List<User> coupleList2 = userBO.getUserCouple2(userId);
-		model.addAttribute("coupleList1", coupleList1);
-		model.addAttribute("coupleList2", coupleList2);
+		model.addAttribute("coupleList1", coupleList1); 
+		model.addAttribute("coupleList2", coupleList2); 
 		model.addAttribute("viewName", "user/agree");
 		return "template/layout";
 	}

@@ -77,4 +77,6 @@ public class UserBO {
 	public List<User> getUserCouple2(int userId) {
 		return userDAO.selectUserCouple2(userId);
 	}
+	
+	
 }

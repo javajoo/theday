@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.theday.post.bo.PostBO;
 import com.theday.post.model.Post;
 import com.theday.user.bo.UserBO;
-import com.theday.user.model.User;
 
 @Controller
 @RequestMapping("/post")
@@ -28,6 +27,10 @@ public class PostController {
 	public String postListView(Model model,HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
 		// 매칭이 성공한 유저의 정보만 가져오는 로직이 필요함
+		
+		
+		
+		
 		//User coupleList = userBO.getUserCouple(userId);
 		List<Post> postList = postBO.getPostList();
 		model.addAttribute("postList",postList);

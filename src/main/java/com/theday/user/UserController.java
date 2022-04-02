@@ -23,12 +23,12 @@ public class UserController {
 //	public String searchView(HttpSession session, Model model) {
 //		boolean hasCouple = (boolean)session.getAttribute("hasCouple");
 //		if(hasCouple) { // 커플이 아닌경우인데도 커플화면으로 이동????
-//			 model.addAttribute("viewName","couple/home");
+//			return "redirect:/couple/home_view";
 //		} else {
-//			 model.addAttribute("viewName","user/search");
-//		}
-//		
+//			model.addAttribute("viewName","user/agree");
 //			return "template/layout";
+//		}
+//			
 //	}
 	
 	@RequestMapping("/profile_view")

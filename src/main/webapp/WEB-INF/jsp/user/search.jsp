@@ -12,7 +12,6 @@
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 검색해주세요</div>
 
-		<a href="/user/agree_view">SKIP</a>
 		
 	</div>
 
@@ -108,8 +107,8 @@
 				
 			}
 			,error: function(data) {
-				alert('매칭에 실패했습니다. 관리자에게 문의해주세요.');
-			}
+				alert('이미 선택을 하셨습니다.');
+			}	
 		})
 	};
 	

@@ -38,6 +38,9 @@ public class CoupleBO {
 		return coupleDAO.updateCouple(couple);
 	}
 
-
+	public void deleteCouple(Couple couple) {
+		coupleDAO.deleteCouple(couple);
+	}
+	
 
 }
