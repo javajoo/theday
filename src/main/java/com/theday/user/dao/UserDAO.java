@@ -27,4 +27,6 @@ public interface UserDAO {
 	public List<User> selectUserCouple1(int userId);
 	
 	public List<User> selectUserCouple2(int userId);
+	
+	public User selectUserByUserId(int userId);
 }

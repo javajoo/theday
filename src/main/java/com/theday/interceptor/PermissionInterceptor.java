@@ -44,7 +44,10 @@ public class PermissionInterceptor implements HandlerInterceptor {
 			response.sendRedirect("/user/sign_in_view"); //ok
 		} else if (user == null && uri.startsWith("/couple")) {
 			response.sendRedirect("/user/sign_in_view"); //ok
+		} else if (user == null && uri.startsWith("/timeline")) {
+			response.sendRedirect("/user/sign_in_view"); //ok
 		}
+		
 		
 			
 			log.warn("######### preHandle 호출, uri:{}", uri);

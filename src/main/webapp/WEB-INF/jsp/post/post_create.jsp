@@ -18,7 +18,7 @@
 
 <div class="d-flex justify-content-center mt-3">
 	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
-	<a href="/post/post_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
+	<a href="/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
 	<a href="#"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
 	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 </div>
@@ -82,7 +82,7 @@
 				,success: function(data) {
 					if(data.result == 'success') {
 						alert('게시글이 저장되었습니다.');
-						location.href='/post/post_list_view';
+						location.href='/timeline/timeline_list_view';
 					} else {
 						alert(data.errorMessage);
 					}

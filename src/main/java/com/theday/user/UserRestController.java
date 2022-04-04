@@ -30,7 +30,7 @@ public class UserRestController {
 	private UserBO userBO;
 
 	@Autowired
-	private CoupleBO cBO;
+	private CoupleBO coupleBO;
 	
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(@ModelAttribute User user) {
@@ -79,7 +79,7 @@ public class UserRestController {
 		result.put("result", "success");
 		
 		User user = userBO.getUserByLoginIdPassword(loginId, encryptUtils);
-		boolean selectedCouple = cBO.existSelectedUser(user.getId());
+		boolean selectedCouple = coupleBO.existSelectedUser(user.getId());
 		result.put("selectedCouple", selectedCouple);
 		if (user != null) {
 			session.setAttribute("user", user);
@@ -112,7 +112,7 @@ public class UserRestController {
 	@PutMapping("/profile_update")
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
 		
-		//user = (User) session.getAttribute("user"); 넣으면 수정된 정보 저장안댐!!!
+		//user = (User) session.getAttribute("user"); //넣으면 수정된 정보 저장안댐!!!
 		
 		// 비밀번호 암호화
 		String encryptUtils = EncryptUtils.md5(user.getPassword());
@@ -124,7 +124,7 @@ public class UserRestController {
 		User tmpUser = (User)session.getAttribute("user");
 		int row = userBO.updateUser(user, tmpUser.getProfileImagePath());
 		if(row < 1) {
-			result.put("success", "error");
+			result.put("result", "error");
 			result.put("errorMessage", "수정에 실패했습니다.");
 		}else {
 			session.setAttribute("user", user); // 수정된 정보 세션에 다시 저장

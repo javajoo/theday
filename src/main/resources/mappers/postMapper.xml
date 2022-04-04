@@ -35,5 +35,11 @@
  		ORDER BY `id` DESC;
  	</select>
  	
+ 	<delete id="deletePostById">
+ 		DELETE 
+ 		FROM `post`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
 
  </mapper>

@@ -15,10 +15,7 @@
 		<div class="text-center">계정이 없으신가요? <a href="/user/sign_up_view" class="badge badge-primary">회원가입</a></div>
 	</div>
 </div>
-<%
-String str = "아놔 어짜피 보이지 않는데.. 씨...X";
-System.out.println(str);
-%>
+
 <script>
 
 	$('#loginId').focus();
@@ -27,49 +24,7 @@ System.out.println(str);
 		
 	  var keycode = (event.keyCode ? event.keyCode : event.which);
 	  if(keycode == '13'){
-		  let loginId = $('#loginId').val().trim();
-			let password = $('#password').val();
-			
-			$('#loginId').removeClass('is-invalid');
-			$('#password').removeClass('is-invalid');
-			
-			$('#inputId').addClass('d-none');
-			$('#inputPassword').addClass('d-none');
-
-			if (loginId == '') {
-				$('#loginId').addClass('is-invalid');
-				$('#inputId').removeClass('d-none');
-				$('#loginId').focus();
-				return;
-			}
-			
-			if (password == '') {
-				$('#password').addClass('is-invalid');
-				$('#password').focus();
-				$('#inputPassword').removeClass('d-none');
-				return;
-			}
-			
-			$.ajax({
-				type: 'POST'
-				,url: '/user/sign_in'
-				,data: {'loginId':loginId, 'password':password}
-				,success: function(data) {
-					if (data.result == 'success') {
-						alert(loginId + '님 로그인 되었습니다.');
-						if(data.selectedCouple=='true'){
-							location.href ='/user/agree_view';
-						}else{
-							location.href = '/user/search_view';
-						}
-					} else {
-						alert(data.errorMessage);
-					}
-				}
-				,error: function(data) {
-					alert('관리자에게 문의바랍니다.');
-				}
-			});
+		  signIn();
 	  }
 	});
 	
@@ -104,7 +59,11 @@ System.out.println(str);
 			,success: function(data) {
 				if (data.result == 'success') {
 					alert(loginId + '님 로그인 되었습니다.');
-					location.href = '/user/search_view';
+					if(data.selectedCouple){
+						location.href ='/couple/agree_view';
+					}else{
+						location.href = '/user/search_view';
+					}
 				} else {
 					alert(data.errorMessage);
 				}

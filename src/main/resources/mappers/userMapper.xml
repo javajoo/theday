@@ -113,7 +113,7 @@
 			,`date` = #{date}
 			,`updatedAt` = NOW()
  		WHERE
- 				`userId2` = #{userId} 
+ 			`loginId` = #{loginId} 
  	</update>
  	
  	<select id="selectUserCouple1" resultType="com.theday.user.model.User"> 
@@ -134,5 +134,21 @@
  			userId2 = #{userId}
  	</select>
  	
- 	
+ 	<select id="selectUserByUserId" resultType="com.theday.user.model.User">
+ 		SELECT
+ 			`id`
+ 			,`loginId`
+	 		,`password`
+	 		,`name`
+	 		,`birth`
+	 		,`gender`
+	 		,`profileImagePath`
+	 		,`date`
+	 		,`createdAt`
+	 		,`updatedAt`
+ 		FROM
+ 			`user`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
  </mapper>

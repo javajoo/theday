@@ -27,7 +27,7 @@ public class PostBO {
 		// 이미지 사진 넣기
 		String imagePath = null;
 		if (post.getImage() != null) {
-			imagePath = fileManagerService.saveFile(user.getLoginId() , post.getImage());
+			imagePath = fileManagerService.saveFile(user.getLoginId(), post.getImage());
 			post.setImagePath(imagePath);
 		}
 		
@@ -38,5 +38,7 @@ public class PostBO {
 		return postDAO.selectPostList();
 	}
 	
-	
+	public void deletePostById(Post post) {
+		postDAO.deletePostById(post);
+	}
 }

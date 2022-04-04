@@ -1,13 +1,12 @@
 package com.theday.post;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +28,11 @@ public class PostRestController {
 		User user = (User) session.getAttribute("user");
 		
 		post.setUserId(user.getId()); // post에 userId 넣어준다.
-		Map<String, Object> result = new HashMap<>();
-		result.put("result", "success");
-		
+	
 		int row = postBO.insertPost(post, session);
 		
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
 		
 		if (row < 1) {
 			result.put("result", "error");
@@ -45,11 +44,17 @@ public class PostRestController {
 		return result;
 	}
 	
-	@GetMapping("/post_list")
-	public List<Post> postList() {
-		return postBO.getPostList();
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(@ModelAttribute Post post, HttpSession session) {
+		
+		User user = (User) session.getAttribute("user");
+		post.setUserId(user.getId());
+		
+		Map<String, Object> result = new HashMap<>();
+		postBO.deletePostById(post);
+		result.put("result", "success");
+		
+		return result;
 	}
-	
-	
 	
 }

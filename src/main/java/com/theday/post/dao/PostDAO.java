@@ -12,4 +12,6 @@ public interface PostDAO {
 	public int insertPost (Post post);
 	
 	public List<Post> selectPostList();
+	
+	public void deletePostById(Post post);
 }

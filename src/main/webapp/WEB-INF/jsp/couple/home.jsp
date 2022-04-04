@@ -6,37 +6,37 @@
 <div class="d-flex justify-content-center">
 	<div class="home-box">
 		<div class=" d-flex justify-content-between">
+			<c:forEach var="coupleList1" items="${coupleList1}"> 
+				<div>
+					<c:if test="${empty coupleList1.profileImagePath}">
+						<a href="#" data-toggle="modal" data-target="#moreModalLeft"><img src="/static/image/user.png" class="profile" id="userImage"></a>
+					</c:if>
+					<c:if test="${!empty coupleList1.profileImagePath}">
+			 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${coupleList1.profileImagePath}" class="profile" id="userImage"></a>
+					</c:if>
+					<div class="text-center mt-2"><b>${coupleList1.loginId}</b></div>
+				</div>
+				
+				<div class="d-flex align-items-center">
+					<div>
+						<div><h6>처음 만난 날로부터</h6></div>
+						<div class="text-center"><h4>1일째</h4></div>
+					</div>
+				</div>
+			</c:forEach> 
+			
 			<div>
 				<c:if test="${empty user.profileImagePath}">
-					<a href="#" data-toggle="modal" data-target="#moreModalLeft"><img src="/static/image/user.png" class="profile" id="userImage"></a>
+					<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="/static/image/user.png" class="profile" id="userImage"></a>
 				</c:if>
+				
 				<c:if test="${!empty user.profileImagePath}">
-		 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+			 		<a href="#" data-toggle="modal" data-target="#moreModalRight" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
 				</c:if>
-				<div class="text-center mt-2"><b>${coupleList.name}</b></div>
-			</div>
-			
-			<div class="d-flex align-items-center">
-				<div>
-					<div><h6>처음 만난 날로부터</h6></div>
-					<div class="text-center"><h4>1일째</h4></div>
+				
+				<div class="text-center mt-2"><b>${user.name}</b></div>
 				</div>
 			</div>
-			
-			<div>
-			<c:if test="${empty user.profileImagePath}">
-				<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="/static/image/user.png" class="profile" id="userImage"></a>
-			</c:if>
-			<c:if test="${!empty user.profileImagePath}">
-		 		<a href="#" data-toggle="modal" data-target="#moreModalRight" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
-			</c:if>
-			<div class="text-center mt-2"><b>${user.name}</b></div>
-			</div>
-			<%-- <div>
-				<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
-				<div class="text-center mt-2"><b>${user.name}</b></div>
-			</div> --%>
-		</div>
 	
 		<div class="day-box">
 			<div class="d-flex">
@@ -100,7 +100,7 @@
 		</div>
 		
 		<div class="d-flex justify-content-center mt-3">
-			<a href="/post/post_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
+			<a href="/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
 			<a href="#"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
 			<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 		</div>
@@ -114,22 +114,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-      		<c:if test="${empty user.profileImagePath}">
-				<img src="/static/image/user.png" class="profile" id="userImage">
-			</c:if>
-			<c:if test="${!empty user.profileImagePath}">
-		 		<img src="${user.profileImagePath}" class="profile" id="userImage">
-			</c:if>
-      	<%-- <img src="${user.profileImagePath}" class="profile" id="userImage"> --%>
-     	 <div class="mt-3">
-	        <div class="ml-1">${coupleList.name}</div>
-	        <div class="ml-1">
-	        	<fmt:parseDate value="${coupleList.birth}" var="date" pattern="yyyy-mm-dd" />
-	        	<fmt:formatDate value="${date}" pattern="m월 d일" />
+      <c:forEach var="coupleList1" items="${coupleList1}">
+	      <div class="modal-body">
+	      		<c:if test="${empty coupleList1.profileImagePath}"> 
+					<img src="/static/image/user.png" class="profile" id="userImage">
+				</c:if>
+				<c:if test="${!empty coupleList1.profileImagePath}">
+			 		<img src="${coupleList1.profileImagePath}" class="profile" id="userImage">
+				</c:if> 
+	     	 <div class="mt-3">
+		        <div class="ml-1">${coupleList1.name}</div>
+		        <div class="ml-1">
+		        	<fmt:parseDate value="${coupleList1.birth}" var="date" pattern="yyyy-mm-dd" />
+		        	<fmt:formatDate value="${date}" pattern="m월 d일" />
+		        </div>
 	        </div>
-        </div>
-      </div>
+	      </div>
+      </c:forEach>
       <div class="modal-footer">
       </div>
     </div>

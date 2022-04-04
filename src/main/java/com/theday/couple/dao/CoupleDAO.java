@@ -20,5 +20,7 @@ public interface CoupleDAO {
 	public int updateCouple(Couple couple);
 
 	public void deleteCouple(Couple couple);
+	
+	public void deleteCouple2(Couple couple);
 
 }

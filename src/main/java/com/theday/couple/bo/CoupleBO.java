@@ -14,7 +14,7 @@ public class CoupleBO {
 	@Autowired
 	private CoupleDAO coupleDAO;
 	
-	public int CountUser (Couple couple) {
+	public int countUser (Couple couple) {
 		
 		return coupleDAO.CountUser(couple);
 	}
@@ -22,8 +22,9 @@ public class CoupleBO {
 	public boolean existSelectedUser(int userId) {
 		return coupleDAO.existSelectedUser(userId)==1?true:false;
 	}
+	
 	public boolean addCouple (Couple couple) {
-		return CountUser(couple) == 1 ? false:true;
+		return countUser(couple) == 1 ? false:true;
 	}
 	
 	public int insertCouple(Couple couple) {
@@ -41,6 +42,8 @@ public class CoupleBO {
 	public void deleteCouple(Couple couple) {
 		coupleDAO.deleteCouple(couple);
 	}
-	
+	public void deleteCouple2(Couple couple) {
+		coupleDAO.deleteCouple2(couple);
+	}
 
 }

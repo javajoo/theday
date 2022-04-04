@@ -45,24 +45,35 @@
 			,`updatedAt`
  		FROM
  			`couple`
-		WHERE USERID1=#{userId}
+		WHERE 
+	<!-- 	USERID1=#{userId}
 		OR USERID2=#{userId}
+		AND  -->
+		state = '성공'
  	</select>
  	
  	<update id="updateCouple" >
  		UPDATE `couple`
  		SET
-	 		`userId1` = #{userId1}
-			,`userId2` = #{userId2}
- 			,`state`= #{state}
+	 	<!-- 	`userId1` = #{userId1}
+			,`userId2` = #{userId2} -->
+ 			`state`= '성공'
  			,`updatedAt`= NOW()
 		WHERE 
-		`userId2` = #{userId2}
+ 			`userId1` = #{userId1}
  	</update>
  	
  	<delete id="deleteCouple">
  		DELETE 
  		FROM `couple`
- 		WHERE `userId2` = #{userId2}
+ 		WHERE 
+ 			`userId2` = #{userId2}
+ 	</delete>
+ 	
+ 	<delete id="deleteCouple2">
+ 		DELETE 
+ 		FROM `couple`
+ 		WHERE 
+ 			`userId1` = #{userId1}
  	</delete>
  </mapper>

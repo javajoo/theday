@@ -29,11 +29,11 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-	<link rel="stylesheet" href="/static/css/timepicker.css" />	
-	<script src="/static/js/timepicker.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/isSameOrBefore.min.js"></script>
+   <!-- datepicker-->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+       <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
-	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css" >
 	<link rel="icon" type="image/png" href="/static/image/favi.png"/>
 </head>
 <body>

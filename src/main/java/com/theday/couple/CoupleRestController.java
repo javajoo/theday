@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +40,7 @@ public class CoupleRestController {
 //		couple.setUserId1(couple.getUserId1());
 //		couple.setUserId2(couple.getUserId2());
 		
-		int exist = coupleBO.CountUser(couple);
+		int exist = coupleBO.countUser(couple);
 		result.put("result", "success");
 		
 		if (exist > 1) {
@@ -53,10 +52,10 @@ public class CoupleRestController {
 		return result;
 	}
 	
-	@GetMapping("/agree")
+	@PostMapping("/agree")
 	public Map<String, Object> agree (HttpSession session, 	@RequestBody Couple couple) { 
-		User user = (User) session.getAttribute("user");
-		couple.setUserId1(user.getId());
+//		User user = (User) session.getAttribute("user");
+//		couple.setUserId1(user.getId());
 		
 		Map<String, Object> result = new HashMap<>();	
 			
@@ -83,6 +82,17 @@ public class CoupleRestController {
 		return result;
 	}
 	
-
+	@DeleteMapping("/reject2")
+	public Map<String, Object> reject1(HttpSession session, @RequestBody Couple couple) {
+		//User user = (User) session.getAttribute("user");
+		//couple.setUserId1(user.getId());
+		
+		Map<String, Object> result = new HashMap<>();	
+		
+		coupleBO.deleteCouple2(couple);
+		result.put("result", "success");
+		
+		return result;
+	}
 	
 }

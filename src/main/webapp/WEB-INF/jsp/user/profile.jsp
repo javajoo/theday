@@ -166,8 +166,8 @@
 			$.ajax({
 				/* 프로필 수정 되면 PUT으로 바꿔주기!!! */
 				type: 'PUT' 
-				,url: '/user/profile_update'
 				,data: formData
+				,url: '/user/profile_update'
 				// 파일 업로드를 위한 필수 설정
 				,enctype : 'multipart/form-data'
 				,contentType : false

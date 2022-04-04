@@ -15,7 +15,7 @@
 				<div class="border border-rounded p-3 mb-4">
 					<div class="d-flex justify-content-between">
 						<div class="mb-2"><b><fmt:formatDate value="${post.createdAt}" pattern="yyyy년 MM월 dd일 E요일" /></b></div>
-						<a href="#"  data-toggle="modal" data-target="#moreModal"><img src="/static/image/more.png" alt="image" width="30"></a>
+						<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${post.id}"><img src="/static/image/more.png" alt="image" width="30"></a>
 					</div>
 					<div class="d-flex mb-2">
 						 <c:if test="${empty user.profileImagePath}">
@@ -49,6 +49,13 @@
 						<div class="ml-2 mt-1"><b>${post.userId}</b></div>
 						<div class="ml-2 mt-1">안녕하세요~</div>
 					</div>
+					
+					<div class="input-group mb-3 mt-3 col-10">
+						<input type="text" class="form-control"	id="" placeholder="댓글달기">
+						<div class="input-group-prepend">
+							<span class="btn input-group-text commentBtn " data-post-id="">게시</span>
+						</div>
+					</div>
 			 	</div>
 			</c:forEach>
 		</div>
@@ -77,3 +84,42 @@
 	<a href="#"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
 	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 </div>
+
+
+<script>
+	$('.more-btn').on('click', function(e) {
+		//alert('click');
+		e.preventDefault();
+		
+		var id = $(this).data('post-id');
+		
+		$('#moreModal').data('post-id', id);
+	});
+	
+	$('#moreModal .del-post').on('click',function(e) {
+		e.preventDefault();
+		
+		var id = $('#moreModal').data('post-id');
+		
+		$.ajax({
+			type: 'DELETE'
+			,url: '/post/delete'
+			,data: {'id' : id}
+			,success: function(data) {
+				if (data.result == 'success') {
+					alert('게시글이 삭제 되었습니다.');
+					location.reload();
+				}
+			}
+			,error: function(data) {
+				alert('관리자에게 문의 바랍니다.');
+			}
+		});
+	});
+	
+</script>
+
+
+
+
+

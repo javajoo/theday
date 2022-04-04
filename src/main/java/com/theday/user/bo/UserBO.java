@@ -78,5 +78,8 @@ public class UserBO {
 		return userDAO.selectUserCouple2(userId);
 	}
 	
+	public User getUserByUserId(int userId) {
+		return userDAO.selectUserByUserId(userId);
+	}
 	
 }
