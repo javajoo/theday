@@ -29,8 +29,8 @@ public class TimelineController {
 		int userId = (int)session.getAttribute("userId");
 		
 		List<ContentView> contentViewList = contentBO.generateContentViewList(userId);
-		List<Post> postList = postBO.getPostList();
-		model.addAttribute("postList",postList);
+		//List<Post> postList = postBO.getPostList();
+		//model.addAttribute("postList",postList);
 		model.addAttribute("contentViewList",contentViewList);
 		model.addAttribute("viewName","timeline/timeline_list");
 		
