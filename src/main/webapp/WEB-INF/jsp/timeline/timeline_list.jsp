@@ -30,12 +30,14 @@
 						<div class="ml-2 mt-1"><b>${content.user.loginId}</b></div>
 					</div>
 					
-						<c:if test="${not empty post.imagePath}">
+						<c:if test="${not empty content.post.imagePath}">
 			 				<img src="${content.post.imagePath}"  alt="image" width="400">
 						</c:if>
 						
 					 	<div class=" ml-2 mt-2">${content.post.content}</div>
 				 	<hr>
+				 	
+				 	<!-- 댓글 보기 -->
 				 	<div class="d-flex mb-2">
 					 	<a href="#"><img src="/static/image/comment.png" alt="image" width="20"></a>
 					 	<div class="ml-1"><small>댓글</small></div>
@@ -61,13 +63,14 @@
 						</c:forEach>
 					</div>
 					
+					<!-- 댓글 쓰기 -->
 					<div class="input-group mt-3 col-10">
 						<input type="text" class="comment-text form-control" id="commentText${content.post.id}" placeholder="댓글달기">
 						<div class="input-group-prepend">
 							<span class="btn input-group-text commentBtn" data-post-id="${content.post.id}">게시</span>
 						</div>
 					</div>
-					<div id="inputComment" class="small text-danger ml-3 mt-1 d-none">댓글을 입력해주세요</div>
+					<div id="inputComment${content.post.id}" class="small text-danger ml-3 mt-1 d-none">댓글을 입력해주세요</div>
 			 	</div>
 			</c:forEach>
 		</div>
@@ -139,13 +142,12 @@
 			var postId = $(this).data('post-id');
 			var commentContent = $('#commentText' + postId).val().trim();
 			
-			$('#inputComment').addClass('d-none');
-			$('.comment-text').removeClass('is-invalid');
+			$('#inputComment' + postId).addClass('d-none');
+			$('#commentText' + postId).removeClass('is-invalid');
 			
 			if (commentContent == '') {
-			 	$('#inputComment').removeClass('d-none');
-				$('.comment-text').addClass('is-invalid'); 
-				//alert('댓글');
+			 	$('#inputComment' + postId).removeClass('d-none');
+				$('#commentText' + postId).addClass('is-invalid'); 
 				return;
 			}
 			

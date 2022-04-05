@@ -20,7 +20,7 @@
 				<div class="d-flex align-items-center">
 					<div>
 						<div><h6>처음 만난 날로부터</h6></div>
-						<div class="text-center"><h4>1일째</h4></div>
+						<div class="text-center"><div id="dayCount" data-date-id="${user.date}"></div></div>
 					</div>
 				</div>
 			</c:forEach> 
@@ -40,62 +40,62 @@
 	
 		<div class="day-box">
 			<div class="d-flex">
-				<div class="col-6">
+				<div class="col-3 ml-5">
 					<div>100일</div>
 					<div></div>
 				</div>
-				<div class="col-6 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+				<div class="col-9" id="dayCount100"></div>
 			</div>
 			<hr>
 			
 			<div class="d-flex">
-				<div class="col-6">
+				<div class="col-3 ml-5">
 					<div>200일</div>
 					<div></div>
 				</div>
-				<div class="col-6 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+				<div class="col-9" id="dayCount200"></div>
 			</div>
 			<hr>
 			
 			<div class="d-flex">
-				<div class="col-6">
+				<div class="col-3 ml-5">
 					<div>300일</div>
 					<div></div>
 				</div>
-				<div class="col-6 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+				<div class="col-9" id="dayCount300"></div>
 			</div>
 			<hr>
 			
 			<div class="d-flex">
-				<div class="col-6">
-					<div>300일</div>
+				<div class="col-3 ml-5">
+					<div>365일</div>
 					<div></div>
 				</div>
-				<div class="col-6 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+				<div class="col-9" id="dayCount365"></div>
 			</div>
 			<hr>
-			
-			<div class="d-flex">
-				<div class="col-6">
-					<div>${coupleList.name}의 생일</div>
-					<div>
-						<fmt:parseDate value="${coupleList.birth}" pattern="yyyy-mm-dd" var="date"/>
-						<fmt:formatDate value="${date}" pattern=" m월 d일" />
+			<c:forEach var="coupleList1" items="${coupleList1}">
+				<div class="d-flex">
+					<div class="col-4 ml-5">
+						<div>${coupleList1.name}의 생일</div>
+						<div>
+							<fmt:parseDate value="${coupleList1.birth}" pattern="yyyy-mm-dd" var="date"/>
+							<fmt:formatDate value="${date}" pattern=" m월 d일" />
+						</div>
 					</div>
+					<div class="col-8 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
 				</div>
-				<div class="col-6 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
-			</div>
-			<hr>
-			
+				<hr>
+			 </c:forEach>
 			<div class="d-flex">
-				<div class="col-6">
+				<div class="col-4 ml-5">
 					<div>${user.name}의 생일</div>
 					<div>
 						<fmt:parseDate value="${user.birth}" var="date" pattern="yyyy-mm-dd" />
 						<fmt:formatDate value="${date}" pattern="m월 d일" />
 					</div>
 				</div>
-				<div class="col-6 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+				<div class="col-8 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
 			</div>
 		</div>
 		
@@ -172,16 +172,18 @@
 	</div>
 </div>
 
+	<script>
+      
+    	//var dday = $('#ddCounter').data('date-id').getTime();
+    	var dday = new Date("april 31,2022").getTime(); //디데이
+    	var now = new Date(); //현재 날짜 가져오기
+    	var distance = dday - now;
+    	var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    	$('#dayCount').html('<span class="text-danger">' + d +'</span>일째');
+    	$('#dayCount100').html('D-day까지 ' +'<span class="text-danger">' + (d + 100) +'</span>일 남았습니다.');
+    	$('#dayCount200').html('D-day까지 ' +'<span class="text-danger">' + (d + 200) +'</span>일 남았습니다.');
+    	$('#dayCount300').html('D-day까지 ' +'<span class="text-danger">' + (d + 300) +'</span>일 남았습니다.');
+    	$('#dayCount365').html('D-day까지 ' +'<span class="text-danger">' + (d + 365) +'</span>일 남았습니다.');
 
-<script>
-	today = new Date()      
-	xday = new Date("March 22, 2022")
-	xday.setYear = today.getYear;    
-	daysAfter = (today.getTime() - xday.getTime()) / (1000*60*60*24);
-	daysAfter = Math.round(daysAfter);
-	document.write("<center>처음 만난 날로부터 <font color=red>"+daysAfter+" </font>일 되었습니다</center>");
-	document.write("<center>처음 만난 날로부터 <font color=red>"+(daysAfter+100)+" </font>일 되었습니다</center>");
-	document.write("<center>처음 만난 날로부터 <font color=red>"+(daysAfter+200)+" </font>일 되었습니다</center>");
-	document.write("<center>처음 만난 날로부터 <font color=red>"+(daysAfter+300)+" </font>일 되었습니다</center>");
-	document.write("<center>처음 만난 날로부터 <font color=red>"+(daysAfter+100)+" </font>일 되었습니다</center>");
-</script>
+        
+  </script>
