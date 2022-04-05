@@ -39,7 +39,7 @@
 				 	
 				 	<!-- 댓글 보기 -->
 				 	<div class="d-flex mb-2">
-					 	<a href="#"><img src="/static/image/comment.png" alt="image" width="20"></a>
+					 	<a href="#" ><img src="/static/image/comment.png" alt="image" width="20" ></a>
 					 	<div class="ml-1"><small>댓글</small></div>
 				 	</div>
 				 	
@@ -67,7 +67,7 @@
 					<div class="input-group mt-3 col-10">
 						<input type="text" class="comment-text form-control" id="commentText${content.post.id}" placeholder="댓글달기">
 						<div class="input-group-prepend">
-							<span class="btn input-group-text commentBtn" data-post-id="${content.post.id}">게시</span>
+							<button class="btn input-group-text commentBtn" data-post-id="${content.post.id}">게시</button>
 						</div>
 					</div>
 					<div id="inputComment${content.post.id}" class="small text-danger ml-3 mt-1 d-none">댓글을 입력해주세요</div>
@@ -96,7 +96,7 @@
 
 <div class="d-flex justify-content-center mt-3">
 	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
-	<a href="#"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
+	<a href="/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
 	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 </div>
 
@@ -168,6 +168,8 @@
 				}
 			});
 		});
+		
+		
 	});
 	
 </script>

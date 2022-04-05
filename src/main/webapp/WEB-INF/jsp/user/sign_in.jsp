@@ -60,7 +60,7 @@
 				if (data.result == 'success') {
 					alert(loginId + '님 로그인 되었습니다.');
 					if(data.selectedCouple){
-						location.href ='/couple/agree_view';
+						location.href ='/couple/home_view';
 					}else{
 						location.href = '/user/search_view';
 					}

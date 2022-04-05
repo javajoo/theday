@@ -4,6 +4,9 @@
     <div class="d-flex justify-content-center">
 		<div class="agree-box">
 		<div class="sign-text mb-3">THE DAY<br>아이디로 계정을 연결하세요</div>
+		
+				<div class="mt-4"><hr></div>
+		<div class="text-center"><a href="/user/search_view" class="badge badge-primary">검색하기</a></div>
 		</div>
 			
 	</div>

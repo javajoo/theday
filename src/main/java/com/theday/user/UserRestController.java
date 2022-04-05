@@ -86,10 +86,10 @@ public class UserRestController {
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("hasCouple", true);
 			session.setAttribute("selectedCouple", selectedCouple);
-		} else {
+		} 
+		else {
 			result.put("result", "error");
-			result.put("errorMessage", "아이디 또는 비밀번호를 잘못 입력했습니다. \n"
-					+ "입력하신 내용을 다시 확인해주세요.");
+			result.put("errorMessage", "아이디와 비밀번호를 확인 해주세요.");
 		}
 		
 		return result;

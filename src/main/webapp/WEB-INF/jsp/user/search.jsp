@@ -11,8 +11,9 @@
 		</div>		
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 검색해주세요</div>
-
 		
+		<div class="mt-4"><hr></div>
+		<div class="text-center"><a href="/couple/agree_view" class="badge badge-primary">요청확인</a></div>
 	</div>
 
 </div>

@@ -25,6 +25,25 @@
 				</div>
 			</c:forEach> 
 			
+			<c:forEach var="coupleList2" items="${coupleList2}"> 
+				<div>
+					<c:if test="${empty coupleList2.profileImagePath}">
+						<a href="#" data-toggle="modal" data-target="#moreModalLeft"><img src="/static/image/user.png" class="profile" id="userImage"></a>
+					</c:if>
+					<c:if test="${!empty coupleList2.profileImagePath}">
+			 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${coupleList2.profileImagePath}" class="profile" id="userImage"></a>
+					</c:if>
+					<div class="text-center mt-2"><b>${coupleList2.loginId}</b></div>
+				</div>
+				
+				<div class="d-flex align-items-center">
+					<div>
+						<div><h6>처음 만난 날로부터</h6></div>
+						<div class="text-center"><div id="dayCount" data-date-id="${user.date}"><div id="day">${user.date}</div></div></div>
+					</div>
+				</div>
+			</c:forEach> 
+			
 			<div>
 				<c:if test="${empty user.profileImagePath}">
 					<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="/static/image/user.png" class="profile" id="userImage"></a>
@@ -35,8 +54,8 @@
 				</c:if>
 				
 				<div class="text-center mt-2"><b>${user.name}</b></div>
-				</div>
 			</div>
+		</div>
 	
 		<div class="day-box">
 			<div class="d-flex">
@@ -87,6 +106,20 @@
 				</div>
 				<hr>
 			 </c:forEach>
+			 
+			 <c:forEach var="coupleList2" items="${coupleList2}">
+				<div class="d-flex">
+					<div class="col-4 ml-5">
+						<div>${coupleList2.name}의 생일</div>
+						<div>
+							<fmt:parseDate value="${coupleList2.birth}" pattern="yyyy-mm-dd" var="date"/>
+							<fmt:formatDate value="${date}" pattern=" m월 d일" />
+						</div>
+					</div>
+					<div class="col-8 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+				</div>
+				<hr>
+			 </c:forEach>
 			<div class="d-flex">
 				<div class="col-4 ml-5">
 					<div>${user.name}의 생일</div>
@@ -101,7 +134,7 @@
 		
 		<div class="d-flex justify-content-center mt-3">
 			<a href="/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
-			<a href="#"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
+			<a href="/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
 			<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 		</div>
 		
@@ -126,6 +159,24 @@
 		        <div class="ml-1">${coupleList1.name}</div>
 		        <div class="ml-1">
 		        	<fmt:parseDate value="${coupleList1.birth}" var="date" pattern="yyyy-mm-dd" />
+		        	<fmt:formatDate value="${date}" pattern="m월 d일" />
+		        </div>
+	        </div>
+	      </div>
+      </c:forEach>
+      
+        <c:forEach var="coupleList2" items="${coupleList2}">
+	      <div class="modal-body">
+	      		<c:if test="${empty coupleList2.profileImagePath}"> 
+					<img src="/static/image/user.png" class="profile" id="userImage">
+				</c:if>
+				<c:if test="${!empty coupleList2.profileImagePath}">
+			 		<img src="${coupleList2.profileImagePath}" class="profile" id="userImage">
+				</c:if> 
+	     	 <div class="mt-3">
+		        <div class="ml-1">${coupleList2.name}</div>
+		        <div class="ml-1">
+		        	<fmt:parseDate value="${coupleList2.birth}" var="date" pattern="yyyy-mm-dd" />
 		        	<fmt:formatDate value="${date}" pattern="m월 d일" />
 		        </div>
 	        </div>
@@ -175,7 +226,7 @@
 	<script>
       
     	//var dday = $('#ddCounter').data('date-id').getTime();
-    	var dday = new Date("april 31,2022").getTime(); //디데이
+     	var dday = new Date("april 31,2022").getTime(); //디데이
     	var now = new Date(); //현재 날짜 가져오기
     	var distance = dday - now;
     	var d = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -183,7 +234,7 @@
     	$('#dayCount100').html('D-day까지 ' +'<span class="text-danger">' + (d + 100) +'</span>일 남았습니다.');
     	$('#dayCount200').html('D-day까지 ' +'<span class="text-danger">' + (d + 200) +'</span>일 남았습니다.');
     	$('#dayCount300').html('D-day까지 ' +'<span class="text-danger">' + (d + 300) +'</span>일 남았습니다.');
-    	$('#dayCount365').html('D-day까지 ' +'<span class="text-danger">' + (d + 365) +'</span>일 남았습니다.');
+    	$('#dayCount365').html('D-day까지 ' +'<span class="text-danger">' + (d + 365) +'</span>일 남았습니다.'); 
 
-        
+    	
   </script>
