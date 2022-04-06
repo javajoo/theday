@@ -19,12 +19,11 @@
 				
 				<div class="d-flex align-items-center">
 					<div>
-						<div><h6>처음 만난 날로부터</h6></div>
-						<div class="text-center"><div id="dayCount" data-date-id="${user.date}"></div></div>
+						<div><h6>우리 만난 지</h6></div>
+						<div class="text-center"><div id="dday" data-date-id="${user.date}"></div></div>
 					</div>
 				</div>
 			</c:forEach> 
-			
 			<c:forEach var="coupleList2" items="${coupleList2}"> 
 				<div>
 					<c:if test="${empty coupleList2.profileImagePath}">
@@ -37,9 +36,9 @@
 				</div>
 				
 				<div class="d-flex align-items-center">
-					<div>
-						<div><h6>처음 만난 날로부터</h6></div>
-						<div class="text-center"><div id="dayCount" data-date-id="${user.date}"><div id="day">${user.date}</div></div></div>
+					<div>	
+						<div><h6>우리 만난 지</h6></div>
+						<div class="text-center"><div id="dday" data-date-id="${user.date}"></div></div>
 					</div>
 				</div>
 			</c:forEach> 
@@ -60,78 +59,79 @@
 		<div class="day-box">
 			<div class="d-flex">
 				<div class="col-3 ml-5">
-					<div>100일</div>
-					<div></div>
+					<div class="mt-2"><h5>100일</h5></div>
 				</div>
-				<div class="col-9" id="dayCount100"></div>
+				
+				<div class="col-9">
+					<div id="ddate100" class="text-center"></div>
+					<div id="dday100"  class="text-center"></div>
+				</div>
 			</div>
 			<hr>
 			
 			<div class="d-flex">
 				<div class="col-3 ml-5">
-					<div>200일</div>
-					<div></div>
+					<div class="mt-2"><h5>200일</h5></div>
 				</div>
-				<div class="col-9" id="dayCount200"></div>
+				
+				<div class="col-9">
+					<div id="ddate200" class="text-center"></div>
+					<div id="dday200" class="text-center"></div>
+				</div>
 			</div>
 			<hr>
 			
 			<div class="d-flex">
 				<div class="col-3 ml-5">
-					<div>300일</div>
-					<div></div>
+					<div class="mt-2"><h5>300일</h5></div>
 				</div>
-				<div class="col-9" id="dayCount300"></div>
+				
+				<div class="col-9">
+					<div id="ddate300" class="text-center"></div>
+					<div id="dday300" class="text-center"></div>
+				</div>
 			</div>
 			<hr>
 			
 			<div class="d-flex">
-				<div class="col-3 ml-5">
-					<div>365일</div>
-					<div></div>
+				<div class="col-3 ml-5 d-flex">
+					<img src="/static/image/celebration.png"height="25" class="mt-2 mr-1">
+					<div class="mt-2"><h5>1년</h5></div>	
 				</div>
-				<div class="col-9" id="dayCount365"></div>
+				
+				<div class="col-9">
+					<div id="ddate365" class="text-center"></div>
+					<div id="dday365" class="text-center"></div>
+				</div>
 			</div>
 			<hr>
-			<c:forEach var="coupleList1" items="${coupleList1}">
-				<div class="d-flex">
-					<div class="col-4 ml-5">
-						<div>${coupleList1.name}의 생일</div>
-						<div>
-							<fmt:parseDate value="${coupleList1.birth}" pattern="yyyy-mm-dd" var="date"/>
-							<fmt:formatDate value="${date}" pattern=" m월 d일" />
-						</div>
-					</div>
-					<div class="col-8 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+			
+			 <div class="d-flex">
+				<div class="col-3 ml-5 d-flex">
+					<img src="/static/image/celebration.png" height="25" class="mt-2 mr-1">
+					<div class="mt-2" class="text-center"><h5>2년</h5></div>	
 				</div>
-				<hr>
-			 </c:forEach>
+				
+				<div class="col-9">
+					<div id="ddate730" class="text-center"></div>
+					<div id="dday730" class="text-center"></div>
+				</div>
+			</div>
+			<hr>
 			 
-			 <c:forEach var="coupleList2" items="${coupleList2}">
-				<div class="d-flex">
-					<div class="col-4 ml-5">
-						<div>${coupleList2.name}의 생일</div>
-						<div>
-							<fmt:parseDate value="${coupleList2.birth}" pattern="yyyy-mm-dd" var="date"/>
-							<fmt:formatDate value="${date}" pattern=" m월 d일" />
-						</div>
-					</div>
-					<div class="col-8 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
+			 <div class="d-flex">
+				<div class="col-3 ml-5 d-flex">
+					<img src="/static/image/celebration.png"height="25" class="mt-2 mr-1">
+					<div class="mt-2"><h5>3년</h5></div>	
 				</div>
-				<hr>
-			 </c:forEach>
-			<div class="d-flex">
-				<div class="col-4 ml-5">
-					<div>${user.name}의 생일</div>
-					<div>
-						<fmt:parseDate value="${user.birth}" var="date" pattern="yyyy-mm-dd" />
-						<fmt:formatDate value="${date}" pattern="m월 d일" />
-					</div>
+				
+				<div class="col-9">
+					<div id="ddate1095" class="text-center"></div>
+					<div id="dday1095" class="text-center"></div>
 				</div>
-				<div class="col-8 mt-3"><span class="text-danger ">127</span>일 남았습니다.</div>
-			</div>
+			</div> 
 		</div>
-		
+			
 		<div class="d-flex justify-content-center mt-3">
 			<a href="/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
 			<a href="/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
@@ -224,17 +224,44 @@
 </div>
 
 	<script>
-      
-    	//var dday = $('#ddCounter').data('date-id').getTime();
-     	var dday = new Date("april 31,2022").getTime(); //디데이
-    	var now = new Date(); //현재 날짜 가져오기
-    	var distance = dday - now;
-    	var d = Math.floor(distance / (1000 * 60 * 60 * 24));
-    	$('#dayCount').html('<span class="text-danger">' + d +'</span>일째');
-    	$('#dayCount100').html('D-day까지 ' +'<span class="text-danger">' + (d + 100) +'</span>일 남았습니다.');
-    	$('#dayCount200').html('D-day까지 ' +'<span class="text-danger">' + (d + 200) +'</span>일 남았습니다.');
-    	$('#dayCount300').html('D-day까지 ' +'<span class="text-danger">' + (d + 300) +'</span>일 남았습니다.');
-    	$('#dayCount365').html('D-day까지 ' +'<span class="text-danger">' + (d + 365) +'</span>일 남았습니다.'); 
-
+     	var dday = $('#dayCount').data('date-id');
+    	//console.log(dday);  2022-02-10 
+    	//var copy = new Date();
+    	//dday =setTime(dday.getTime());
+    	//console.log(dday);
     	
+    	//var birthday = new Date(1994, 12, 10);
+		//var copy = new Date();
+		//copy.setTime(birthday.getTime()); 
+    
+		//var ddayy = $('#dayCount').data('date-id');
+	 	//console.log(ddday);
+    	var dday = new Date('2022-04-01').getTime(); //디데이	
+    	var now = new Date(); //현재 날짜 가져오기
+    	var distance =  dday - now;
+    	var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    	
+     	$('#dday').html('<span class="text-danger">' + -d +'</span>일째');
+    	$('#dday100').html('D-day까지 ' +'<span class="text-danger">' + (d + 100) +'</span>일 남음');
+    	$('#dday200').html('D-day까지 ' +'<span class="text-danger">' + (d + 200) +'</span>일 남음');
+    	$('#dday300').html('D-day까지 ' +'<span class="text-danger">' + (d + 300) +'</span>일 남음');
+    	$('#dday365').html('D-day까지 ' +'<span class="text-danger">' + (d + 365) +'</span>일 남음'); 
+    	$('#dday730').html('D-day까지 ' +'<span class="text-danger">' + (d + 730) +'</span>일 남음'); 
+    	$('#dday1095').html('D-day까지 ' +'<span class="text-danger">' + (d + 1095) +'</span>일 남음'); 
+  
+    	calcDate(100);
+    	calcDate(200);
+    	calcDate(300);
+    	calcDate(365);
+    	calcDate(730);
+    	calcDate(1095);
+    	
+    	function calcDate(days) {
+	    	var future = dday +  days * (1000 * 60 * 60 * 24);
+	    	var someday = new Date(future);
+	    	var year = someday.getFullYear();
+	    	var month = someday.getMonth()+1; // 0이 1월이라 +1
+	    	var date = someday.getDate();
+	    	document.querySelector('#ddate' + days).innerText = year + '년' + month + '월' + date + '일';
+    	}
   </script>

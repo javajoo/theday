@@ -17,9 +17,8 @@
           initialView: 'dayGridMonth',
           googleCalendarApiKey: 'AIzaSyBwo4oOfea5TLSuNzZdQnqmJmqusEf6Di0',
           events: {
-            googleCalendarId: 'sd0n26qjhon6cugqge1gcrcsuc@group.calendar.google.com'
+            googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com'
            ,className: 'gcal-event' // an option! 
-           ,color: 'yellow' 
           }
         });
         calendar.render();
