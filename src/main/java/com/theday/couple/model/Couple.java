@@ -2,6 +2,8 @@ package com.theday.couple.model;
 
 import java.util.Date;
 
+import com.theday.user.model.User;
+
 public class Couple {
 
 	private int id;
@@ -10,6 +12,25 @@ public class Couple {
 	private String state;
 	private Date createdAt;
 	private Date updatedAt;
+	private User u1;
+	private User u2;
+	
+	
+	public User getU1() {
+		return u1;
+	}
+
+	public void setU1(User u1) {
+		this.u1 = u1;
+	}
+
+	public User getU2() {
+		return u2;
+	}
+
+	public void setU2(User u2) {
+		this.u2 = u2;
+	}
 
 	public int getId() {
 		return id;
@@ -62,9 +83,9 @@ public class Couple {
 	@Override
 	public String toString() {
 		return "Couple [id=" + id + ", userId1=" + userId1 + ", userId2=" + userId2 + ", state=" + state
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", u1=" + u1 + ", u2=" + u2 + "]";
 	}
-	
+
 	
 
 }

@@ -5,54 +5,41 @@
 
 <div class="d-flex justify-content-center">
 	<div class="home-box">
-		<div class=" d-flex justify-content-between">
-			<c:forEach var="coupleList1" items="${coupleList1}"> 
+		<div class=" d-flex justify-content-between">${couple.state}
 				<div>
-					<c:if test="${empty coupleList1.profileImagePath}">
+					<c:if test="${empty couple.u1.profileImagePath}">
 						<a href="#" data-toggle="modal" data-target="#moreModalLeft"><img src="/static/image/user.png" class="profile" id="userImage"></a>
 					</c:if>
-					<c:if test="${!empty coupleList1.profileImagePath}">
-			 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${coupleList1.profileImagePath}" class="profile" id="userImage"></a>
+					<c:if test="${!empty couple.u1.profileImagePath}">
+			 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${couple.u1.profileImagePath}" class="profile" id="userImage"></a>
 					</c:if>
-					<div class="text-center mt-2"><b>${coupleList1.loginId}</b></div>
+					<div class="text-center mt-2"><b>${couple.u1.name}</b></div>
 				</div>
 				
 				<div class="d-flex align-items-center">
-					<div>
-						<div><h6>우리 만난 지</h6></div>
-						<div class="text-center"><div id="dday" data-date-id="${user.date}"></div></div>
-					</div>
-				</div>
-			</c:forEach> 
-			<c:forEach var="coupleList2" items="${coupleList2}"> 
-				<div>
-					<c:if test="${empty coupleList2.profileImagePath}">
-						<a href="#" data-toggle="modal" data-target="#moreModalLeft"><img src="/static/image/user.png" class="profile" id="userImage"></a>
+					<c:if test="${couple.state eq '성공'}">
+						<div>
+							<div><h6>우리 만난 지</h6></div>
+							<div class="text-center"><div id="dday" data-date-id="${couple.u1.date}"></div></div>
+						</div>
 					</c:if>
-					<c:if test="${!empty coupleList2.profileImagePath}">
-			 			<a href="#" data-toggle="modal" data-target="#moreModalLeft" ><img src="${coupleList2.profileImagePath}" class="profile" id="userImage"></a>
+					<c:if test="${couple.state ne '성공'}">
+						<div>
+							<div><h6>아직 대기중입니다.</h6></div>
+							<div class="text-center">신청한 일자 : ${couple.createdAt}</div>
+						</div>
 					</c:if>
-					<div class="text-center mt-2"><b>${coupleList2.loginId}</b></div>
 				</div>
-				
-				<div class="d-flex align-items-center">
-					<div>	
-						<div><h6>우리 만난 지</h6></div>
-						<div class="text-center"><div id="dday" data-date-id="${user.date}"></div></div>
-					</div>
-				</div>
-			</c:forEach> 
-			
 			<div>
-				<c:if test="${empty user.profileImagePath}">
+				<c:if test="${empty couple.u2.profileImagePath}">
 					<a href="#" data-toggle="modal" data-target="#moreModalRight"><img src="/static/image/user.png" class="profile" id="userImage"></a>
 				</c:if>
 				
-				<c:if test="${!empty user.profileImagePath}">
-			 		<a href="#" data-toggle="modal" data-target="#moreModalRight" ><img src="${user.profileImagePath}" class="profile" id="userImage"></a>
+				<c:if test="${!empty couple.u2.profileImagePath}">
+			 		<a href="#" data-toggle="modal" data-target="#moreModalRight" ><img src="${couple.u2.profileImagePath}" class="profile" id="userImage"></a>
 				</c:if>
 				
-				<div class="text-center mt-2"><b>${user.name}</b></div>
+				<div class="text-center mt-2"><b>${couple.u2.name}</b></div>
 			</div>
 		</div>
 	
@@ -236,7 +223,7 @@
     
 		//var ddayy = $('#dayCount').data('date-id');
 	 	//console.log(ddday);
-    	var dday = new Date('2022-04-01').getTime(); //디데이	
+    	var dday = new Date('${couple.u1.date}'); //디데이	
     	var now = new Date(); //현재 날짜 가져오기
     	var distance =  dday - now;
     	var d = Math.floor(distance / (1000 * 60 * 60 * 24));

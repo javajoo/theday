@@ -15,7 +15,7 @@ public interface CoupleDAO {
 
 	public int insertCouple(Couple couple);
 
-	public List<Couple> selectCouple(int userId);
+	public Couple selectCouple(int userId);
 
 	public int updateCouple(Couple couple);
 

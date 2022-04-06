@@ -29,14 +29,9 @@ public class CoupleController {
 		int userId = (int)session.getAttribute("userId");
 		// 매칭이 성공한 유저의 정보만 가져오는 로직이 필요함
 		
-		List<Couple> couple = coupleBO.getCouple(userId);
-		List<User> coupleList1 = userBO.getUserCouple1(userId);
-		List<User> coupleList2 = userBO.getUserCouple2(userId);
+		Couple couple = coupleBO.getCouple(userId);
 		model.addAttribute("couple",couple);
-		model.addAttribute("coupleList1", coupleList1); 
-		model.addAttribute("coupleList2", coupleList2); 
 		model.addAttribute("viewName", "couple/home");
-		
 		return "template/layout";
 	}
 	

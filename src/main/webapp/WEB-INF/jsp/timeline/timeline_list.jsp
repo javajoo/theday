@@ -16,7 +16,7 @@
 					<div class="d-flex justify-content-between">
 						<div class="mb-2"><b><fmt:formatDate value="${content.post.createdAt}" pattern="yyyy년 MM월 dd일 E요일" /></b></div>
 						<c:if test="${userId == content.user.id}">
-							<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/static/image/more.png" alt="image" width="30"></a>
+							<a href="#" class="more-btn" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/static/image/more.png" alt="image" width="30"></a>
 						</c:if>
 					</div>
 					<div class="d-flex mb-2">
@@ -102,23 +102,17 @@
 
 
 <script>
-	$(document).on('click',function(e){
-		
-		
+	
 		$('.more-btn').on('click', function(e) {
 			//alert('click');
-			e.preventDefault();
-			
 			var id = $(this).data('post-id');
-			
 			$('#moreModal').data('post-id', id);
+			$('#moreModal').modal();
 		});
 		
 		$('#moreModal .del-post').on('click',function(e) {
 			//e.preventDefault();
-			 e.stopImmediatePropagation();
 			var id = $('#moreModal').data('post-id');
-			alert(id);
 			$.ajax({
 				type: 'DELETE'
 				,url: '/post/delete'
@@ -170,8 +164,6 @@
 			});
 		});
 		
-		
-	});
 	
 </script>
 

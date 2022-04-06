@@ -31,7 +31,7 @@ public class CoupleBO {
 		return coupleDAO.insertCouple(couple);
 	}
 	
-	public List<Couple> getCouple(int userId) {
+	public Couple getCouple(int userId) {
 		return coupleDAO.selectCouple(userId);
 	}
 	
