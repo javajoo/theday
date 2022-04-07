@@ -1,7 +1,5 @@
 package com.theday.couple.bo;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,7 @@ public class CoupleBO {
 	
 	public int countUser (Couple couple) {
 		
-		return coupleDAO.CountUser(couple);
+		return coupleDAO.countUser(couple);
 	}
 	
 	public boolean existSelectedUser(int userId) {

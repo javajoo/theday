@@ -102,7 +102,7 @@
 
 
 <script>
-	
+	$(document).ready(function(e) {
 		$('.more-btn').on('click', function(e) {
 			//alert('click');
 			var id = $(this).data('post-id');
@@ -132,7 +132,7 @@
 		$('.commentBtn').on('click',function(e) {
 			//alert('click');
 			//e.preventDefault();
-			 e.stopImmediatePropagation();
+			// e.stopImmediatePropagation();
 			
 			var postId = $(this).data('post-id');
 			var commentContent = $('#commentText' + postId).val().trim();
@@ -163,8 +163,7 @@
 				}
 			});
 		});
-		
-	
+	});	
 </script>
 
 
