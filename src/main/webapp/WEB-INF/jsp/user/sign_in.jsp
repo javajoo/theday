@@ -59,7 +59,7 @@
 			,success: function(data) {
 				if (data.result == 'success') {
 					alert(loginId + '님 로그인 되었습니다.');
-					if(data.selectedCouple){
+					if(data.selectedCouple==='true'){
 						location.href ='/couple/home_view';
 					}else{
 						location.href = '/user/search_view';

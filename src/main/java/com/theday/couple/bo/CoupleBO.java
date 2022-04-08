@@ -18,7 +18,7 @@ public class CoupleBO {
 	}
 	
 	public boolean existSelectedUser(int userId) {
-		return coupleDAO.existSelectedUser(userId)==1?true:false;
+		return coupleDAO.existSelectedUser(userId)>=1?true:false;
 	}
 	
 	public boolean addCouple (Couple couple) {

@@ -25,8 +25,8 @@ import com.theday.user.model.User;
 @RequestMapping("/user")
 public class UserRestController {
 	
-
-	SHA256 sha256 = new SHA256();
+	@Autowired
+	private SHA256 sha256;
 	
 	@Autowired
 	private UserBO userBO;
@@ -70,7 +70,7 @@ public class UserRestController {
 	}
 	
 	@PostMapping("/sign_in")
-	public Map<String, Object> signInView(
+	public Map<String, String> signInView(
 			@RequestParam("loginId") String loginId, 
 			@RequestParam("password") String password,
 			HttpSession session
@@ -81,12 +81,12 @@ public class UserRestController {
 		
 		String encryptUtils = sha256.encrypt(password);
 		
-		Map<String, Object> result = new HashMap<>();
+		Map<String, String> result = new HashMap<>();
 		result.put("result", "success");
 		
 		User user = userBO.getUserByLoginIdPassword(loginId, encryptUtils);
-		boolean selectedCouple = coupleBO.existSelectedUser(user.getId());
-		result.put("selectedCouple", selectedCouple);
+		Boolean selectedCouple = coupleBO.existSelectedUser(user.getId());
+		result.put("selectedCouple", selectedCouple.toString());
 		if (user != null) {
 			session.setAttribute("user", user);
 			session.setAttribute("userId", user.getId());

@@ -187,7 +187,7 @@
 				        </div>
 			        </div>
 			      </div>
-			          <c:if test="${couple.u1.id == userId}">
+			          <c:if test="${couple.u2.id == userId}">
 					      <div class="modal-footer">
 					       <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
 					      </div>
@@ -221,7 +221,8 @@
     	calcDate(1095);
     	
     	function calcDate(days) {
-	    	var future = dday +  days * (1000 * 60 * 60 * 24);
+	    	var future = new Date(dday)
+	    	future.setDate(future.getDate() +  days);
 	    	var someday = new Date(future);
 	    	var year = someday.getFullYear();
 	    	var month = someday.getMonth()+1; // 0이 1월이라 +1

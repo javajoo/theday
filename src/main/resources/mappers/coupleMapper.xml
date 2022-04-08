@@ -14,12 +14,23 @@
  	</select>
  	
  	<select id="existSelectedUser" resultType="int">
- 		SELECT
- 			COUNT(1)
- 		FROM
- 			COUPLE
- 		WHERE
- 			USERID1=#{userId} 
+ 		SELECT SUM(CNT) FROM
+ 		(
+	 		SELECT
+	 			COUNT(1) CNT
+	 		FROM
+	 			COUPLE
+	 		WHERE
+	 			USERID1=#{userId} 
+	 		union all
+	 		SELECT
+	 			COUNT(1) CNT
+	 		FROM
+	 			COUPLE
+	 		WHERE
+	 			USERID2=#{userId} 
+	 			and state='성공'
+	 	) A
  	</select>
  	
  	<insert id="insertCouple">
