@@ -33,6 +33,7 @@ public class CoupleBO {
 		return coupleDAO.selectCouple(userId);
 	}
 	
+	
 	public int updateCouple(Couple couple) {
 		return coupleDAO.updateCouple(couple);
 	}

@@ -7,7 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.theday.comment.dao.CommentDAO;
+import com.theday.comment.bo.CommentBO;
+import com.theday.comment.model.Comment;
 import com.theday.common.FileManagerService;
 import com.theday.post.dao.PostDAO;
 import com.theday.post.model.Post;
@@ -20,7 +21,7 @@ public class PostBO {
 	private PostDAO postDAO;	
 	
 	@Autowired
-	private CommentDAO commentDAO;	
+	private CommentBO commentBO;	
 	
 	@Autowired
 	private FileManagerService fileManagerService;
@@ -42,7 +43,8 @@ public class PostBO {
 		return postDAO.selectPostList();
 	}
 	
-	public void deletePostById(Post post) {
+	public void deletePostById(Post post,Comment comment) {
+		commentBO.deleteComment(comment);
 		postDAO.deletePostById(post);
 		
 	}

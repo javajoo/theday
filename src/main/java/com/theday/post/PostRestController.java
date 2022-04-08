@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.theday.comment.model.Comment;
 import com.theday.post.bo.PostBO;
 import com.theday.post.model.Post;
 import com.theday.user.model.User;
@@ -45,13 +46,14 @@ public class PostRestController {
 	}
 	
 	@DeleteMapping("/delete")
-	public Map<String, Object> delete(@ModelAttribute Post post, HttpSession session) {
+	public Map<String, Object> delete(@ModelAttribute Post post, @ModelAttribute Comment comment, HttpSession session) {
 		
 		User user = (User) session.getAttribute("user");
 		post.setUserId(user.getId());
-		
+		comment.setUserId(user.getId());
+		comment.setPostId(post.getId());
+		postBO.deletePostById(post, comment);
 		Map<String, Object> result = new HashMap<>();
-		postBO.deletePostById(post);
 		result.put("result", "success");
 		
 		return result;

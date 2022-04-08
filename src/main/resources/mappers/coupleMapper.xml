@@ -19,7 +19,7 @@
  		FROM
  			COUPLE
  		WHERE
- 			USERID1=#{userId}
+ 			USERID1=#{userId} 
  	</select>
  	
  	<insert id="insertCouple">
@@ -55,6 +55,7 @@
 		and u1.id = userid1
 		and u2.id = userid2
  	</select>
+ 	
  	
  	<update id="updateCouple" >
  		UPDATE `couple`

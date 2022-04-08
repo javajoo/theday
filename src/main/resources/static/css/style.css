@@ -120,3 +120,13 @@ a:hover {
 	padding: 30px;
 	
 }
+
+.un-couple{
+	color: #7b8081;
+	font-size: 25px;
+	font-weight: bold;
+	margin-top: 150px;
+	padding: 20px;
+	border: 1px solid #e2e2e2;
+	width: 500px;
+}

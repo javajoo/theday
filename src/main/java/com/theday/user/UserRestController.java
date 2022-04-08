@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.theday.common.EncryptUtils;
+import com.theday.common.SHA256;
 import com.theday.couple.bo.CoupleBO;
 import com.theday.user.bo.UserBO;
 import com.theday.user.model.User;
@@ -26,6 +26,8 @@ import com.theday.user.model.User;
 public class UserRestController {
 	
 
+	SHA256 sha256 = new SHA256();
+	
 	@Autowired
 	private UserBO userBO;
 
@@ -36,7 +38,9 @@ public class UserRestController {
 	public Map<String, Object> signUp(@ModelAttribute User user) {
 
 		// 비밀번호 암호화
-		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		//String encryptUtils = EncryptUtils.md5(user.getPassword());
+		String encryptUtils = sha256.encrypt(user.getPassword());
+		
 		user.setPassword(encryptUtils);
 		
 		int row = userBO.insertUser(user);
@@ -73,7 +77,9 @@ public class UserRestController {
 			) {
 		
 		// 비밀번호 암호화
-		String encryptUtils = EncryptUtils.md5(password);
+		//String encryptUtils = EncryptUtils.md5(password);
+		
+		String encryptUtils = sha256.encrypt(password);
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
@@ -115,7 +121,8 @@ public class UserRestController {
 		//user = (User) session.getAttribute("user"); //넣으면 수정된 정보 저장안댐!!!
 		
 		// 비밀번호 암호화
-		String encryptUtils = EncryptUtils.md5(user.getPassword());
+		//String encryptUtils = EncryptUtils.md5(user.getPassword());
+		String encryptUtils = sha256.encrypt(user.getPassword());
 		user.setPassword(encryptUtils);
 		
 		Map<String, Object> result = new HashMap<>();	

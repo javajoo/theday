@@ -23,8 +23,6 @@
 								<div><b>우리 만난 지</b></div>
 								<div class="text-center"><div id="dday" data-date-id="${couple.u1.date}"></div></div>
 							</div>
-						
-						
 					</div>
 				<div>
 					<c:if test="${empty couple.u2.profileImagePath}">
@@ -34,7 +32,6 @@
 					<c:if test="${!empty couple.u2.profileImagePath}">
 				 		<a href="#" data-toggle="modal" data-target="#moreModalRight" ><img src="${couple.u2.profileImagePath}" class="profile" id="userImage"></a>
 					</c:if>
-					
 					<div class="text-center mt-2"><b>${couple.u2.name}</b></div>
 				</div>
 			</div>
@@ -124,11 +121,11 @@
 		</c:if>
 			
 		<c:if test="${couple.state ne '성공'}">
-			<div class="mt-5">
-				<div class="text-center"><h3>▷상대방의 수락을 기다리는 중입니다</h3></div>
+			<div class="un-couple">
 				<div class="text-center">
-	     				<h3>▷신청한 일자 : <fmt:formatDate value="${couple.createdAt}" pattern="yyyy년 MM월 dd일" /> </h3>
+	     			신청일자 : <fmt:formatDate value="${couple.createdAt}" pattern="yyyy년 MM월 dd일" /> 
 				</div>
+				<div class="text-center">상대방의 수락을 기다리고 있어요ෆ</div>
 			</div>
 		</c:if>
 		
@@ -141,48 +138,29 @@
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <c:forEach var="coupleList1" items="${coupleList1}">
-			      <div class="modal-body">
-			      		<c:if test="${empty coupleList1.profileImagePath}"> 
-							<img src="/static/image/user.png" class="profile" id="userImage">
-						</c:if>
-						<c:if test="${!empty coupleList1.profileImagePath}">
-					 		<img src="${coupleList1.profileImagePath}" class="profile" id="userImage">
-						</c:if> 
-			     	 <div class="mt-3">
-				        <div class="ml-1">${coupleList1.name}</div>
-				        <div class="ml-1">
-				        	<fmt:parseDate value="${coupleList1.birth}" var="date" pattern="yyyy-mm-dd" />
-				        	<fmt:formatDate value="${date}" pattern="m월 d일" />
-				        </div>
+		      <div class="modal-body">
+		      		<c:if test="${empty couple.u1.profileImagePath}"> 
+						<img src="/static/image/user.png" class="profile" id="userImage">
+					</c:if>
+					<c:if test="${!empty couple.u1.profileImagePath}">
+				 		<img src="${coupleList1.profileImagePath}" class="profile" id="userImage">
+					</c:if> 
+		     	 <div class="mt-3">
+			        <div class="ml-1">${couple.u1.name}</div>
+			        <div class="ml-1">
+			        	<fmt:parseDate value="${couple.u1.birth}" var="date" pattern="yyyy-mm-dd" />
+			        	<fmt:formatDate value="${date}" pattern="yyyy년 mm월 dd일" />
 			        </div>
-			      </div>
-		      </c:forEach>
-		      
-		        <c:forEach var="coupleList2" items="${coupleList2}">
-			      <div class="modal-body">
-			      		<c:if test="${empty coupleList2.profileImagePath}"> 
-							<img src="/static/image/user.png" class="profile" id="userImage">
-						</c:if>
-						<c:if test="${!empty coupleList2.profileImagePath}">
-					 		<img src="${coupleList2.profileImagePath}" class="profile" id="userImage">
-						</c:if> 
-			     	 <div class="mt-3">
-				        <div class="ml-1">${coupleList2.name}</div>
-				        <div class="ml-1">
-				        	<fmt:parseDate value="${coupleList2.birth}" var="date" pattern="yyyy-mm-dd" />
-				        	<fmt:formatDate value="${date}" pattern="m월 d일" />
-				        </div>
-			        </div>
-			      </div>
-		      </c:forEach>
-		      <div class="modal-footer">
-		      </div>
+		        </div>
+		      </div>  
+		      <c:if test="${couple.u1.id == userId}">
+		      	<div class="modal-footer">
+		      		 <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
+		      	</div>
+		      </c:if>
 		    </div>
 		  </div>
 		</div>
-
-
 		
 		<!-- 오른쪽 Modal -->
 		<div class="modal" id="moreModalRight">
@@ -192,40 +170,42 @@
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
-		      </div>
-		      <div class="modal-body">
-		            <c:if test="${empty user.profileImagePath}">
-						<img src="/static/image/user.png" class="profile" id="userImage">
-					</c:if>
-					<c:if test="${!empty user.profileImagePath}">
-				 		<img src="${user.profileImagePath}" class="profile" id="userImage">
-					</c:if>
-		      	<%-- <img src="${user.profileImagePath}" class="profile" id="userImage"> --%>
-		     	 <div class="mt-3">
-			        <div class="ml-1">${user.name}</div>
-			        <div class="ml-1">
-			        	<fmt:parseDate value="${user.birth}" var="date" pattern="yyyy-mm-dd" />
-			        	<fmt:formatDate value="${date}" pattern="m월 d일" />
+	    	 	 </div>
+			      <div class="modal-body">
+			            <c:if test="${empty couple.u2.profileImagePath}">
+							<img src="/static/image/user.png" class="profile" id="userImage">
+						</c:if>
+						<c:if test="${!empty couple.u2.profileImagePath}">
+					 		<img src="${couple.u2.profileImagePath}" class="profile" id="userImage">
+						</c:if>
+			      	<%-- <img src="${user.profileImagePath}" class="profile" id="userImage"> --%>
+			     	 <div class="mt-3">
+				        <div class="ml-1">${couple.u2.name}</div>
+				        <div class="ml-1">
+				        	<fmt:parseDate value="${couple.u2.birth}" var="date" pattern="yyyy-mm-dd" />
+				        	<fmt:formatDate value="${date}" pattern="yyyy년 mm월 dd일" />
+				        </div>
 			        </div>
-		        </div>
-		      </div>
-		      <div class="modal-footer">
-		       <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
+			      </div>
+			          <c:if test="${couple.u1.id == userId}">
+					      <div class="modal-footer">
+					       <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
+					      </div>
+			          </c:if>
+			    </div>
+			  </div>
+			</div>
 		</div>
 	</div>
 
 	<script>
     	var dday = new Date('${couple.u1.date}'); //디데이	
+    	console.log(dday);
     	var now = new Date(); //현재 날짜 가져오기
     	var distance =  dday - now;
     	var d = Math.floor(distance / (1000 * 60 * 60 * 24));
     	
-     	$('#dday').html('<span class="text-danger">' + -d +'</span>일째');
+     	$('#dday').html('ෆ<span class="text-danger">' + -d +'</span>일째ෆ');
     	$('#dday100').html('D-day까지 ' +'<span class="text-danger">' + (d + 100) +'</span>일 남음');
     	$('#dday200').html('D-day까지 ' +'<span class="text-danger">' + (d + 200) +'</span>일 남음');
     	$('#dday300').html('D-day까지 ' +'<span class="text-danger">' + (d + 300) +'</span>일 남음');
