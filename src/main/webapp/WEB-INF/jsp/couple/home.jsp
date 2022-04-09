@@ -111,11 +111,10 @@
 					</div>
 				</div> 
 			</div>
-			
 			<div class="d-flex justify-content-center mt-3">
-				<a href="/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
-				<a href="/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
-				<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
+				<a href="${pageContext.request.contextPath}/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
+				<a href="${pageContext.request.contextPath}/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" width="50"></a>
+				<a href="${pageContext.request.contextPath}/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 			</div>
 			
 		</c:if>
@@ -155,7 +154,7 @@
 		      </div>  
 		      <c:if test="${couple.u1.id == userId}">
 		      	<div class="modal-footer">
-		      		 <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
+		      		 <a type="button" href="${pageContext.request.contextPath}/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
 		      	</div>
 		      </c:if>
 		    </div>
@@ -189,7 +188,7 @@
 			      </div>
 			          <c:if test="${couple.u2.id == userId}">
 					      <div class="modal-footer">
-					       <a type="button" href="/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
+					       <a type="button" href="${pageContext.request.contextPath}/user/profile_view" class="btn btn-outline-primary">프로필 편집</a>
 					      </div>
 			          </c:if>
 			    </div>
@@ -200,7 +199,7 @@
 
 	<script>
     	var dday = new Date('${couple.u1.date}'); //디데이	
-    	console.log(dday);
+    	//console.log(dday);
     	var now = new Date(); //현재 날짜 가져오기
     	var distance =  dday - now;
     	var d = Math.floor(distance / (1000 * 60 * 60 * 24));

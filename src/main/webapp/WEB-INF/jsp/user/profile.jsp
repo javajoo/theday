@@ -17,7 +17,7 @@
 		</div>
 		
 		<div class="mt-3"><small>아이디</small></div>
-		<input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디"  value="${user.loginId}" disabled >
+		<input type="text" id="loginId" name="loginId" class="form-control bg-white" placeholder="아이디"  value="${user.loginId}" disabled >
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
 		<div id="isDuplicatedId" class="small text-danger d-none">중복된 아이디 입니다.</div>
@@ -45,7 +45,7 @@
 		<div id="inputDate" class="small text-danger d-none">처음 만난 날을 입력해주세요</div>
 		
 		<button type="button" class="update-btn btn btn-outline-primary w-100 mt-3">수정하기</button>
-		<a href="/couple/home_view" type="button" class=" btn btn-outline-danger w-100 mt-3">취소하기</a>
+		<a href="${pageContext.request.contextPath}/couple/home_view" type="button" class=" btn btn-outline-danger w-100 mt-3">취소하기</a>
 	
 	</div>
 </div>

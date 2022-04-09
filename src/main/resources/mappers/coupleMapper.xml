@@ -54,8 +54,8 @@
 			,`state`
 			,c.createdAt
 			,c.updatedAt
-			,u1.id "u1.id",u1.NAME "u1.name", u1.birth "u1.birth", u1.profileimagepath "u1.profileimagepath", date_format(u1.date,'%Y-%m-%d') "u1.date"
-			,u2.id "u2.id", u2.NAME "u2.name", u2.birth "u2.birth", u2.profileimagepath "u2.profileimagepath", u2.date "u2.date"
+			,u1.id "u1.id",u1.name "u1.name", u1.birth "u1.birth", u1.profileimagepath "u1.profileimagepath", date_format(u1.date,'%Y-%m-%d') "u1.date"
+			,u2.id "u2.id", u2.name "u2.name", u2.birth "u2.birth", u2.profileimagepath "u2.profileimagepath", u2.date "u2.date"
  		FROM
  			`couple` c,
  			user u1,

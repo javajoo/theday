@@ -32,9 +32,9 @@ public class SHA256 {
 		return builder.toString();
 	}
 	
-	public static void main(String[] args) {
-		SHA256 s = new SHA256();
-		String sha = s.encrypt("1");
-		System.out.println(sha);
-	}
+//	public static void main(String[] args) {
+//		SHA256 s = new SHA256();
+//		String sha = s.encrypt("1");
+//		System.out.println("#############"+sha);
+//	}
 }

@@ -3,11 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center"> 
+<!-- (user.loginId == couple.u1.loginId or user.loginId == couple.u2.loginId) -->
+<c:if test="${couple.state eq '성공'}">
 	<div class="top-part">               
 		<div class="d-flex justify-content-between">
 			<div class="story ml-3 font-weight-bold"><b>스토리</b></div>
-			<a href="/post/post_create_view"><img src="/static/image/edit.png" width="40" class="mr-3 mt-2"></a>
+			<a href="${pageContext.request.contextPath}/post/post_create_view"><img src="/static/image/edit.png" width="40" class="mr-3 mt-2"></a>
 		</div>
 		
 		<div class="list-box">
@@ -75,6 +77,7 @@
 			</c:forEach>
 		</div>
 	</div>
+	</c:if>
 </div>
 
 <!-- more Modal -->
@@ -95,9 +98,9 @@
 
 
 <div class="d-flex justify-content-center mt-3">
-	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
-	<a href="/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
-	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
+	<a href="${pageContext.request.contextPath}/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
+	<a href="${pageContext.request.contextPath}/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
+	<a href="${pageContext.request.contextPath}/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 </div>
 
 

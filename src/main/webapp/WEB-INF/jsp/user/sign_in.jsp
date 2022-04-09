@@ -12,7 +12,7 @@
 		
 		<button type="button" class="sign-in-btn btn btn-outline-primary w-100 mt-3" onclick="signIn()" >로그인</button>
 		<hr>
-		<div class="text-center">계정이 없으신가요? <a href="/user/sign_up_view" class="badge badge-primary">회원가입</a></div>
+		<div class="text-center">계정이 없으신가요? <a href="${pageContext.request.contextPath}/user/sign_up_view" class="badge badge-primary">회원가입</a></div>
 	</div>
 </div>
 

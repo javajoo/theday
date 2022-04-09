@@ -9,6 +9,6 @@
 <div class="d-flex justify-content-end">
 	<c:if test="${not empty user}">
 		<div class="text-center mr-3"><b>${user.name}님 </b></div>
-		<div><a href="/user/sign_out" class="font-weight-bold text-primary">로그아웃</a></div>
+		<div><a href="${pageContext.request.contextPath}/user/sign_out" class="font-weight-bold text-primary">로그아웃</a></div>
 	</c:if>
 </div>

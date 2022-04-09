@@ -17,10 +17,10 @@
 </div>
 
 <div class="d-flex justify-content-center mt-3">
-	<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
-	<a href="/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
-	<a href="/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
-	<a href="/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
+	<a href="${pageContext.request.contextPath}/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
+	<a href="${pageContext.request.contextPath}/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a>
+	<a href="${pageContext.request.contextPath}/chat/chat_view"><img src="/static/image/chat.png" class="mr-4" height="50"></a>
+	<a href="${pageContext.request.contextPath}/calendar/calendar_view"><img src="/static/image/calendar.png" height="50"></a>
 </div>
 
 <script>

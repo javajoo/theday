@@ -46,7 +46,7 @@
 		<button type="button" class="sign-up-btn btn btn-outline-primary w-100 mt-3">가입하기</button>
 	
 		<hr>
-		<div class="text-center">계정이 있으신가요? <a href="/user/sign_in_view" class="badge badge-primary">로그인</a></div>
+		<div class="text-center">계정이 있으신가요? <a href="${pageContext.request.contextPath}/user/sign_in_view" class="badge badge-primary">로그인</a></div>
 	</div>
 </div>
 
