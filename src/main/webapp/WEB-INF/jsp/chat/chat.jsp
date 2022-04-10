@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-center">
 	    <div class="chat-name">
 		    <div class="d-flex">
-			    <input type="text" id="name" class="col-4 chat-nickname form-control bg-white" value="${user.loginId}" disabled> 
+			    <input type="text" id="name" class="col-10 chat-nickname form-control bg-white" value="${user.loginId}" disabled> 
 			    <button onclick="startChat(this)" id="btn" class="btn btn-outline-primary ml-2">채팅시작</button>
 		    </div>
 	    
@@ -12,7 +12,7 @@
 			    <textArea id="chatContent" cols="100" rows="10" class="form-control my-2 bg-white" style="border: none" readonly></textArea>
 			    
 			    <div class="d-flex">
-				    <input type="text" id="chatMsg" class="form-control col-6" placeholder="메세지를 입력 해주세요">
+				    <input type="text" id="chatMsg" class="form-control col-10" placeholder="메세지를 입력 해주세요">
 				    <button onclick="sendMsg()" class="send-btn btn bg-white ml-1"><img src="/static/image/send.png" alt="image" width="20"></button>
 				</div>
 		    </div>
@@ -109,6 +109,7 @@
 						}
 					
 					}
+					document.getElementById("chatContent").scrollTop = document.getElementById("chatContent").scrollHeight;
 				};
 				// 연결이 되었을 때 
 				websocket.onopen = function(evt){ // 3번
