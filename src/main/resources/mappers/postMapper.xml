@@ -31,7 +31,15 @@
 			,`createdAt`
 			,`updatedAt`
  		FROM
- 			`post`
+ 			`post`p,
+ 			(SELECT userId1, userId2 FROM couple
+			 where
+			 userId1=#{userId}
+			 OR 
+			 userId2=#{userId}) u
+		where
+			p.userId=u.userId1
+			OR p.userId = u.userId2
  		ORDER BY `id` DESC;
  	</select>
  	

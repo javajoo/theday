@@ -29,7 +29,7 @@ public class ContentBO {
 	public List<ContentView> generateContentViewList(int userId) {
 		List<ContentView> contentViewList = new ArrayList<>();
 		
-		List<Post> postList = postBO.getPostList();
+		List<Post> postList = postBO.getPostList(userId);
 		
 		for (Post post : postList) {
 			ContentView content = new ContentView();

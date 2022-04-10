@@ -39,8 +39,8 @@ public class PostBO {
 		return postDAO.insertPost(post);
 	}
 	
-	public List<Post> getPostList() {
-		return postDAO.selectPostList();
+	public List<Post> getPostList(int userId) {
+		return postDAO.selectPostList(userId);
 	}
 	
 	public void deletePostById(Post post,Comment comment) {

@@ -11,7 +11,7 @@ public interface PostDAO {
 
 	public int insertPost (Post post);
 	
-	public List<Post> selectPostList();
+	public List<Post> selectPostList(int userId);
 	
 	public void deletePostById(Post post);
 }

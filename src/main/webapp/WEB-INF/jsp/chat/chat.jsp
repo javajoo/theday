@@ -103,9 +103,9 @@
 						$('#chatContent').append(chatMsg.chatName+'님이 퇴장 하셨습니다.\r\n');
 						
 						if (chatmsg.chatName === chatName) {
-							websocket.close();
 							obj.innerText = '채팅시작';
 							$('#chatDiv').css('display',''); // 3개 지워주기
+							websocket.close();
 						}
 					
 					}
