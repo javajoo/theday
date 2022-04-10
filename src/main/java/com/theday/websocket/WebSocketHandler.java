@@ -2,7 +2,10 @@ package com.theday.websocket;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
-    private static List<WebSocketSession> webSocketSessionList = Collections.synchronizedList(new ArrayList<>());
+    private static Map<String,List<WebSocketSession>> sessionMap = Collections.synchronizedMap(new HashMap<>());
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -33,26 +36,46 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info("payload : {}",payload);
         ChatMsg cm = om.readValue(payload, ChatMsg.class);
         log.info("cm =>{}", cm);
+      
+       String id = cm.getId();
+       
+       if (!sessionMap.containsKey(id)) { // 아이디가 해당채팅방에 없다면 <레이지로딩: 요청시 생성> <-> 프리로딩:(@component... 서버들어가면서 메모리 생성하는거 )
+    	   sessionMap.put(id, new ArrayList<>()); // 채팅방 들어갔으면 새로 만들어준다.. 로그인 후 채팅방에 입장 하면 새로 만들어준다. 
+    	   // 불필요한 방 미리 만들어놓을 필요 없다.. 요청 왔을때에 만들어준다.
+       } 
+       List<WebSocketSession> sessionList = sessionMap.get(id);
        if (cm.getCmd().equals("open")) {
-    	   
-       } else if (cm.getCmd().equals("chat")) {
-    	   
+    	   sessionList.add(session);
        }
         
-        for(WebSocketSession sess: webSocketSessionList) {
+        for(WebSocketSession sess: sessionList) {
             sess.sendMessage(message);
         }
     }
     
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-    	webSocketSessionList.add(session); //2번 접속세션 들어감
+    	//webSocketSessionList.add(session); //2번 접속세션 들어감
         log.info("접속 성공 => {}", session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-    	webSocketSessionList.remove(session);
-        log.info("접속 해제=>{}", session);
+    	//webSocketSessionList.remove(session);
+    	
+    	Iterator<String> it = sessionMap.keySet().iterator();
+    	while (it.hasNext()) {
+    		String id = it.next();
+    		List<WebSocketSession> sessionList = sessionMap.get(id);
+    		if (sessionList.contains(session)) {
+    			sessionList.remove(session);
+    		}
+    		for (WebSocketSession ws : sessionList) {
+    			ChatMsg cm = new ChatMsg();
+    			cm.setCmd("close");
+    			
+    			session.sendMessage(null);
+    		}
+    	}
     }
 }

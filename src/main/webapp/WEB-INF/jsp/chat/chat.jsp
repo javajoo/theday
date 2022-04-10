@@ -50,6 +50,7 @@
 				cmd : 'msg'
 				,msg : $('#chatMsg').val()
 				,chatName : chatName
+				,id : ${couple.id}
 		}
 		
 		websocket.send(JSON.stringify(msg));
@@ -65,11 +66,19 @@
 	var chatName;
 		function startChat(obj){
 			
-			if (obj.innerText == '종료') {
-				websocket.close();
+			if (obj.innerText === '종료') {
+				
+				var msg = {
+						cmd : 'close'
+						,chatName : chatName
+						,id : ${couple.id}
+				}
+				websocket.send(JSON.stringify(msg));
+				//websocket.close(); //
+				
 				$('#name').attr('disabled',false);
 				//$('#chatDiv').css('display','none');
-				obj.innerText = '채팅시작';
+				//obj.innerText = '채팅시작';//
 			} else {
 				chatName = $('#name').val();
 				/* if (!chatName) {
@@ -78,7 +87,7 @@
 					return;
 				} */
 				//    IPv4 주소 localhost 대신에 넣어준다
-				websocket = new WebSocket("ws://localhost/ws/chat"); //1번 ipconfig
+				websocket = new WebSocket("ws://172.30.2.37/ws/chat"); //1번 ipconfig
 				
 				websocket.onmessage = function(evt){ // 6번 9번
 					var chatMsg = JSON.parse(evt.data); //parse 메소드는 string 객체를 json 객체로 변환
@@ -90,7 +99,15 @@
 					} else if (chatMsg.cmd === 'msg') { // 메세지 썻을 때 이름: 메세지내용
 						$('#chatContent').append('[' + chatMsg.chatName + '] :' + chatMsg.msg + '\r\n');
 						  clearTextarea();
+					} else if (chatMsg.cmd === 'close') {
+						$('#chatContent').append(chatMsg.chatName+'님이 퇴장 하셨습니다.\r\n');
 						
+						if (chatmsg.chatName === chatName) {
+							websocket.close();
+							obj.innerText = '채팅시작';
+							$('#chatDiv').css('display',''); // 3개 지워주기
+						}
+					
 					}
 				};
 				// 연결이 되었을 때 
@@ -99,11 +116,12 @@
 					var msg = { // json을 문자화 시킴
 							cmd : 'open' // 들어왔는지 여부 
 							,chatName : chatName
+							,id : ${couple.id}
 					}
 					websocket.send(JSON.stringify(msg)); // 4번 stringify 메소드는 json 객체를 String 객체로 변환
 					
 					$('#name').attr('disabled',true);
-					$('#chatDiv').css('display','');
+					//$('#chatDiv').css('display','');
 					obj.innerText = '종료';
 				};
 				websocket.onclose = function(evt){
