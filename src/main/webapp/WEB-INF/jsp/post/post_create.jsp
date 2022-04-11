@@ -50,7 +50,6 @@
 		//alert('click');
 		$('.upload-btn').on('click',function(e) {
 			//alert('click');
-			
 			var textareaId = $('#textareaId').val();
 			$('#content').removeClass('is-invalid');
 			
@@ -70,7 +69,6 @@
 			if ($('#file')[0].files[0]) {
 				formData.append('image',$('#file')[0].files[0]);
 			}
-		
 			
 			$.ajax({
 				type : 'POST'
@@ -91,10 +89,6 @@
 					alert('관리자에게 문의바랍니다.');
 				}
 			});
-			
-			
 		});
-		
-		
 	});
 </script>

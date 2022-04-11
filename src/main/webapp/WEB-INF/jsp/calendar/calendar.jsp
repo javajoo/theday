@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <link href='/static/lib/main.css' rel='stylesheet' />
     <script src='/static/lib/main.js'></script>
+    
     <div id='calendar' class="mt-5"></div>
 	 	<div class="d-flex justify-content-center mt-5">
 			<a href="/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a>
@@ -11,16 +12,15 @@
 		
  	<script>
       document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          googleCalendarApiKey: 'AIzaSyBwo4oOfea5TLSuNzZdQnqmJmqusEf6Di0',
-          events: {
-            googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com'
-           ,className: 'gcal-event' // an option! 
-          }
+	      	var calendarEl = document.getElementById('calendar');
+	        var calendar = new FullCalendar.Calendar(calendarEl, {
+	        	initialView: 'dayGridMonth',
+	      		googleCalendarApiKey: 'AIzaSyBwo4oOfea5TLSuNzZdQnqmJmqusEf6Di0',
+		        events: {
+		        googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com'
+		        ,className: 'gcal-event' 
+	        }
         });
         calendar.render();
       });
-
     </script>

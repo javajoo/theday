@@ -20,8 +20,8 @@
 		<table class="table text-center table-hover mt-5">
 				<thead>
 					<tr>
-						<th>번호</th>
 						<th>아이디</th>
+						<th>이름</th>
 						<th>성별</th>
 						<th>생일</th>
 						<th>처음만난날</th>

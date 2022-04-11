@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <div class="d-flex justify-content-center"> 
-<!-- (user.loginId == couple.u1.loginId or user.loginId == couple.u2.loginId) -->
 <c:if test="${couple.state eq '성공'}">
 	<div class="top-part">               
 		<div class="d-flex justify-content-between">
@@ -114,7 +113,6 @@
 		});
 		
 		$('#moreModal .del-post').on('click',function(e) {
-			//e.preventDefault();
 			var id = $('#moreModal').data('post-id');
 			$.ajax({
 				type: 'DELETE'
@@ -134,9 +132,6 @@
 		
 		$('.commentBtn').on('click',function(e) {
 			//alert('click');
-			//e.preventDefault();
-			// e.stopImmediatePropagation();
-			
 			var postId = $(this).data('post-id');
 			var commentContent = $('#commentText' + postId).val().trim();
 			

@@ -52,7 +52,7 @@ public class CoupleController {
 		List<User> coupleList2 = userBO.selectUserCoupleByUserId2(userId);
 		model.addAttribute("coupleList1", coupleList1); 
 		model.addAttribute("coupleList2", coupleList2); 
-		model.addAttribute("viewName", "user/agree");
+		model.addAttribute("viewName", "couple/agree");
 		return "template/layout";
 	}
 	

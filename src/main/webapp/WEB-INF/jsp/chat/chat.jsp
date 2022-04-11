@@ -19,8 +19,8 @@
 			</div>
 		</div>
 	</div>
-
 </div>
+
 <div class="d-flex justify-content-center mt-3">
 	<a href="${pageContext.request.contextPath}/couple/home_view"><img src="/static/image/house.png" class="mr-4" height="50"></a> 
 	<a href="${pageContext.request.contextPath}/timeline/timeline_list_view"><img src="/static/image/pictures.png" class="mr-4" width="50"></a> 
@@ -28,21 +28,13 @@
 </div>
 
 <script>
-	
-
-	
 	$(document).keypress(function(event){
-		
 		  var keycode = (event.keyCode ? event.keyCode : event.which);
 		  if(keycode == '13'){
 			  //startChat(this);
 			  sendMsg();
 		  }
 		});
-	
-	// 채팅 스크롤 하단으로 보내기
-
-	
 	
 	function sendMsg() {  // 7번
 		var msg = {
@@ -51,43 +43,24 @@
 				,chatName : chatName
 				,id : ${couple.id}
 		}
-		
 		websocket.send(JSON.stringify(msg));
 	
 		// 아래로 자동 스크롤
 		document.getElementById("chatContent").scrollTop = document.getElementById("chatContent").scrollHeight;
 	}
-	
-	
-	
-	
 	var websocket;
 	var chatName;
 		function startChat(obj){
-			
 			if (obj.innerText === '종료') {
-				
 				var msg = {
 						cmd : 'close'
 						,chatName : chatName
 						,id : ${couple.id}
 				}
 				websocket.send(JSON.stringify(msg));
-				//websocket.close(); //
-				
-				//$('#name').attr('disabled',true);
-				//$('#chatDiv').css('display','none');
-				//obj.innerText = '채팅시작';//
 			} else {
 				chatName = $('#name').val();
-				/* if (!chatName) {
-					alert('대화명은 필수 입니다.');
-					$('#name').focus();
-					return;
-				} */
-				//    IPv4 주소 localhost 대신에 넣어준다
 				websocket = new WebSocket("ws://192.168.219.102/ws/chat"); //1번 ipconfig
-				
 				websocket.onmessage = function(evt){ // 6번 9번
 					var chatMsg = JSON.parse(evt.data); //parse 메소드는 string 객체를 json 객체로 변환
 					console.log(chatMsg); 
@@ -101,18 +74,16 @@
 					} else if (chatMsg.cmd === 'close') {
 						$('#chatContent').append(chatMsg.chatName+'님이 퇴장 하셨습니다\r\n');
 						$('#chatMsg').attr('disabled',true);
-						
 						if (chatMsg.chatName===chatName) {
 							websocket.close();
 							obj.innerText = '채팅시작';
 							$('#chatDiv').css('display',''); // 3개 지워주기
 							$('#chatMsg').attr('disabled',false);
-							
 						}
-					
 					}
 					document.getElementById("chatContent").scrollTop = document.getElementById("chatContent").scrollHeight;
 				};
+				
 				// 연결이 되었을 때 
 				websocket.onopen = function(evt){ // 3번
 					console.log(evt);
@@ -121,6 +92,7 @@
 							,chatName : chatName
 							,id : ${couple.id}
 					}
+					// 아래로 자동 스크롤
 					websocket.send(JSON.stringify(msg)); // 4번 stringify 메소드는 json 객체를 String 객체로 변환
 					
 					
@@ -132,10 +104,9 @@
 				};
 			}	
 		}
-		// 메세지 입력박스 내용 지우기
+		
+		 	// 메세지 입력박스 내용 지우기
 		    function clearTextarea() {
 		        $('#chatMsg').val('');
 		    }
-		 
-
 	</script>
