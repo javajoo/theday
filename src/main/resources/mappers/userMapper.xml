@@ -101,7 +101,7 @@
  			OR u.id=c.userid2) AND state ='성공')
  	</select>
  	
- 	<update id="updateUser">
+ 	<update id="updateUserByLoginId">
  		UPDATE `user`
  		SET
 			`loginId` = #{loginId}
@@ -116,7 +116,7 @@
  			`loginId` = #{loginId} 
  	</update>
  	
- 	<select id="selectUserCouple1" resultType="com.theday.user.model.User"> 
+ 	<select id="selectUserCoupleByUserId1" resultType="com.theday.user.model.User"> 
 	 	SELECT user.* FROM `user`
  		join `couple`
  		on  user.id = couple.userId2 
@@ -126,7 +126,7 @@
  	
  	
  	
- 	<select id="selectUserCouple2" resultType="com.theday.user.model.User"> 
+ 	<select id="selectUserCoupleByUserId2" resultType="com.theday.user.model.User"> 
 	 	SELECT user.* FROM `user`
  		join `couple`
  		on  user.id = couple.userId1 
@@ -134,7 +134,7 @@
  			userId2 = #{userId}
  	</select>
  	
- 	<select id="selectUserByUserId" resultType="com.theday.user.model.User">
+ 	<select id="selectUserById" resultType="com.theday.user.model.User">
  		SELECT
  			`id`
  			,`loginId`

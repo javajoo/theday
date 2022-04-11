@@ -38,7 +38,7 @@ public class ContentBO {
 			content.setPost(post);
 			
 			// 글쓴이 정보
-			User user = userBO.getUserByUserId(post.getUserId());
+			User user = userBO.selectUserById(post.getUserId());
 			content.setUser(user);
 			
 			// 댓글정보

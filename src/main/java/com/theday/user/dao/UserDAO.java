@@ -20,13 +20,15 @@ public interface UserDAO {
 	
 	public List<User> selectUserListById();
 	
-	public List<User> selectUserByLoginId(@Param("loginId")String loginId, @Param("sessionLoginId") String sessionLoginId);
+	public List<User> selectUserByLoginId(
+			@Param("loginId")String loginId, 
+			@Param("sessionLoginId") String sessionLoginId);
 	
-	public int updateUser(User user);
+	public int updateUserByLoginId(User user);
 
-	public List<User> selectUserCouple1(int userId);
+	public List<User> selectUserCoupleByUserId1(int userId);
 	
-	public List<User> selectUserCouple2(int userId);
+	public List<User> selectUserCoupleByUserId2(int userId);
 	
-	public User selectUserByUserId(int userId);
+	public User selectUserById(int userId);
 }

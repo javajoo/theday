@@ -27,41 +27,38 @@ public class CoupleRestController {
 	@Autowired
 	private CoupleBO coupleBO;
 	
+	/**
+	 * 커플 연결 api
+	 * @param couple
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/connect")
 	public Map<String, Object> insertCouple( @RequestBody Couple couple, HttpSession session) { // @RequestBody : json
 		User user = (User) session.getAttribute("user");
-		
 		couple.setUserId1(user.getId());
-
-		
 		Map<String, Object> result = new HashMap<>();
 		log.debug("couple=>{}", couple);
-		//post.setUserId(user.getId()); // post에 userId 넣어준다.
-//		couple.setUserId1(couple.getUserId1());
-//		couple.setUserId2(couple.getUserId2());
-		
 		int exist = coupleBO.countUser(couple);
 		result.put("result", "success");
-		
 		if (exist > 1) {
 			result.put("result", "error");
 		}
-		
 		coupleBO.insertCouple(couple);
-		
 		return result;
 	}
 	
+	/**
+	 * 커플 수락 api
+	 * @param session
+	 * @param couple
+	 * @return
+	 */
 	@PostMapping("/agree")
 	public Map<String, Object> agree (HttpSession session, 	@RequestBody Couple couple) { 
-//		User user = (User) session.getAttribute("user");
-//		couple.setUserId1(user.getId());
-		
 		Map<String, Object> result = new HashMap<>();	
-			
 		int row = coupleBO.updateCouple(couple);
 		result.put("result", "success");
-		
 		if (row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "커플매칭에 실패했습니다.");
@@ -69,29 +66,33 @@ public class CoupleRestController {
 		return result;
 	}
 	
+	/**
+	 * 커플 거절 api
+	 * @param session
+	 * @param couple
+	 * @return
+	 */
 	@DeleteMapping("/reject")
 	public Map<String, Object> reject(HttpSession session, 	@RequestBody Couple couple) {
 		User user = (User) session.getAttribute("user");
 		couple.setUserId1(user.getId());
-		
 		Map<String, Object> result = new HashMap<>();	
-		
 		coupleBO.deleteCouple(couple);
 		result.put("result", "success");
-		
 		return result;
 	}
 	
+	/**
+	 * 커펄 거절2 api
+	 * @param session
+	 * @param couple
+	 * @return
+	 */
 	@DeleteMapping("/reject2")
 	public Map<String, Object> reject1(HttpSession session, @RequestBody Couple couple) {
-		//User user = (User) session.getAttribute("user");
-		//couple.setUserId1(user.getId());
-		
 		Map<String, Object> result = new HashMap<>();	
-		
 		coupleBO.deleteCouple2(couple);
 		result.put("result", "success");
-		
 		return result;
 	}
 	

@@ -17,7 +17,7 @@
 		</div>
 		
 		<div class="mt-3"><small>아이디</small></div>
-		<input type="text" id="loginId" name="loginId" class="form-control bg-white" placeholder="아이디"  value="${user.loginId}" disabled >
+		<input type="text" id="loginId" name="loginId" class="form-control bg-light" placeholder="아이디"  value="${user.loginId}" disabled >
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
 		<div id="isDuplicatedId" class="small text-danger d-none">중복된 아이디 입니다.</div>
@@ -41,7 +41,7 @@
 		<div id="inputBirth" class="small text-danger d-none">생년월일을 입력해주세요</div>
 		
 		<div class="mt-3"><small>처음 만난 날</small></div>
-		<input type="text" id="date" name="date" class="form-control" placeholder="처음 만난 날"  value="${user.date}" disabled>
+		<input type="text" id="date" name="date" class="form-control bg-light" placeholder="처음 만난 날"  value="${user.date}" disabled>
 		<div id="inputDate" class="small text-danger d-none">처음 만난 날을 입력해주세요</div>
 		
 		<button type="button" class="update-btn btn btn-outline-primary w-100 mt-3">수정하기</button>
@@ -73,6 +73,8 @@
 		
 		}); 
 		
+		$('#password').val('');
+		$('#confirmPassword').val('');
 		
 		$('.update-btn').on('click',function(e) {
 			//alert('click');
@@ -105,10 +107,10 @@
 			if (loginId == '') {
 				$('#inputId').removeClass('d-none');
 				$('#loginId').addClass('is-invalid');
-				
 				return;
 			} 
 			
+		
 			if (password == '') {
 				$('#inputPassword').removeClass('d-none');
 				$('#password').addClass('is-invalid');
@@ -156,15 +158,14 @@
 			formData.append('name', name);
 			formData.append('birth', birth);
 			formData.append('date', date);
-			
+			//formData.append('profileImage',  $('#file')[0].files[0]);
 			// 사진 있을 때만 저장 (파일에 저장되는 경로를 불러와야 한다)
-			if( $('#file')[0].files[0]){
+	 		 if( $('#file')[0].files[0]){
 				formData.append('profileImage',  $('#file')[0].files[0]);
-			}
-			
+			} 
+			 
 			
 			$.ajax({
-				/* 프로필 수정 되면 PUT으로 바꿔주기!!! */
 				type: 'PUT' 
 				,data: formData
 				,url: '/user/profile_update'
@@ -187,17 +188,22 @@
 			});
 		});
 		
+		
 		$('#birth').datepicker({
-			changeMonth: true
+		 	changeMonth: true
 			, changeYear: true
 			, dateFormat: "yy-mm-dd"
 			, showAnim: "clip"
-			,monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+			, nextText: '다음 달'
+		    , prevText: '이전 달'
+			, monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
 			, monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
 			, dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
 			, showButtonPanel: true 
-			,showMonthAfterYear: true
-			,yearSuffix: '년'
+			, showMonthAfterYear: true
+			, yearSuffix: '년'
+	
+
 		});
 		
 		$('#date').datepicker({
@@ -205,12 +211,12 @@
 			, changeYear: true
 			, dateFormat: "yy-mm-dd"
 			, showAnim: "clip"
-			,monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+			, monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
 			, monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
 			, dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
 			, showButtonPanel: true 
-			,showMonthAfterYear: true
-			,yearSuffix: '년'
+			, showMonthAfterYear: true
+			, yearSuffix: '년'
 		});
 		 $('#datepicker').datepicker('setDate', 'today'); 
 	});

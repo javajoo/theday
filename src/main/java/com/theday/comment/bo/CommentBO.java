@@ -41,7 +41,7 @@ public class CommentBO {
 			commentView.setComment(comment);
 			
 			//댓글쓴이
-			User user = userBO.getUserByUserId(comment.getUserId());
+			User user = userBO.selectUserById(comment.getUserId());
 			commentView.setUser(user);
 			
 			resultList.add(commentView);
@@ -50,6 +50,6 @@ public class CommentBO {
 	}
 	
 	public void deleteComment(Comment comment) {
-		commentDAO.deleteComment(comment);
+		commentDAO.deleteCommentByPostId(comment);
 	}
 }

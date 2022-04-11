@@ -34,19 +34,18 @@ public class UserRestController {
 	@Autowired
 	private CoupleBO coupleBO;
 	
+	/**
+	 * 회원가입 api
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(@ModelAttribute User user) {
-
-		// 비밀번호 암호화
-		//String encryptUtils = EncryptUtils.md5(user.getPassword());
 		String encryptUtils = sha256.encrypt(user.getPassword());
-		
 		user.setPassword(encryptUtils);
-		
 		int row = userBO.insertUser(user);
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
-	
 		if (row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "회원가입에 실패했습니다.");
@@ -54,36 +53,40 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 아이디 중복확인 api
+	 * @param loginId
+	 * @return
+	 */
 	@PostMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId (@RequestParam("loginId") String loginId) {
 		Map<String, Object> result = new HashMap<>();
 		boolean exist = userBO.existLoginId(loginId);
-				
 		if (exist) {
 			result.put("result", "success");
 		} else {
 			result.put("result", "error");
 		}
-	
 		return result;
 		
 	}
 	
+	/**
+	 * 로그인 api
+	 * @param loginId
+	 * @param password
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/sign_in")
 	public Map<String, String> signInView(
 			@RequestParam("loginId") String loginId, 
 			@RequestParam("password") String password,
 			HttpSession session
 			) {
-		
-		// 비밀번호 암호화
-		//String encryptUtils = EncryptUtils.md5(password);
-		
 		String encryptUtils = sha256.encrypt(password);
-		
 		Map<String, String> result = new HashMap<>();
 		result.put("result", "success");
-		
 		User user = userBO.getUserByLoginIdPassword(loginId, encryptUtils);
 		Boolean selectedCouple = coupleBO.existSelectedUser(user.getId());
 		result.put("selectedCouple", selectedCouple.toString());
@@ -97,11 +100,15 @@ public class UserRestController {
 			result.put("result", "error");
 			result.put("errorMessage", "아이디와 비밀번호를 확인 해주세요.");
 		}
-		
 		return result;
-		
 	}
 	
+	/**
+	 * 검색 화면에서 아이디 넘기는 api
+	 * @param loginId
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/search/{loginId}")
 	public Map<String, Object> search (@PathVariable("loginId") String loginId, HttpSession session) {
 		User user = (User)session.getAttribute("user");
@@ -115,35 +122,26 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 프로필수정 api
+	 * @param user
+	 * @param session
+	 * @return
+	 */
 	@PutMapping("/profile_update")
 	public Map<String, Object> profile (@ModelAttribute User user, HttpSession session) {
-		
-		//user = (User) session.getAttribute("user"); //넣으면 수정된 정보 저장안댐!!!
-		
-		// 비밀번호 암호화
-		//String encryptUtils = EncryptUtils.md5(user.getPassword());
 		String encryptUtils = sha256.encrypt(user.getPassword());
 		user.setPassword(encryptUtils);
-		
 		Map<String, Object> result = new HashMap<>();	
 		result.put("result", "success");
-		
 		User tmpUser = (User)session.getAttribute("user");
-		int row = userBO.updateUser(user, tmpUser.getProfileImagePath());
+		int row = userBO.updateUserByLoginId(user, tmpUser.getProfileImagePath());
 		if(row < 1) {
 			result.put("result", "error");
 			result.put("errorMessage", "수정에 실패했습니다.");
 		}else {
 			session.setAttribute("user", user); // 수정된 정보 세션에 다시 저장
 		}
-		
-	
-		
 		return result;
 	}
-	
-
-	
-
-
 }

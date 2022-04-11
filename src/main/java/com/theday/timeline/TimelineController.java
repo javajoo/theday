@@ -21,25 +21,23 @@ public class TimelineController {
 	@Autowired
 	private ContentBO contentBO;
 	
-
 	@Autowired
 	private CoupleBO coupleBO;
 	
+	/**
+	 * 타임라인 뷰
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/timeline_list_view")
 	public String timelineListView(Model model, HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
-		
 		List<ContentView> contentViewList = contentBO.generateContentViewList(userId);
-		//List<Post> postList = postBO.getPostList();
-		//model.addAttribute("postList",postList);
-		
-		// 매칭이 성공한 유저의 정보만 가져오는 로직이 필요함
-		
 		Couple couple = coupleBO.getCouple(userId);
 		model.addAttribute("couple",couple);
 		model.addAttribute("contentViewList",contentViewList);
 		model.addAttribute("viewName","timeline/timeline_list");
-		
 		return "template/layout";
 	}
 }

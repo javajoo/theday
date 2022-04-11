@@ -29,7 +29,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		
 		String uri = request.getRequestURI();
 		
-		if (user == null && !uri.contains("chat") && !uri.startsWith("/user/sign_in") && !uri.startsWith("/user/sign_up") && !uri.startsWith("/user/is_duplicated_id")) {
+		if (user == null && !uri.startsWith("/user/sign_in") && !uri.startsWith("/user/sign_up") && !uri.startsWith("/user/is_duplicated_id")) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}
@@ -47,6 +47,8 @@ public class PermissionInterceptor implements HandlerInterceptor {
 		} else if (user == null && uri.startsWith("/timeline")) {
 			response.sendRedirect("/user/sign_in_view"); //ok
 		} else if (user == null && uri.startsWith("/calendar")) {
+			response.sendRedirect("/user/sign_in_view"); //ok
+		} else if (user == null && uri.startsWith("/chat")) {
 			response.sendRedirect("/user/sign_in_view"); //ok
 		}
 		

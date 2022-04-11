@@ -19,10 +19,7 @@ public class UserBO {
 	@Autowired
 	private UserDAO userDAO;
 	
-
 	public int insertUser(User user) {
-		
-		
 		// 이미지 사진 넣기
 		String imagePath = null;
 		if (user.getProfileImage() != null) {
@@ -48,8 +45,7 @@ public class UserBO {
 		return userDAO.selectUserByLoginId(loginId,sessionLoginId);
 	}
 
-	public int updateUser(User user, String preImagePath) {
-		
+	public int updateUserByLoginId(User user, String preImagePath) {
 		// 이미지 사진 수정하기
 		String imagePath = null;
 		if (user.getProfileImage() != null) {
@@ -64,22 +60,20 @@ public class UserBO {
 					e.printStackTrace();
 				}
 			}
-			
 		}
-		
-		return userDAO.updateUser(user);
+		return userDAO.updateUserByLoginId(user);
 	}
 	
-	public List<User> getUserCouple1(int userId) {
-		return userDAO.selectUserCouple1(userId);
+	public List<User> selectUserCoupleByUserId1(int userId) {
+		return userDAO.selectUserCoupleByUserId1(userId);
 	}
 	
-	public List<User> getUserCouple2(int userId) {
-		return userDAO.selectUserCouple2(userId);
+	public List<User> selectUserCoupleByUserId2(int userId) {
+		return userDAO.selectUserCoupleByUserId2(userId);
 	}
 	
-	public User getUserByUserId(int userId) {
-		return userDAO.selectUserByUserId(userId);
+	public User selectUserById(int userId) {
+		return userDAO.selectUserById(userId);
 	}
 	
 }

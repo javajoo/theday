@@ -14,10 +14,15 @@ import com.theday.couple.model.Couple;
 @RequestMapping("/chat")
 public class ChatController {
 
-
 	@Autowired
 	private CoupleBO coupleBO;
 	
+	/**
+	 * 채팅 뷰
+	 * @param model
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/chat_view")
 	public String chatView(Model model, HttpSession session) {
 		int userId = (int)session.getAttribute("userId");

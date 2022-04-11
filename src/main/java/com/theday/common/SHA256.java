@@ -10,6 +10,7 @@ public class SHA256 {
 	
 	private final static String SHA256_SALT = "theday"; 
 	
+	// 비밀번호 암호화 
 	public String encrypt(String text) {
 		text += SHA256_SALT;
 		MessageDigest md = null;
@@ -32,9 +33,4 @@ public class SHA256 {
 		return builder.toString();
 	}
 	
-//	public static void main(String[] args) {
-//		SHA256 s = new SHA256();
-//		String sha = s.encrypt("1");
-//		System.out.println("#############"+sha);
-//	}
 }

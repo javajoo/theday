@@ -21,14 +21,18 @@ public class CommentRestController {
 	@Autowired
 	private CommentBO commentBO;
 	
+	/**
+	 * 댓글 추가 api
+	 * @param comment
+	 * @param session
+	 * @return
+	 */
 	@PostMapping("/create")
 	public Map<String, Object> create(@ModelAttribute Comment comment, HttpSession session) {
-		//	post.setUserId(user.getId()); // post에 userId 넣어준다.
 		int userId = (int) session.getAttribute("userId");
 		comment.setUserId(userId);
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
-		
 		commentBO.insertComment(comment) ;
 		return result;
 		
