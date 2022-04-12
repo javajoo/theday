@@ -18,7 +18,7 @@ public class ChatController {
 	private CoupleBO coupleBO;
 	
 	/**
-	 * 채팅 뷰
+	 * 채팅 뷰1
 	 * @param model
 	 * @param session
 	 * @return
