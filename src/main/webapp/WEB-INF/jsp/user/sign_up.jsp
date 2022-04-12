@@ -19,17 +19,21 @@
 		</div>
 		
 		<div id="inputId" class="small text-danger d-none">아이디를 입력해주세요</div>
-		<div id="isDuplicatedId" class="small text-danger d-none">중복된 아이디 입니다.</div>
-		<div id="isAvailableId" class="small text-success d-none">사용가능한 아이디 입니다.</div>
+		<div id="inputId4" class="small text-danger d-none">4글자 이상 입력해주세요</div>
+		<div id="isDuplicatedId" class="small text-danger d-none">중복된 아이디 입니다</div>
+		<div id="isAvailableId" class="small text-success d-none">사용가능한 아이디 입니다</div>
 		
 		<div class="mt-3"><small>비밀번호</small></div>
 		<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" >
 		<div id="inputPassword" class="small text-danger d-none">비밀번호를 입력해주세요</div>
 		
+		<div id="inputPassword8to20" class="small text-danger d-none">8자리 ~ 20자리 이내로 입력해주세요</div>
+		<div id="inputPasswordMix" class="small text-danger d-none">영문,숫자,특수문자를 혼합하여 입력해주세요</div>
+		
 		<div class="mt-3"><small>비밀번호 확인</small></div>
 		<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="비밀번호 확인">
 		<div id="inputConfirmPassword" class="small text-danger d-none">비밀번호를 다시 입력해주세요</div>
-		<div id="inputSamePassword" class="small text-danger d-none">비밀번호가 틀립니다.<br> 비밀번호를 확인 해주세요.</div>
+		<div id="inputSamePassword" class="small text-danger d-none">비밀번호가 틀립니다<br> 비밀번호를 확인 해주세요</div>
 		
 		<div class="mt-3"><small>이름</small></div>
 		<input type="text" id="name" name="name" class="form-control" placeholder="이름">
@@ -69,18 +73,24 @@
 		$('#isDuplicatedBtn').on('click',function(e) {
 			//alert('click');
 			
-			let loginId = $('#loginId').val().trim();
+			var loginId = $('#loginId').val().trim();
 			
 			$('#inputId').addClass('d-none');
 			$('#isDuplicatedId').addClass('d-none');
 			$('#isAvailableId').addClass('d-none');
 			$('#loginId').removeClass('is-invalid');
+			$('#inputId4').addClass('d-none');
 			
 			if (loginId == '') {
 				$('#inputId').removeClass('d-none');
 				$('#loginId').addClass('is-invalid');
 				return;
-			} 
+			} else if (loginId.length < 4) {
+				$('#inputId4').removeClass('d-none');
+				$('#loginId').addClass('is-invalid');
+				return;
+			}
+			 
 			
 	 		$.ajax({
 				type: 'POST'
@@ -98,28 +108,25 @@
 					alert('관리자에게 문의바랍니다');
 				}
 			}); 
-			
 		});
 		
 		$('#fileUpLoadBtn').on('click',function(e) {
 			//alert('click');
 			e.preventDefault();
 			$('#file').click();
-		
 		}); 
-		
 		
 		$('.sign-up-btn').on('click',function(e) {
 			//alert('click');
-			let gender = $('input[name="gender"]:checked').val();
+			var gender = $('input[name="gender"]:checked').val();
 			//console.log(person);
-			let loginId = $('#loginId').val().trim();
-			let password = $('#password').val();
-			let confirmPassword = $('#confirmPassword').val();
-			let name = $('#name').val().trim();
-			let birth = $('#birth').val().trim();
-			let date = $('#date').val().trim();
-			let profileImage = $('#profileImage').val();
+			var loginId = $('#loginId').val().trim();
+			var password = $('#password').val();
+			var confirmPassword = $('#confirmPassword').val();
+			var name = $('#name').val().trim();
+			var birth = $('#birth').val().trim();
+			var date = $('#date').val().trim();
+			var profileImage = $('#profileImage').val();
 	
 			$('#inputId').addClass('d-none');
 			$('#inputPassword').addClass('d-none');
@@ -128,6 +135,12 @@
 			$('#inputName').addClass('d-none');
 			$('#inputBirth').addClass('d-none');
 			$('#inputDate').addClass('d-none');
+			$('#inputPassword8to20').addClass('d-none');
+			$('#inputPasswordMix').addClass('d-none');
+			
+			var num = password.search(/[0-9]/g);
+			var eng = password.search(/[a-z]/ig);
+			var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 			
 			$('#loginId').removeClass('is-invalid');
 			$('#password').removeClass('is-invalid');
@@ -136,11 +149,9 @@
 			$('#birth').removeClass('is-invalid');
 			$('#date').removeClass('is-invalid');
 			
-			
 			if (loginId == '') {
 				$('#inputId').removeClass('d-none');
 				$('#loginId').addClass('is-invalid');
-				
 				return;
 			} 
 			
@@ -149,6 +160,20 @@
 				$('#password').addClass('is-invalid');
 				return;
 			} 
+			
+			if (password == '') {
+				$('#inputPassword').removeClass('d-none');
+				$('#password').addClass('is-invalid');
+				return;
+			} else if (password.length < 8 || password.length > 20) {
+				$('#inputPassword8to20').removeClass('d-none');
+				$('#password').addClass('is-invalid');
+				return;
+			} else if (num < 0 || eng < 0 || spe < 0 ) {
+				$('#inputPasswordMix').removeClass('d-none');
+				$('#password').addClass('is-invalid');
+				return;
+			}
 			
 			if (confirmPassword == '') {
 				$('#inputConfirmPassword').removeClass('d-none');

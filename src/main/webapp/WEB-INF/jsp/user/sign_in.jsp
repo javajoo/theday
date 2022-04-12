@@ -65,7 +65,7 @@
 						location.href = '/user/search_view';
 					}
 				} else {
-					alert(data.errorMessage);
+					alert('아이디와 비밀번호를 확인 해주세요.');
 				}
 			}
 			,error: function(data) {
