@@ -88,9 +88,9 @@ public class UserRestController {
 		Map<String, String> result = new HashMap<>();
 		result.put("result", "success");
 		User user = userBO.getUserByLoginIdPassword(loginId, encryptUtils);
-		Boolean selectedCouple = coupleBO.existSelectedUser(user.getId());
-		result.put("selectedCouple", selectedCouple.toString());
 		if (user != null) {
+			Boolean selectedCouple = coupleBO.existSelectedUser(user.getId());
+			result.put("selectedCouple", selectedCouple.toString());
 			session.setAttribute("user", user);
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("hasCouple", true);
