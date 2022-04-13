@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="d-flex justify-content-center">
-	<div class="chat-name">
+	<div class="chat-name" >
 		<div class="d-flex">
 			<input type="text" id="name" class="col-9 chat-nickname form-control bg-light" value="${user.loginId}" disabled>
 			<button onclick="startChat(this)" id="btn" class="btn bg-white ml-2">채팅시작</button>
@@ -51,6 +51,7 @@
 	var websocket;
 	var chatName;
 		function startChat(obj){
+			window.onbeforeunload
 			if (obj.innerText === '종료') {
 				var msg = {
 						cmd : 'close'
@@ -60,7 +61,7 @@
 				websocket.send(JSON.stringify(msg));
 			} else {
 				chatName = $('#name').val();
-				websocket = new WebSocket("ws://192.168.219.104/ws/chat"); //1번 ipconfig
+				websocket = new WebSocket("ws://172.30.1.36/ws/chat"); //1번 ipconfig
 				websocket.onmessage = function(evt){ // 6번 9번
 					var chatMsg = JSON.parse(evt.data); //parse 메소드는 string 객체를 json 객체로 변환
 					console.log(chatMsg); 
@@ -77,7 +78,7 @@
 						if (chatMsg.chatName===chatName) {
 							websocket.close();
 							obj.innerText = '채팅시작';
-							$('#chatDiv').css('display',''); // 3개 지워주기
+							$('#chatDiv').css('display','');
 							$('#chatMsg').attr('disabled',false);
 						}
 					}
@@ -95,7 +96,6 @@
 					// 아래로 자동 스크롤
 					websocket.send(JSON.stringify(msg)); // 4번 stringify 메소드는 json 객체를 String 객체로 변환
 					
-					
 					//$('#chatDiv').css('display','');
 					obj.innerText = '종료';
 				};
@@ -104,9 +104,14 @@
 				};
 			}	
 		}
-		
 		 	// 메세지 입력박스 내용 지우기
 		    function clearTextarea() {
 		        $('#chatMsg').val('');
 		    }
+		 	
+		 	//F5
+		    window.onbeforeunload = function (e) {
+		    	return 0;
+		    };
+
 	</script>
