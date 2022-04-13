@@ -110,7 +110,7 @@
 			,`birth` = #{birth}
 			,`gender` = #{gender}
 			<if test='profileImagePath != null and profileImagePath != ""'>
-			,`profileImagePath` = #{profileImagePath}
+				,`profileImagePath` = #{profileImagePath}
 			</if>
 			,`date` = #{date}
 			,`updatedAt` = NOW()
