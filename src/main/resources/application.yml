@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://localhost:3306/theday?characterEncoding=UTF-8
-    username: root
-    password: root
+    url: jdbc:log4jdbc:mysql://database-1.cybpledq7q54.ap-northeast-2.rds.amazonaws.com:3306/theday?characterEncoding=UTF-8
+    username: admin
+    password: Mm910236..
     
   mvc:
     static-path-pattern: /static/**
@@ -16,7 +16,7 @@ server:
   port: 80
   
 file:
-  upload-path :  C:\works\imgs\theday\
+  upload-path :  C:\spring_project\theday\workspace\images\
 
 
   
