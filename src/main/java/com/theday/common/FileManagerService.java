@@ -13,16 +13,25 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManagerService {
 
-	public static String fileUploadPath;
-	
-	@Value("${file.upload-path}")
-	public void setFileUploadPath(String fileUploadPath) {
-		FileManagerService.fileUploadPath = fileUploadPath;
+	public static String windowFileUploadPath;
+	public static String linuxFileUploadPath;
+
+	@Value("${file.window.upload-path}")
+	public void setWindowFileUploadPath(String windowFileUploadPath) {
+		FileManagerService.windowFileUploadPath = windowFileUploadPath;
+	}
+	@Value("${file.linux.upload-path}")
+	public void setLinuxFileUploadPath(String linuxFileUploadPath) {
+		FileManagerService.linuxFileUploadPath = linuxFileUploadPath;
 	}
 	
 	// 파일 업로드
 	public String saveFile(String userLoginId, MultipartFile file) {
 		String directoryName = userLoginId + "_" + System.currentTimeMillis() + "/";
+		String fileUploadPath = windowFileUploadPath;
+		if(!System.getProperty("os.name").contains("Window")) {
+			fileUploadPath = linuxFileUploadPath;
+		}
 		String filePath = fileUploadPath + directoryName;
 		
 		File directory = new File(filePath);
@@ -46,6 +55,10 @@ public class FileManagerService {
 	
 	// 파일 삭제
 	public void deleteFile(String profileImagePath) throws IOException {
+		String fileUploadPath = windowFileUploadPath;
+		if(!System.getProperty("os.name").contains("Window")) {
+			fileUploadPath = linuxFileUploadPath;
+		}
 		Path path = Paths.get(fileUploadPath + profileImagePath.replace("/images", ""));
 		
 		if (Files.exists(path)) {

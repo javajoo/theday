@@ -16,7 +16,10 @@ server:
   port: 80
   
 file:
-  upload-path :  /usr/works/images
+  window:
+    upload-path: C:\works\imgs\theday\
+  linux:
+    upload-path: /usr/works/images/ 
 
 
 
