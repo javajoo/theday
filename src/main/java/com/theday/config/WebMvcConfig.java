@@ -1,5 +1,7 @@
 package com.theday.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -12,14 +14,21 @@ import com.theday.interceptor.PermissionInterceptor;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+	private Logger log = LoggerFactory.getLogger(WebMvcConfig.class);
 
 	@Autowired
 	private PermissionInterceptor interceptor;
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		String path = FileManagerService.fileUploadPath;
+		String os = System.getProperty("os.name");
+		log.info("os=>{}", os);
+		if(os.contains("Windows")) {
+			path = "file:////" +  path;
+		}
 		registry
 		.addResourceHandler("/images/**") 	// ** 모든 주소
-		.addResourceLocations("file:///" + FileManagerService.fileUploadPath);
+		.addResourceLocations(FileManagerService.fileUploadPath);
 	}
 
 	@Override
