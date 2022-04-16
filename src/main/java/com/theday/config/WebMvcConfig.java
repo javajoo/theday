@@ -28,7 +28,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		}
 		registry
 		.addResourceHandler("/images/**") 	// ** 모든 주소
-		.addResourceLocations(FileManagerService.fileUploadPath);
+		.addResourceLocations(path);
 	}
 
 	@Override
