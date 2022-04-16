@@ -52,7 +52,7 @@
 				//,"state" : state
 				}
 			$.ajax({
-				type: 'POST'
+				type: 'PUT'
 				,url: '/couple/agree'
 				,data: JSON.stringify(data)  
 				,contentType: 'application/json;charset=UTF-8' 

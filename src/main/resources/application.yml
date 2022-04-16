@@ -5,7 +5,7 @@ spring:
     url: jdbc:log4jdbc:mysql://database-1.cybpledq7q54.ap-northeast-2.rds.amazonaws.com:3306/theday?characterEncoding=UTF-8
     username: admin
     password: Mm910236..
-    
+   
   mvc:
     static-path-pattern: /static/**
     view:

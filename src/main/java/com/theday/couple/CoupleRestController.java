@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,7 +55,7 @@ public class CoupleRestController {
 	 * @param couple
 	 * @return
 	 */
-	@PostMapping("/agree")
+	@PutMapping("/agree")
 	public Map<String, Object> agree (HttpSession session, 	@RequestBody Couple couple) { 
 		Map<String, Object> result = new HashMap<>();	
 		int row = coupleBO.updateCouple(couple);

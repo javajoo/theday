@@ -19,14 +19,14 @@
 	 		SELECT
 	 			COUNT(1) CNT
 	 		FROM
-	 			COUPLE
+	 			couple
 	 		WHERE
 	 			USERID1=#{userId} 
 	 		union all
 	 		SELECT
 	 			COUNT(1) CNT
 	 		FROM
-	 			COUPLE
+	 			couple
 	 		WHERE
 	 			USERID2=#{userId} 
 	 			and state='성공'
