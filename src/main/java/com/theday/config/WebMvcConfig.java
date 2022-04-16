@@ -23,7 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		String path = "file:///" + FileManagerService.windowFileUploadPath;
 
 		if(!System.getProperty("os.name").contains("Window")) {
-			path = FileManagerService.linuxFileUploadPath;
+			path = "file:" + FileManagerService.linuxFileUploadPath;
 		}
 		registry
 		.addResourceHandler("/images/**") 	// ** 모든 주소
