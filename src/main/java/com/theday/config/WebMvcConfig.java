@@ -20,11 +20,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	private PermissionInterceptor interceptor;
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		String path = FileManagerService.fileUploadPath;
+		String path = "file:" + FileManagerService.fileUploadPath;
 		String os = System.getProperty("os.name");
 		log.info("os=>{}", os);
 		if(os.contains("Windows")) {
-			path = "file:////" +  path;
+			path = "file:////" +  FileManagerService.fileUploadPath;
 		}
 		registry
 		.addResourceHandler("/images/**") 	// ** 모든 주소
