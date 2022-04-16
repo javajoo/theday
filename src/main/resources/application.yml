@@ -19,7 +19,7 @@ file:
   window:
     upload-path: C:\works\imgs\theday\
   linux:
-    upload-path: /usr/works/images/ 
+    upload-path: /usr/works/images/
 
 
 
