@@ -93,7 +93,7 @@
 	 		,`createdAt`
 	 		,`updatedAt`
  		FROM
- 			`user` U
+ 			`user` u
  		WHERE
  			`loginId` like concat('%', #{loginId},'%')
  			and loginId != #{sessionLoginId}
