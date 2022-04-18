@@ -61,7 +61,7 @@
 				websocket.send(JSON.stringify(msg));
 			} else {
 				chatName = $('#name').val();
-				websocket = new WebSocket("ws://192.168.219.104/ws/chat"); //1번 ipconfig
+				websocket = new WebSocket("ws://15.164.136.28/ws/chat"); //1번 ipconfig
 				websocket.onmessage = function(evt){ // 6번 9번
 					var chatMsg = JSON.parse(evt.data); //parse 메소드는 string 객체를 json 객체로 변환
 					console.log(chatMsg); 
